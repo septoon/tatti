@@ -4,7 +4,7 @@ import NavDesktop from './nav-desktop'
 import NavMobile from './nav-mobile'
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <div className='w-full'>
       {/* Desktop Navigation */}

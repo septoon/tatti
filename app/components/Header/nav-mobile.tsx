@@ -3,7 +3,12 @@ import Logo from '@/public/logo.png'
 import Image from 'next/image'
 import Hamburger from 'hamburger-react'
 
-const NavMobile = ({isOpen, setIsOpen}) => {
+interface NavMobileProps {
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
+}
+
+const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
   return (
     <div className='w-full flex justify-between items-center p-4'>
       <div className='flex items-center'>

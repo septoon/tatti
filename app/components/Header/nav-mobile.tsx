@@ -16,7 +16,7 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
         <span className='font-imFellDoublePica font-bold italic text-[2.5rem]'>Tatti_shef</span>
       </div>
       <div className='z-99'>
-        <Hamburger toggled={isOpen} toggle={() => setIsOpen((prev) => !prev)} rounded size={40} />
+        <Hamburger toggled={isOpen} toggle={() => setIsOpen((prev: boolean) => !prev)} rounded size={40} />
       </div>
       {isOpen && (
         <div 

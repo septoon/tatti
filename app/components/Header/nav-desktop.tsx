@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const NavDesktop = () => {
   return (
-    <>
+    <div className='w-full flex flex-col'>
       <div className='w-full flex items-center justify-between p-6'>
         <div className='flex items-center'>
           <Image src={Logo} alt="Logo" width={50} style={{marginRight: 10}} />
@@ -26,7 +26,7 @@ const NavDesktop = () => {
           <a href="">Контакты</a>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

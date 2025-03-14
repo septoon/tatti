@@ -13,7 +13,7 @@ const Header = () => {
       </div>
 
       {/* Mobile Menu Button */}
-      <div className="lg:hidden">
+      <div className="md:hidden">
         <NavMobile isOpen={isOpen} setIsOpen={setIsOpen} />
       </div>
     </div>

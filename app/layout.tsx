@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "./components/Header/Header";
+import ChatButton from "./components/Chat/Chat";
 
 export const metadata: Metadata = {
   title: "Tatti shef - Алушта",
@@ -32,7 +34,9 @@ export default function RootLayout({
       <body
         
       >
+        <Header />
         {children}
+        <ChatButton />
         <script id="pixel-chaty" async src="https://cdn.chaty.app/pixel.js?id=njyZmWFm"></script>
       </body>
     </html>

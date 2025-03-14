@@ -23,7 +23,7 @@ export default function ChatButton() {
   return (
     <SpeedDial
       ariaLabel="Чат с нами"
-      sx={{ position: 'fixed', bottom: 16, right: 16, '& .MuiFab-primary': { backgroundColor: '#535353', '&:hover': { backgroundColor: '#3a3a3a' } } }}
+      sx={{ position: 'fixed', bottom: 16, right: 16, zIndex: 99, '& .MuiFab-primary': { backgroundColor: '#535353', '&:hover': { backgroundColor: '#3a3a3a' } } }}
       icon={
         <motion.div animate={{ rotate: open ? 90 : 0 }}>
           {open ? <CloseIcon /> : <ChatIcon />}

@@ -1,0 +1,23 @@
+import { pp } from "./pp";
+import { brunch } from "./brunch";
+import { hotDishes } from "./hotDishes";
+import { bruschettaAndCrostini } from "./bruschettaAndCrostini";
+import { kidsMenu } from "./kidsMenu";
+import { canape } from "./canape";
+import { miniPastries } from "./miniPastries";
+import { tartlets } from "./tartlets";
+import { julienne } from "./julienne";
+import { tarts } from "./tarts";
+
+export const menu = {
+  "ПП меню": pp,
+  "Бранчи": brunch,
+  "Горячее": hotDishes,
+  "БРУСКЕТТА И КРОСТИНИ": bruschettaAndCrostini,
+  "Детское меню": kidsMenu,
+  "КАНАПЕ": canape,
+  "МИНИ ВЫПЕЧКА": miniPastries,
+  "ТАРТАЛЕТКИ": tartlets,
+  "ЖЮЛЬЕН В КОРЗИНКАХ ФИЛО": julienne,
+  "ТАРТЫ 9 шт": tarts
+};

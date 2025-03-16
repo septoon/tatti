@@ -13,7 +13,7 @@ type MenuItem = {
 type MenuType = Record<string, MenuItem[]>
 
 const Menu = () => {
-  const [category, setCategory] = useState<keyof MenuType>(Object.keys(menu)[0] as keyof MenuType);
+  const [category, setCategory] = useState<string>(Object.keys(menu)[0]);
 
   return (
     <div className='px-4 flex-col justify-between mt-8'>
@@ -32,7 +32,7 @@ const Menu = () => {
       </div>
       <div className='grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 content-stretch'>
         {
-          (menu[category] as MenuItem[]).map((item: MenuItem, index: number) => (
+          (menu[category as keyof MenuType] as MenuItem[]).map((item: MenuItem, index: number) => (
             <div key={index} className='flex flex-col w-full h-full mb-6 p-4 border border-red-500 rounded-md'>
               <Image 
                 src={item.image} 

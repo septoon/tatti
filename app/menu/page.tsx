@@ -32,7 +32,8 @@ const Menu = () => {
       </div>
       <div className='grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 content-stretch'>
         {
-          (menu[category] as MenuItem[]).map((item: MenuItem, index: number) => (
+          // @ts-ignore
+          menu[category].map((item: MenuItem, index: number) => (
             <div key={index} className='flex flex-col w-full h-full mb-6 p-4 border border-red-500 rounded-md'>
               <Image 
                 src={item.image} 

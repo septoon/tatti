@@ -3,17 +3,17 @@ import React, { useState } from 'react'
 import { menu } from '@/app/api/menu';
 import Image from 'next/image'
 
-type MenuType = {
-  [key: string]: {
-    name: string
-    price: number
-    description: string[]
-    image: string
-  }[]
+type MenuItem = {
+  name: string
+  price: number
+  description: string[]
+  image: string
 }
 
+type MenuType = Record<string, MenuItem[]>
+
 const Menu = () => {
-  const [category, setCategory] = useState<keyof MenuType>(Object.keys(menu)[0]);
+  const [category, setCategory] = useState<keyof MenuType>(Object.keys(menu)[0] as keyof MenuType);
 
   return (
     <div className='px-4 flex-col justify-between mt-8'>
@@ -32,7 +32,7 @@ const Menu = () => {
       </div>
       <div className='grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 content-stretch'>
         {
-          menu[category].map((item, index) => (
+          (menu[category] as MenuItem[]).map((item: MenuItem, index: number) => (
             <div key={index} className='flex flex-col w-full h-full mb-6 p-4 border border-red-500 rounded-md'>
               <Image 
                 src={item.image} 
@@ -44,8 +44,8 @@ const Menu = () => {
               <p className='mt-2 font-bold text-lg'>{item.name}</p>
               <div className='flex flex-col flex-grow'>
                 {
-                  item.description.map((i: any, desIndex: number) => (
-                    <p className='text-xs text-gray-500' key={desIndex}>• {i}</p>
+                  item.description.map((desc: string, desIndex: number) => (
+                    <p className='text-xs text-gray-500' key={desIndex}>• {desc}</p>
                   ))
                 }
               </div>

@@ -3,8 +3,17 @@ import React, { useState } from 'react'
 import { menu } from '@/app/api/menu';
 import Image from 'next/image'
 
+type MenuType = {
+  [key: string]: {
+    name: string
+    price: number
+    description: string[]
+    image: string
+  }[]
+}
+
 const Menu = () => {
-  const [category, setCategory] = useState<string>(Object.keys(menu)[0]);
+  const [category, setCategory] = useState<keyof MenuType>(Object.keys(menu)[0]);
 
   return (
     <div className='px-4 flex-col justify-between mt-8'>
@@ -21,10 +30,10 @@ const Menu = () => {
           ))
         }
       </div>
-      <div className='grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4'>
+      <div className='grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 content-stretch'>
         {
-          menu[category].map((item: any, index: number) => (
-            <div key={index} className='flex flex-col w-full mb-6 p-4 border border-red-500 rounded-md'>
+          menu[category].map((item, index) => (
+            <div key={index} className='flex flex-col w-full h-full mb-6 p-4 border border-red-500 rounded-md'>
               <Image 
                 src={item.image} 
                 alt={item.name} 
@@ -33,14 +42,14 @@ const Menu = () => {
                 className="object-cover w-[350px] h-[250px] rounded-md"
               />
               <p className='mt-2 font-bold text-lg'>{item.name}</p>
-              <div className='flex flex-col'>
+              <div className='flex flex-col flex-grow'>
                 {
                   item.description.map((i: any, desIndex: number) => (
                     <p className='text-xs text-gray-500' key={desIndex}>• {i}</p>
                   ))
                 }
               </div>
-              <div className='flex items-center justify-between mt-4'>
+              <div className='flex items-end justify-between mt-auto'>
                 <p className='text-bold text-xl'>{item.price} р</p>
                 <button className='bg-neutral-500 p-3 rounded-md text-white'>Добавить</button>
               </div>

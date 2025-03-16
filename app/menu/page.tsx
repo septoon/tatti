@@ -22,7 +22,7 @@ const Menu = () => {
         {
           Object.keys(menu).map((i: keyof MenuType) => (
             <button 
-              onClick={() => setCategory(i)}
+              onClick={() => setCategory(i as string)}
               className={`border ${category === i ? 'border-red-500 bg-red-400 text-white' : 'border-red-400 text-red-400'} font-semibold whitespace-nowrap rounded-md p-2 mr-2`}
             >
               {i}

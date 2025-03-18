@@ -4,6 +4,10 @@ import { RootState } from '@/app/GlobalRedux/store';
 import { removeFromCart, addToCart, removeOne } from '@/app/GlobalRedux/Features/cartSlice';
 import Image from 'next/image';
 import DatePicker from 'react-datepicker';
+import { IoIosCloseCircleOutline } from "react-icons/io";
+import { IoIosCloseCircle } from "react-icons/io";
+import { CiCircleMinus } from "react-icons/ci";
+import { CiCirclePlus } from "react-icons/ci";
 import 'react-datepicker/dist/react-datepicker.css';
 
 interface CartModalProps {
@@ -29,12 +33,12 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   max-h-[100vh] md:max-h-[90vh] md:w-auto
                   md:overflow-y-auto 
                   w-full h-full rounded-none overflow-y-auto z-999">
-        <div className='fixed left-0 top-0 right-0 bg-white md:bg-transparent flex justify-end p-4'>
+        <div className='fixed left-0 top-0 right-0 bg-white md:bg-transparent flex justify-end p-3'>
           <button
-            className="text-2xl text-red-500"
+            className="text-2xl text-gray-500"
             onClick={onClose}
           >
-            ✕
+            <IoIosCloseCircle />
           </button>
         </div>
         <h2 className="text-xl font-bold mb-4">Ваш заказ:</h2>
@@ -43,9 +47,9 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
           <p className="text-center text-gray-500">Корзина пуста</p>
         ) : (
           <>
-            <div className="max-h-64 overflow-y-auto">
+            <div className="">
               {cartItems.map((item) => (
-                <div key={item.id} className="flex items-center justify-between border-b py-3">
+                <div key={item.id} className="flex items-center justify-between border-b border-black/40 py-3">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -54,17 +58,17 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     className="rounded-md"
                   />
                   <div className="flex-grow mx-4">
-                    <p className="font-semibold">{item.name}</p>
+                    <span className="">{item.name}</span>
                     <div className="flex items-center">
                       <button
-                        className="p-1 text-white rounded-full"
+                        className="p-1rounded-full"
                         onClick={() => dispatch(removeOne(item.id))}
                       >
-                        ➖
+                        <CiCircleMinus />
                       </button>
                       <span className="mx-2">{item.quantity}</span>
                       <button
-                        className="p-1 text-white rounded-full"
+                        className="p-1 rounded-full"
                         onClick={() =>
                           dispatch(
                             addToCart({
@@ -76,12 +80,12 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                           )
                         }
                       >
-                        ➕
+                        <CiCirclePlus />
                       </button>
                     </div>
                   </div>
                   <div className='flex flex-col items-end'>
-                    <button onClick={() => dispatch(removeFromCart(item.id))} className='mb-2'>x</button>
+                    <button onClick={() => dispatch(removeFromCart(item.id))} className='mb-2'><IoIosCloseCircleOutline /></button>
                     <p className="text-sm text-gray-500">{item.price} р</p>
                   </div>
                 </div>
@@ -121,6 +125,20 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                 Благодарим за понимание!
               </p>
 
+              {/* Имя */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">
+                  Имя
+                </label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full border-b border-red-500 p-2"
+                  placeholder="Введите ваше имя"
+                />
+              </div>
+
               {deliveryMethod === 'courier' && (
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700">
@@ -135,20 +153,6 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   />
                 </div>
               )}
-
-              {/* Имя */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
-                  Имя
-                </label>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="w-full border-b border-red-500 p-2"
-                  placeholder="Введите ваше имя"
-                />
-              </div>
 
               {/* Телефон */}
               <div className="mb-4">
@@ -190,7 +194,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                 />
               </div>
 
-              <div className="mt-4 text-right">
+              <div className="mt-4 text-left">
                 <p className="font-bold text-lg">Итоговая сумма: {totalPrice} р.</p>
               </div>
 

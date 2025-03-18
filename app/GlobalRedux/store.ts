@@ -1,8 +1,11 @@
-// /app/store/index.ts
 import { configureStore } from '@reduxjs/toolkit';
+import menuReducer from './Features/menuSlice';
+import cartReducer from './Features/cartSlice';
 
 const store = configureStore({
   reducer: {
+    menu: menuReducer,
+    cart: cartReducer,
   },
 });
 

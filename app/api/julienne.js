@@ -1,5 +1,6 @@
 export const julienne = [
   {
+    "id": 601,
     "name": "Жюльен в корзинках фило",
     "price": 3790,
     "description": [
@@ -10,6 +11,7 @@ export const julienne = [
     "image": "https://i.ibb.co/whqD7DjK/image-0.webp"
   },
   {
+    "id": 602,
     "name": "Жюльен «Сытный» 16 шт",
     "price": 2890,
     "description": [

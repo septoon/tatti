@@ -13,9 +13,9 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
     <div className='w-full flex justify-between items-center p-4'>
       <a href="/" className='flex items-center'>
         <Image src={Logo} alt="Logo" width={60} style={{marginRight: 10}} />
-        <span className='font-imFellDoublePica font-bold italic text-[2rem]'>Tatti_shef</span>
+        <h4 className='font-imFellDoublePica font-bold italic text-[2rem]'>Tatti_shef</h4>
       </a>
-      <div className='z-99'>
+      <div className='z-50'>
         <Hamburger toggled={isOpen} toggle={() => setIsOpen(!isOpen)} rounded size={36} />
       </div>
       {isOpen && (
@@ -26,7 +26,7 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
       )}
       <div className={`fixed bg-white top-0 bottom-0 right-[20%] left-0 transition-all duration-600 transform z-20 
         ${isOpen ? 'translate-x-0' : 'translate-x-[-100%]'}
-        pl-6 py-16 flex flex-col justify-between`}>
+        pl-6 py-16 flex flex-col justify-between overflow-y-auto`}>
         <div className='h-[20%] flex flex-col items-start justify-between font-semibold text-xl'>
           <a href="/menu">Меню</a>
           <a href="/delivery">Доставка</a>

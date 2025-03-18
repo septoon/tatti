@@ -8,7 +8,7 @@ const NavDesktop = () => {
       <div className='w-full flex items-center justify-between p-6'>
         <a href="/" className='flex items-center'>
           <Image src={Logo} alt="Logo" width={50} style={{marginRight: 10}} />
-          <span className='font-imFellDoublePica font-bold italic text-xl md:text-3xl'>Tatti_shef</span>
+          <h4 className='font-bold italic text-xl md:text-3xl'>Tatti_shef</h4>
         </a>
         <div className='text-red-500 flex items-center'>
           <p className='font-bold text-lg'>г. Алушта, ул. Ленина, 13</p>

@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "./components/Header/Header";
 import ChatButton from "./components/Chat/Chat";
 import { Providers } from "./GlobalRedux/provider";
+import CartIcon from "./components/Cart/CartIcon";
 
 export const metadata: Metadata = {
   title: "Tatti shef - Алушта",
@@ -28,7 +29,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link 
-          href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital,wght@0,400;1,400&display=swap" 
+          href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@0;1&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" 
           rel="stylesheet"
         />
       </head>
@@ -38,6 +39,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           {children}
+          <CartIcon />
         </Providers>
         <ChatButton />
         <script id="pixel-chaty" async src="https://cdn.chaty.app/pixel.js?id=njyZmWFm"></script>

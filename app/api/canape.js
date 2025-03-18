@@ -1,5 +1,6 @@
 export const canape = [
   {
+    "id": 401,
     "name": "Канапе XL 50 шт",
     "price": 4690,
     "description": [
@@ -12,6 +13,7 @@ export const canape = [
     "image": "https://i.ibb.co/zDZW2fN/image-0.webp"
   },
   {
+    "id": 402,
     "name": "Канапе под крепкие 62 шт",
     "price": 4990,
     "description": [
@@ -24,6 +26,7 @@ export const canape = [
     "image": "https://i.ibb.co/bRg6r5MC/image-1.webp"
   },
   {
+    "id": 403,
     "name": "Клаб Канапе 30 шт",
     "price": 2890,
     "description": [
@@ -34,12 +37,14 @@ export const canape = [
     "image": "https://i.ibb.co/cSDndHxx/image-2.webp"
   },
   {
+    "id": 404,
     "name": "Фруктовое канапе «Мохито» 21 шт",
     "price": 1790,
     "description": [],
     "image": "https://i.ibb.co/5zWN4XX/image-3.webp"
   },
   {
+    "id": 405,
     "name": "Рождественский венок из канапе 25 шт",
     "price": 1990,
     "description": [],

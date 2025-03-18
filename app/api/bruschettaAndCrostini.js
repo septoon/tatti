@@ -1,5 +1,6 @@
 export const bruschettaAndCrostini = [
   {
+    "id": 301,
     "name": "Брускетта «Три вкуса»",
     "price": 2790,
     "description": [
@@ -10,6 +11,7 @@ export const bruschettaAndCrostini = [
     "image": "https://i.ibb.co/Xrz5QbPw/image-0.webp"
   },
   {
+    "id": 302,
     "name": "Брускетта XL",
     "price": 3190,
     "description": [
@@ -21,6 +23,7 @@ export const bruschettaAndCrostini = [
     "image": "https://i.ibb.co/SDwvHh6Z/image-1.webp"
   },
   {
+    "id": 303,
     "name": "Кростини",
     "price": 3390,
     "description": [
@@ -34,6 +37,7 @@ export const bruschettaAndCrostini = [
     "image": "https://i.ibb.co/gZwMwhd8/image-2.webp"
   },
   {
+    "id": 304,
     "name": "Осенние",
     "price": 3190,
     "description": [
@@ -45,6 +49,7 @@ export const bruschettaAndCrostini = [
     "image": "https://i.ibb.co/wFHk3LtZ/image-3.webp"
   },
   {
+    "id": 305,
     "name": "Весенние",
     "price": 3190,
     "description": [

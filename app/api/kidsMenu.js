@@ -1,5 +1,6 @@
 export const kidsMenu = [
   {
+    "id": 701,
     "name": "KINDER PARTY",
     "price": 4490,
     "description": [
@@ -12,6 +13,7 @@ export const kidsMenu = [
     "image": "https://i.ibb.co/RkwKXQCY/image-0.webp"
   },
   {
+    "id": 702,
     "name": "Картофельные шарики",
     "price": 890,
     "description": [
@@ -20,6 +22,7 @@ export const kidsMenu = [
     "image": "https://i.ibb.co/zVxfX31g/image-1.webp"
   },
   {
+    "id": 703,
     "name": "Сырные шарики",
     "price": 1290,
     "description": [
@@ -28,6 +31,7 @@ export const kidsMenu = [
     "image": "https://i.ibb.co/kVW5GQ60/image-2.webp"
   },
   {
+    "id": 704,
     "name": "Индивидуальный бокс для детей",
     "price": 680,
     "description": [
@@ -39,6 +43,7 @@ export const kidsMenu = [
     "image": "https://i.ibb.co/XrkQkx9B/image-3.webp"
   },
   {
+    "id": 705,
     "name": "Бокс без фритюра",
     "price": 3990,
     "description": [
@@ -53,6 +58,7 @@ export const kidsMenu = [
     "image": "https://i.ibb.co/LDXWmz9G/image-4.webp"
   },
   {
+    "id": 706,
     "name": "Котлетка по-киевски",
     "price": 1590,
     "description": [

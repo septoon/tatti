@@ -13,7 +13,11 @@ body {
   color: var(--foreground);
 }
 
-span {
+h4 {
   font-family: "IM Fell Double Pica", serif;
 
+}
+
+p, span {
+  font-family: "PT Sans", sans-serif;
 }

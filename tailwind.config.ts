@@ -127,6 +127,8 @@ module.exports = {
       },
       fontFamily: {
         imFellDoublePica: ['"IM Fell Double Pica"', 'serif'],
+        raleway: ['"Raleway"', 'sans-serif'],
+        ptSans: ['"PT Sans"', 'sans-serif'],
       },
       fontSize: {
         '7xl': '5.5rem', // Произвольный пример

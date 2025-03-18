@@ -1,5 +1,6 @@
 export const tartlets = [
   {
+    "id": 901,
     "name": "Тарталетки «Пир закусок» 36 шт",
     "price": 5090,
     "description": [
@@ -13,6 +14,7 @@ export const tartlets = [
     "image": "https://i.ibb.co/vvT7FqXq/image-0.webp"
   },
   {
+    "id": 902,
     "name": "Тарталетки «Любимый вкус» 36 шт",
     "price": 3690,
     "description": [

@@ -1,5 +1,6 @@
 export const pp = [
   {
+    "id": 1,
     "name": "Веган бокс",
     "price": 3200,
     "description": [
@@ -11,6 +12,7 @@ export const pp = [
     "image": "https://i.ibb.co/1fzScJFt/image-0.webp"
   },
   {
+    "id": 2,
     "name": "ПП бокс ассорти",
     "price": 2900,
     "description": [
@@ -22,6 +24,7 @@ export const pp = [
     "image": "https://i.ibb.co/TMcZdM2z/image-1.webp"
   },
   {
+    "id": 3,
     "name": "ПП брускетты",
     "price": 2990,
     "description": [

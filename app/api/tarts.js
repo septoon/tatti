@@ -1,5 +1,6 @@
 export const tarts = [
   {
+    "id": 1001,
     "name": "Тарты 9 шт",
     "price": 4090,
     "description": [

@@ -1,5 +1,6 @@
 export const brunch = [
   {
+    "id": 101,
     "name": "ГАСТРОНОМИЧЕСКИЙ",
     "price": 4599,
     "description": [
@@ -9,6 +10,7 @@ export const brunch = [
     "image": "https://i.ibb.co/bM9Ynh4w/image-0.webp"
   },
   {
+    "id": 102,
     "name": "ПОД ШАМПАНСКОЕ",
     "price": 5990,
     "description": [
@@ -20,6 +22,7 @@ export const brunch = [
     "image": "https://i.ibb.co/xSJpzdvt/image-1.webp"
   },
   {
+    "id": 103,
     "name": "ФРУКТОВЫЙ",
     "price": 3690,
     "description": [
@@ -28,6 +31,7 @@ export const brunch = [
     "image": "https://i.ibb.co/j924VGHB/image-10.webp"
   },
   {
+    "id": 104,
     "name": "СЫРНО-МЯСНОЕ АССОРТИ ИЗ КАНАПЕ",
     "price": 6990,
     "description": [
@@ -42,6 +46,7 @@ export const brunch = [
     "image": "https://i.ibb.co/Y7bFXZzh/image-11.webp"
   },
   {
+    "id": 105,
     "name": "ПИВНОЙ",
     "price": 6390,
     "description": [
@@ -56,6 +61,7 @@ export const brunch = [
     "image": "https://i.ibb.co/ZR3pxLD4/image-12.webp"
   },
   {
+    "id": 106,
     "name": "ВИННЫЙ",
     "price": 5990,
     "description": [
@@ -67,6 +73,7 @@ export const brunch = [
     "image": "https://i.ibb.co/8D3gDr9b/image-13.webp"
   },
   {
+    "id": 107,
     "name": "РОМАНТИЧЕСКИЙ НА ДВОИХ",
     "price": 3690,
     "description": [
@@ -78,6 +85,7 @@ export const brunch = [
     "image": "https://i.ibb.co/7drshTyy/image-14.webp"
   },
   {
+    "id": 108,
     "name": "ЗАВТРАК НА ДВОИХ",
     "price": 2660,
     "description": [
@@ -87,104 +95,5 @@ export const brunch = [
       "Овсяный крамбол 2 порц"
     ],
     "image": "https://i.ibb.co/bM9Ynh4w/image-0.webp"
-  },
-  {
-    "name": "PROSECCO BOX",
-    "price": 4690,
-    "description": [
-      "Креветка тигровая 6 шт",
-      "Брускетта с муссом Дор блю и ягодами",
-      "Канапе Бри с клубникой",
-      "Канапе груша с продуто или хамоном",
-      "Фруктовые шпажки"
-    ],
-    "image": "https://i.ibb.co/vCSSHS4T/image-3.webp"
-  },
-  {
-    "name": "ЯГОДА КЛУБНИКА",
-    "price": 2860,
-    "description": [
-      "Фрукты в ассортименте",
-      "Клубника"
-    ],
-    "image": "https://i.ibb.co/20qFyVRR/image-4.webp"
-  },
-  {
-    "name": "ТРЮФЕЛЬ",
-    "price": 4990,
-    "description": [
-      "Жюльен а-ля карбонара с трюфелем 5 шт",
-      "Брускетта с грибами на картофельно-трюфельном муссе 5 шт",
-      "Тарталетки с грибной пастой 8 шт",
-      "Сырный трюфель с пармезаном и вялеными томатами 8 шт",
-      "Чиз Болл десертный с вишней 8 шт"
-    ],
-    "image": "https://i.ibb.co/TM2g2zQ5/image-5.webp"
-  },
-  {
-    "name": "СЫРНО-МЯСНОЙ С ПЕЛЬМЕНЯМИ",
-    "price": 4360,
-    "description": [
-      "Фаршированные черри",
-      "Сырное ассорти",
-      "Хлебные палочки с грудинкой",
-      "Пельмени из сыровяленой индейки с сыром"
-    ],
-    "image": "https://i.ibb.co/8DBTf6j7/image-6.webp"
-  },
-  {
-    "name": "СЕТ «ЦЕЗАРЬ»",
-    "price": 4660,
-    "description": [
-      "Брускетта цезарь с курицей 6 шт",
-      "Брускетта цезарь с креветкой 6 шт",
-      "Канапе цезарь с курицей 6 шт",
-      "Канапе цезарь с креветкой 6 шт",
-      "Канапе капрезе 12 шт"
-    ],
-    "image": "https://i.ibb.co/ZqXz9Wh/image-7.webp"
-  },
-  {
-    "name": "ОВОЩНОЙ",
-    "price": 2790,
-    "description": [
-      "Ассорти овощей"
-    ],
-    "image": "https://i.ibb.co/840XydXq/image-8.webp"
-  },
-  {
-    "name": "СЫРНЫЙ КРАШ",
-    "price": 4090,
-    "description": [
-      "Сыр Бюш с ананасом и миндалем 14 шт",
-      "Канапе с пармезаном 8 шт",
-      "Канапе Бри с ягодой 16 шт",
-      "Чиз Болл с виноградом 7 шт",
-      "Чиз Болл томат/чеснок 7 шт"
-    ],
-    "image": "https://i.ibb.co/hFgtnsCD/image-9.webp"
-  },
-  {
-    "name": "БОКС «ЦАРИЦА»",
-    "price": 4990,
-    "description": [
-      "Десертный сыр Бюш с вишней 8 шт",
-      "Креветка тигровая Панко 15 шт",
-      "Круассан с шейкой 5 шт",
-      "Круассан камамбер/груша 5 шт"
-    ],
-    "image": "https://i.ibb.co/bM9Ynh4w/image-0.webp"
-  },
-  {
-    "name": "БОКС «ДЛЯ МУЖЧИН»",
-    "price": 4190,
-    "description": [
-      "Кростини с говядиной и вялеными томатами 5 шт",
-      "Кростини с говядиной и перепелиным яйцом 5 шт",
-      "Жюльен из бекона и томатов в корзинках Фило 5 шт",
-      "Мясные пельмени 7 шт",
-      "Канапе Мини драники 9 шт"
-    ],
-    "image": "https://i.ibb.co/xSJpzdvt/image-1.webp"
   }
 ]

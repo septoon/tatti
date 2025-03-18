@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import 'primereact/resources/themes/lara-light-cyan/theme.css';
+import 'primeicons/primeicons.css';
+
+import { PrimeReactProvider } from 'primereact/api';
 import Header from "./components/Header/Header";
 import ChatButton from "./components/Chat/Chat";
 import { Providers } from "./GlobalRedux/provider";
@@ -37,9 +41,11 @@ export default function RootLayout({
         
       >
         <Providers>
-          <Header />
-          {children}
-          <CartIcon />
+          <PrimeReactProvider>
+            <Header />
+            {children}
+            <CartIcon />
+          </PrimeReactProvider>
         </Providers>
         <ChatButton />
         <script id="pixel-chaty" async src="https://cdn.chaty.app/pixel.js?id=njyZmWFm"></script>

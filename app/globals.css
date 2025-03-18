@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+@layer tailwind-base, primereact, tailwind-utilities;
 
 /* @media (prefers-color-scheme: dark) {
   :root {

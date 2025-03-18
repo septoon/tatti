@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/app/GlobalRedux/store';
 import CartModal from './Cart';
+import { Tooltip } from 'primereact/tooltip';
+        
 
 const CartIcon = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,6 +15,7 @@ const CartIcon = () => {
 
   return (
     <div className={`font-ptSans rounded-full w-16 h-16 bg-white shadow-lg fixed top-[80px] right-4 md:top-[120px] md:right-[16px] z-50 ${totalQuantity === 0 ? 'hidden' : ''}`}>
+      <Tooltip target=".logo" mouseTrack mouseTrackLeft={10} />
       <button
         className='relative rounded-full w-full h-full  text-white p-3'
         onClick={() => setIsModalOpen(true)}

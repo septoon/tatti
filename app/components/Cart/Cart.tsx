@@ -28,13 +28,22 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   const [name, setName] = useState('');
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-      
-      <div className="bg-white max-w-full md:max-w-lg px-6 py-14 md:rounded-lg shadow-lg 
-                  max-h-[100vh] md:max-h-[90vh] md:w-auto
-                  md:overflow-y-auto 
-                  w-full h-full rounded-none overflow-y-auto z-999">
-        <div className='fixed left-0 top-0 right-0 bg-white md:bg-transparent flex justify-end p-3'>
+    <div 
+      className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
+      onClick={(e) => {
+        if (window.innerWidth >= 768 && e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
+    >
+      <div 
+        className="bg-white max-w-full md:max-w-lg px-6 py-14 md:rounded-lg shadow-lg 
+                    max-h-[100vh] md:max-h-[90vh] md:w-auto
+                    md:overflow-y-auto 
+                    w-full h-full rounded-none overflow-y-auto z-999"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className='fixed left-0 top-0 right-0 bg-white md:hidden flex justify-end p-3'>
           <button
             className="text-2xl text-gray-500"
             onClick={onClose}

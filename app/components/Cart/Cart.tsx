@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/app/GlobalRedux/store';
-import { removeFromCart, addToCart, removeOne } from '@/app/GlobalRedux/Features/cartSlice';
+import { removeFromCart, addToCart, removeOne, clearCart } from '@/app/GlobalRedux/Features/cartSlice';
 import Image from 'next/image';
 import DatePicker from 'react-datepicker';
 import { IoIosCloseCircleOutline } from "react-icons/io";
@@ -9,6 +9,7 @@ import { IoIosCloseCircle } from "react-icons/io";
 import { CiCircleMinus } from "react-icons/ci";
 import { CiCirclePlus } from "react-icons/ci";
 import 'react-datepicker/dist/react-datepicker.css';
+import sendOrder from '@/app/common/sendOrder';
 
 interface CartModalProps {
   onClose: () => void;
@@ -61,7 +62,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     <span className="">{item.name}</span>
                     <div className="flex items-center">
                       <button
-                        className="p-1rounded-full"
+                        className="p-1 rounded-full"
                         onClick={() => dispatch(removeOne(item.id))}
                       >
                         <CiCircleMinus />
@@ -199,6 +200,25 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
               </div>
 
               <button
+                onClick={async () => {
+                  await sendOrder({
+                    name,
+                    phone,
+                    date,
+                    wishes,
+                    deliveryMethod,
+                    address,
+                    cartItems,
+                    totalPrice
+                  });
+                  setName('');
+                  setPhone('');
+                  setDate(null);
+                  setWishes('');
+                  setDeliveryMethod('pickup');
+                  setAddress('');
+                  dispatch(clearCart());
+                }}
                 className="w-full bg-red-500 text-white py-3 rounded-md mt-4"
               >
                 Оформить заказ

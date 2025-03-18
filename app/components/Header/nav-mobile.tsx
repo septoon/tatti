@@ -12,11 +12,11 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
   return (
     <div className='w-full flex justify-between items-center p-4'>
       <a href="/" className='flex items-center'>
-        <Image src={Logo} alt="Logo" width={70} style={{marginRight: 10}} />
-        <span className='font-imFellDoublePica font-bold italic text-[2.5rem]'>Tatti_shef</span>
+        <Image src={Logo} alt="Logo" width={60} style={{marginRight: 10}} />
+        <span className='font-imFellDoublePica font-bold italic text-[2rem]'>Tatti_shef</span>
       </a>
       <div className='z-99'>
-        <Hamburger toggled={isOpen} toggle={() => setIsOpen(!isOpen)} rounded size={40} />
+        <Hamburger toggled={isOpen} toggle={() => setIsOpen(!isOpen)} rounded size={36} />
       </div>
       {isOpen && (
         <div 

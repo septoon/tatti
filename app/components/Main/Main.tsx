@@ -3,8 +3,8 @@ import React from 'react'
 
 const Main = () => {
   return (
-    <div className='relative w-full h-[calc(100vh-92px)] md:h-[calc(100vh-150px)]'> 
-      <div className='absolute top-0 left-0 right-0 bottom-0 bg-black/30 z-10 flex flex-col justify-center items-center'>
+    <div className='relative w-full h-[calc(100vh-80px)] md:h-[calc(100vh-150px)]'> 
+      <div className='absolute top-0 left-0 right-0 bottom-0 bg-black/30 z-5 flex flex-col justify-center items-center'>
         <h1 className='text-3xl md:text-4xl text-white font-bold shadow-3xl text-center'>ДАРИМ СКИДКУ -10% <br></br>
         В ДЕНЬ РОЖДЕНИЯ!</h1>
 

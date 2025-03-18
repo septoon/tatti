@@ -1,3 +1,4 @@
+import axios from 'axios';
 interface CartItem {
   id: number;
   name: string;
@@ -26,8 +27,8 @@ const sendOrder = async ({
   cartItems,
   totalPrice
 }: OrderDetails) => {
-  const botToken = process.env.BOT_TOKEN;
-  const chatId = process.env.CHANNEL_ID; 
+  const botToken = process.env.NEXT_PUBLIC_BOT_TOKEN;
+  const chatId = process.env.NEXT_PUBLIC_CHANNEL_ID; 
 
   const orderDetails = cartItems.map((item) => 
     `${item.name} — ${item.quantity} шт. (${item.price * item.quantity} р.)`
@@ -52,19 +53,13 @@ ${orderDetails}
 
 💰 Итоговая сумма: ${totalPrice} р.
   `;
-
   try {
-    await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        chat_id: chatId,
-        text: message,
-        parse_mode: 'Markdown',
-      }),
+    await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      chat_id: chatId,
+      text: message,
+      parse_mode: 'HTML',
     });
+    return true;
     alert('Ваш заказ успешно отправлен!');
   } catch (error) {
     console.error('Ошибка отправки заказа:', error);

@@ -96,7 +96,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   </div>
                   <div className='flex flex-col items-end'>
                     <button onClick={() => dispatch(removeFromCart(item.id))} className='mb-2'><IoIosCloseCircleOutline /></button>
-                    <p className="text-sm text-gray-500">{item.price} р</p>
+                    <p className="text-sm text-gray-500">{item.price * item.quantity} р</p>
                   </div>
                 </div>
               ))}
@@ -227,6 +227,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   setDeliveryMethod('pickup');
                   setAddress('');
                   dispatch(clearCart());
+                  onClose()
                 }}
                 className="w-full bg-red-500 text-white py-3 rounded-md mt-4"
               >

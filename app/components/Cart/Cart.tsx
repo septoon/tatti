@@ -137,7 +137,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
 
               {/* Имя */}
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Имя
                 </label>
                 <input
@@ -151,7 +151,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
 
               {deliveryMethod === 'courier' && (
                 <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Адрес
                   </label>
                   <input
@@ -166,7 +166,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
 
               {/* Телефон */}
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Телефон
                 </label>
                 <input
@@ -180,7 +180,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
 
               {/* Выбор даты */}
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Дата</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Дата</label>
                 <DatePicker
                   selected={date}
                   onChange={(date) => setDate(date)}
@@ -192,7 +192,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
 
               {/* Пожелания */}
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                   Ваши пожелания к составу заказа
                 </label>
                 <textarea

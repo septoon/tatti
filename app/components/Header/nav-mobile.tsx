@@ -20,21 +20,25 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
       </div>
       {isOpen && (
         <div 
-          className="fixed top-0 left-0 w-full h-full bg-black/30 backdrop-blur-md z-10"
+          className="fixed top-0 left-0 w-full h-full bg-black/30 backdrop-blur-md z-55"
           onClick={() => setIsOpen(false)}
         />
       )}
-      <div className={`fixed bg-white top-0 bottom-0 right-[20%] left-0 transition-all duration-600 transform z-20 
+      <div className={`fixed bg-white top-0 bottom-0 right-[20%] left-0 transition-all duration-600 transform z-60 
         ${isOpen ? 'translate-x-0' : 'translate-x-[-100%]'}
-        pl-6 py-16 flex flex-col justify-between overflow-y-auto`}>
+        pl-6 pt-6 pb-10 flex flex-col justify-between overflow-y-auto`}>
         <div className='h-[20%] flex flex-col items-start justify-between font-semibold text-xl'>
+          <div className='flex items-center mb-10'>
+            <Image src={Logo} alt="Logo" width={60} style={{marginRight: 10}} />
+            <h4 className='font-imFellDoublePica font-bold italic text-[2rem]'>Tatti_shef</h4>
+          </div>
           <a href="/menu">Меню</a>
           <a href="/delivery">Доставка</a>
           <a href="/about">О нас</a>
           <a href="/contacts">Контакты</a>
         </div>
         <div>
-          <p className='text-4xl font-black opacity-50'>Алушта</p>
+          <p className='text-3xl font-black'>г. Алушта</p>
           <a href="tel:+79785103520" className='text-2xl'>+7 (978) 510-35-20</a>
         </div>
       </div>

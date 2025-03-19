@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 interface CartItem {
   id: number;
   name: string;
@@ -9,12 +10,12 @@ interface CartItem {
 interface OrderDetails {
   name: string;
   phone: string;
-  date: Date | null;
-  wishes: string;
-  deliveryMethod: 'pickup' | 'courier';
+  date?: Date | null;
+  wishes?: string;
+  deliveryMethod?: 'pickup' | 'courier';
   address?: string;
-  cartItems: CartItem[];
-  totalPrice: number;
+  cartItems?: CartItem[];
+  totalPrice?: number;
 }
 
 const sendOrder = async ({
@@ -30,13 +31,15 @@ const sendOrder = async ({
   const botToken = process.env.NEXT_PUBLIC_BOT_TOKEN;
   const chatId = process.env.NEXT_PUBLIC_CHANNEL_ID; 
 
-  const orderDetails = cartItems.map((item) => 
+  const orderDetails = cartItems?.map((item) => 
     `${item.name} — ${item.quantity} шт. (${item.price * item.quantity} р.)`
-  ).join('\n');
+  ).join('\n') || 'Нет товаров в заказе';
 
   const deliveryInfo = deliveryMethod === 'courier'
     ? `Доставка: Курьер\nАдрес: ${address || 'Не указан'}`
-    : `Доставка: Самовывоз`;
+    : deliveryMethod === 'pickup'
+    ? `Доставка: Самовывоз`
+    : '';
 
   const message = `
 🚨 *Новый заказ!*
@@ -51,8 +54,9 @@ ${deliveryInfo}
 🛒 *Состав заказа:*
 ${orderDetails}
 
-💰 Итоговая сумма: ${totalPrice} р.
+${totalPrice ? `💰 Итоговая сумма: ${totalPrice} р.` : ''}
   `;
+
   try {
     await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       chat_id: chatId,

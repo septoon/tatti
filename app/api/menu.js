@@ -8,6 +8,12 @@ import { miniPastries } from "./miniPastries";
 import { tartlets } from "./tartlets";
 import { julienne } from "./julienne";
 import { tarts } from "./tarts";
+import { salads } from "./salads";
+import { desserts } from "./desserts";
+import { rollsAndCrackers } from "./rollsAndCrackers";
+import { newYearSelection } from "./newYearSelection";
+import { premiumSnacks } from "./premiumSnacks";
+import { summerSelection } from "./summerSelection";
 
 export const menu = {
   "ПП меню": pp,
@@ -19,5 +25,11 @@ export const menu = {
   "МИНИ ВЫПЕЧКА": miniPastries,
   "ТАРТАЛЕТКИ": tartlets,
   "ЖЮЛЬЕН В КОРЗИНКАХ ФИЛО": julienne,
-  "ТАРТЫ 9 шт": tarts
+  "ТАРТЫ 9 шт": tarts,
+  "САЛАТЫ": salads,
+  "ДЕСЕРТЫ": desserts,
+  "РУЛЕТИКИ И КРЕКЕРЫ": rollsAndCrackers,
+  "НОВОГОДНЯЯ ПОДБОРКА": newYearSelection,
+  "ЗАКУСКИ ПРЕМИУМ": premiumSnacks,
+  "ЛЕТНЯЯ ПОДБОРКА": summerSelection
 };

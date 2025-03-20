@@ -10,6 +10,7 @@ import { CiCircleMinus } from "react-icons/ci";
 import { CiCirclePlus } from "react-icons/ci";
 import 'react-datepicker/dist/react-datepicker.css';
 import sendOrder from '@/app/common/sendOrder';
+import { useMask } from '@react-input/mask';
 
 interface CartModalProps {
   onClose: () => void;
@@ -24,6 +25,10 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   const [date, setDate] = useState<Date | null>(null);
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
+  const inputRef = useMask({
+    mask: ' (___) ___-__-__',
+    replacement: { _: /\d/ },
+  });
   const [wishes, setWishes] = useState('');
   const [name, setName] = useState('');
 
@@ -71,14 +76,14 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     <span className="">{item.name}</span>
                     <div className="flex items-center">
                       <button
-                        className="p-1 rounded-full"
+                        className="p-1 rounded-full cursor-pointer"
                         onClick={() => dispatch(removeOne(item.id))}
                       >
                         <CiCircleMinus />
                       </button>
                       <span className="mx-2">{item.quantity}</span>
                       <button
-                        className="p-1 rounded-full"
+                        className="p-1 rounded-full cursor-pointer"
                         onClick={() =>
                           dispatch(
                             addToCart({
@@ -95,7 +100,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     </div>
                   </div>
                   <div className='flex flex-col items-end'>
-                    <button onClick={() => dispatch(removeFromCart(item.id))} className='mb-2'><IoIosCloseCircleOutline /></button>
+                    <button onClick={() => dispatch(removeFromCart(item.id))} className='mb-2 cursor-pointer'><IoIosCloseCircleOutline /></button>
                     <p className="text-sm text-gray-500">{item.price * item.quantity} р</p>
                   </div>
                 </div>
@@ -106,7 +111,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
             <div className="mt-4">
               <h3 className="text-lg font-bold mb-2">Выберите способ доставки</h3>
               <div className="flex flex-col items-start space-x-4 mb-4">
-                <label className="flex items-center space-x-2">
+                <label className="flex items-center space-x-2 cursor-pointer">
                   <input
                     type="radio"
                     value="pickup"
@@ -116,7 +121,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   <span>Самовывоз</span>
                 </label>
 
-                <label className="flex items-center space-x-2">
+                <label className="flex items-center space-x-2 cursor-pointer">
                   <input
                     type="radio"
                     value="courier"
@@ -144,7 +149,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full border-b border-red-500 p-2"
+                  className="w-full border-b border-red-500 p-2 outline-0"
                   placeholder="Введите ваше имя"
                 />
               </div>
@@ -158,7 +163,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     type="text"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    className="w-full border-b border-red-500 p-2"
+                    className="w-full border-b border-red-500 p-2 outline-0"
                     placeholder="Город, улица, дом, подъезд, квартира"
                   />
                 </div>
@@ -169,13 +174,19 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Телефон
                 </label>
-                <input
-                  type="tel"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="w-full border-b border-red-500 p-2"
-                  placeholder="+7 (999) 999-99-99"
-                />
+                <div className='flex'>
+                  <div className='w-10 mr-0 block p-2 pr-0 border-b border-red-500 bg-white'>
+                    <p className='text-black'>+7</p>
+                  </div>
+                  <input
+                    ref={inputRef}
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="block w-full border-b border-red-500 p-2 pl-0 outline-0"
+                    placeholder="(999) 999-99-99"
+                    inputMode="numeric"
+                  />
+                </div>
               </div>
 
               {/* Выбор даты */}
@@ -185,7 +196,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   selected={date}
                   onChange={(date) => setDate(date)}
                   dateFormat="dd/MM/yyyy"
-                  className="w-full border-b border-red-500 p-2"
+                  className="w-full border-b border-red-500 p-2 outline-0"
                   placeholderText="Выберите дату"
                 />
               </div>
@@ -199,7 +210,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   value={wishes}
                   onChange={(e) => setWishes(e.target.value)}
                   rows={2}
-                  className="w-full border-b border-red-500 p-2"
+                  className="w-full border-b border-red-500 p-2 outline-0"
                   placeholder="Укажите ингредиенты, которые стоит исключить (например, аллергены)"
                 />
               </div>

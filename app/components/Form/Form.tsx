@@ -2,6 +2,7 @@
 import sendOrder from '@/app/common/sendOrder';
 import React, { useState } from 'react'
 import { IoIosCloseCircle } from 'react-icons/io';
+import { useMask } from '@react-input/mask';
 
 interface FormModalProps {
   onFormClose: () => void;
@@ -9,7 +10,11 @@ interface FormModalProps {
 
 const Form: React.FC<FormModalProps> = ({ onFormClose }) => {
   const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState('');
+  const inputRef = useMask({
+    mask: ' (___) ___-__-__',
+    replacement: { _: /\d/ },
+  });
   return (
     <div 
       className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
@@ -43,7 +48,7 @@ const Form: React.FC<FormModalProps> = ({ onFormClose }) => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full border-b border-red-500 p-2"
+              className="w-full border-b border-red-500 p-2 outline-0"
               placeholder="Введите ваше имя"
             />
           </div>
@@ -52,13 +57,19 @@ const Form: React.FC<FormModalProps> = ({ onFormClose }) => {
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Телефон
             </label>
-            <input
-              type="tel"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="w-full border-b border-red-500 p-2"
-              placeholder="+7 (999) 999-99-99"
-            />
+            <div className='flex'>
+              <div className='w-10 mr-0 block p-2 pr-0 border-b border-red-500 bg-white'>
+                <p className='text-black'>+7</p>
+              </div>
+              <input
+                ref={inputRef}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="block w-full border-b border-red-500 p-2 pl-0 outline-0"
+                placeholder="(999) 999-99-99"
+                inputMode="numeric"
+              />
+            </div>
           </div>
           <button
             onClick={async () => {

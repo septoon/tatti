@@ -45,7 +45,7 @@ const sendOrder = async ({
 🚨 *Новый заказ!*
 
 👤 Имя: ${name || 'Не указано'}
-📞 Телефон: ${phone || 'Не указан'}
+📞 Телефон: +7${phone || 'Не указан'}
 📅 Дата: ${date ? date.toLocaleDateString() : 'Не указана'}
 📦 Пожелания: ${wishes || 'Нет'}
 

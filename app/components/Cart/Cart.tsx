@@ -12,7 +12,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import sendOrder from '@/app/common/sendOrder';
 import { useMask } from '@react-input/mask';
 import axios from 'axios';
-import { calculateDeliveryCost } from '@/app/common/calculateDelivery';
+import { calculateDeliveryCost, calculateDeliveryDistance } from '@/app/common/calculateDelivery';
+import { MdCalculate } from "react-icons/md";
+import { Tooltip } from 'primereact/tooltip';
+import { TiInfoLarge } from "react-icons/ti";
 
 interface CartModalProps {
   onClose: () => void;
@@ -34,13 +37,9 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   const [wishes, setWishes] = useState('');
   const [name, setName] = useState('');
   const [deliveryCost, setDeliveryCost] = useState<number | null>(null);
-  const [isClient, setIsClient] = useState(false);
+  const [distance, setDistance] = useState<number | null>(null);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [isCalculating, setIsCalculating] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   const fetchAddressSuggestions = async (input: string) => {
     if (input.length < 3) {
@@ -74,13 +73,15 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
     setIsCalculating(true); // Начало загрузки
 
     try {
+      const dist = await calculateDeliveryDistance(address)
       const cost = await calculateDeliveryCost(address);
       setDeliveryCost(cost);
+      setDistance(Math.round(dist));
     } catch (error) {
       console.error('Ошибка при расчете стоимости доставки:', error);
       setDeliveryCost(null);
     } finally {
-      setIsCalculating(false); // Завершение загрузки
+      setIsCalculating(false);
     }
   };
 
@@ -225,31 +226,12 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     onChange={(e) => {
                       const value = e.target.value;
                       setAddress(value);
-                      fetchAddressSuggestions(value); // Добавлен вызов расчета стоимости
                     }}
-                    className="w-full border-b border-red-500 p-2 outline-0"
+                    className="w-full border-b border-red-500 p-2 outline-0 relative"
                     placeholder="Город, улица, дом, подъезд, квартира"
                   />
-                  <button
-                    onClick={() => handleCalculateDeliveryCost()} 
-                    className="mt-2 mb-3 cursor-pointer bg-amber-500 p-1 rounded-md text-white"
-                  >Рассчитать стоимость доставки</button>  
-                  {suggestions.length > 0 && (
-                    <ul className="absolute w-full max-h-40 overflow-y-auto z-50">
-                      {suggestions.map((suggestion, index) => (
-                        <li
-                          key={index}
-                          onClick={() => {
-                            setAddress(suggestion);
-                            setSuggestions([]);
-                          }}
-                          className="p-2 cursor-pointer hover:bg-gray-100 bg-white rounded-lg shadow-md mb-1"
-                        >
-                          {suggestion}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                  <MdCalculate size={30} color={deliveryCost ? 'green' : '#535353'} opacity={isCalculating ? 40 : 100} onClick={() => handleCalculateDeliveryCost()} className='absolute right-0 bottom-2 cursor-pointer' />
+                  
                 </div>
               )}
 
@@ -305,7 +287,20 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   isCalculating ? (
                     <p className="text-sm text-gray-500">Расчитываем стоимость...</p>
                   ) : deliveryCost !== null && (
-                    <p className="font-bold text-lg">Стоимость доставки: {deliveryCost} р.</p>
+                    <div className='flex items-center'>
+                      <p className="font-bold text-lg">Стоимость доставки: {deliveryCost} р.</p>
+                      <div className="card flex justify-center">
+                          <Tooltip target=".custom-tooltip-btn">
+                              <div className='w-full h-full flex flex-col'>
+                                <span>Расстояние между точками: {distance} км</span>
+                                <span>Рассчет: 30р за 1 км</span>
+                                <span>Стоимость доставки = 30р * {distance} км</span>
+                              </div>
+                          </Tooltip>
+                          <TiInfoLarge size={20} color='green' className="custom-tooltip-btn" type="button" data-pr-position="top" data-pr-at="right+120 top"
+                data-pr-my="top center-62"/>
+                      </div>
+                    </div>
                   )
                 )}
                 <p className="font-bold text-lg">

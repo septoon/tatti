@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/app/GlobalRedux/store';
 import { removeFromCart, addToCart, removeOne, clearCart } from '@/app/GlobalRedux/Features/cartSlice';
@@ -11,6 +11,8 @@ import { CiCirclePlus } from "react-icons/ci";
 import 'react-datepicker/dist/react-datepicker.css';
 import sendOrder from '@/app/common/sendOrder';
 import { useMask } from '@react-input/mask';
+import axios from 'axios';
+import { calculateDeliveryCost } from '@/app/common/calculateDelivery';
 
 interface CartModalProps {
   onClose: () => void;
@@ -31,6 +33,58 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   });
   const [wishes, setWishes] = useState('');
   const [name, setName] = useState('');
+  const [deliveryCost, setDeliveryCost] = useState<number | null>(null);
+  const [isClient, setIsClient] = useState(false);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [isCalculating, setIsCalculating] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const fetchAddressSuggestions = async (input: string) => {
+    if (input.length < 3) {
+      setSuggestions([]);
+      return;
+    }
+
+    try {
+      const response = await axios.get(`https://api.geoapify.com/v1/geocode/autocomplete`, {
+        params: {
+          text: `Республика Крым, ${input}`,
+          apiKey: process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY,
+          limit: 1,
+          lang: 'ru'
+        }
+      });
+
+      const suggestions = response.data.features.map((feature: any) => feature.properties.formatted);
+      setSuggestions(suggestions);
+    } catch (error) {
+      console.error('Ошибка при получении подсказок адресов:', error);
+    }
+  };
+
+  const handleCalculateDeliveryCost = async () => {
+    if (!address.trim()) {
+      setDeliveryCost(null);
+      return;
+    }
+
+    setIsCalculating(true); // Начало загрузки
+
+    try {
+      const cost = await calculateDeliveryCost(address);
+      setDeliveryCost(cost);
+    } catch (error) {
+      console.error('Ошибка при расчете стоимости доставки:', error);
+      setDeliveryCost(null);
+    } finally {
+      setIsCalculating(false); // Завершение загрузки
+    }
+  };
+
+  console.log(deliveryCost)
 
   return (
     <div 
@@ -116,7 +170,10 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     type="radio"
                     value="pickup"
                     checked={deliveryMethod === 'pickup'}
-                    onChange={() => setDeliveryMethod('pickup')}
+                    onChange={() => {
+                      setDeliveryMethod('pickup');
+                      setDeliveryCost(null);
+                    }}
                   />
                   <span>Самовывоз</span>
                 </label>
@@ -126,9 +183,12 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     type="radio"
                     value="courier"
                     checked={deliveryMethod === 'courier'}
-                    onChange={() => setDeliveryMethod('courier')}
+                    onChange={() => {
+                      setDeliveryMethod('courier');
+                      handleCalculateDeliveryCost();
+                    }}
                   />
-                  <span>Доставка курьером (от 200 руб.)</span>
+                  <span>Доставка курьером </span>
                 </label>
               </div>
 
@@ -155,17 +215,38 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
               </div>
 
               {deliveryMethod === 'courier' && (
-                <div className="mb-4">
+                <div className="mb-4 relative">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Адрес
                   </label>
                   <input
                     type="text"
                     value={address}
-                    onChange={(e) => setAddress(e.target.value)}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      setAddress(value);
+                      fetchAddressSuggestions(value);
+                      handleCalculateDeliveryCost(); // Добавлен вызов расчета стоимости
+                    }}
                     className="w-full border-b border-red-500 p-2 outline-0"
                     placeholder="Город, улица, дом, подъезд, квартира"
                   />
+                  {suggestions.length > 0 && (
+                    <ul className="absolute w-full max-h-40 overflow-y-auto z-50">
+                      {suggestions.map((suggestion, index) => (
+                        <li
+                          key={index}
+                          onClick={() => {
+                            setAddress(suggestion);
+                            setSuggestions([]);
+                          }}
+                          className="p-2 cursor-pointer hover:bg-gray-100 bg-white rounded-lg shadow-md mb-1"
+                        >
+                          {suggestion}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               )}
 
@@ -216,7 +297,17 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
               </div>
 
               <div className="mt-4 text-left">
-                <p className="font-bold text-lg">Итоговая сумма: {totalPrice} р.</p>
+                <p className="font-bold text-lg">Сумма заказа: {totalPrice} р.</p>
+                {deliveryMethod === 'courier' && (
+                  isCalculating ? (
+                    <p className="text-sm text-gray-500">Расчитываем стоимость...</p>
+                  ) : deliveryCost !== null && (
+                    <p className="font-bold text-lg">Стоимость доставки: {deliveryCost} р.</p>
+                  )
+                )}
+                <p className="font-bold text-lg">
+                  Итоговая сумма: {totalPrice + (deliveryMethod === 'courier' ? (deliveryCost || 0) : 0)} р.
+                </p>
               </div>
 
               <button
@@ -227,9 +318,10 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     date,
                     wishes,
                     deliveryMethod,
+                    deliveryCost: deliveryCost !== null ? deliveryCost : undefined,
                     address,
                     cartItems,
-                    totalPrice
+                    totalPrice: totalPrice + (deliveryCost || 0)
                   });
                   setName('');
                   setPhone('');
@@ -237,6 +329,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   setWishes('');
                   setDeliveryMethod('pickup');
                   setAddress('');
+                  setDeliveryCost(null);
                   dispatch(clearCart());
                   onClose()
                 }}

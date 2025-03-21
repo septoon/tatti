@@ -48,7 +48,7 @@ const Menu = () => {
 
   return (
     <div className='px-4 flex-col justify-between mt-8'>
-      <h1 className='my-4 font-bold text-4xl opacity-50 md:hidden'>Меню</h1>
+      <h1 className='my-4 font-bold text-2xl md:hidden'>Меню</h1>
       <div className='relative w-full mb-4'>
         <IoSearch className='absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 text-xl' />
         <input

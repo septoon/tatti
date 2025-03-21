@@ -27,7 +27,7 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
       <div className={`fixed bg-white top-0 bottom-0 right-[20%] left-0 transition-all duration-600 transform z-60 
         ${isOpen ? 'translate-x-0' : 'translate-x-[-100%]'}
         pl-6 pt-6 pb-10 flex flex-col justify-between overflow-y-auto`}>
-        <div className='h-[35%] flex flex-col items-start justify-between text-3xl'>
+        <div className='h-[45%] flex flex-col items-start justify-between text-3xl'>
           <div className='flex items-center mb-10'>
             <Image src={Logo} alt="Logo" width={60} style={{marginRight: 10}} />
             <h4 className='font-imFellDoublePica font-bold italic text-[2rem]'>Tatti_shef</h4>

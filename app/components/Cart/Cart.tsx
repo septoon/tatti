@@ -232,7 +232,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   />
                   <button
                     onClick={() => handleCalculateDeliveryCost()} 
-                    className="mb-3 cursor-pointer bg-amber-500 p-1 rounded-md text-white"
+                    className="mt-2 mb-3 cursor-pointer bg-amber-500 p-1 rounded-md text-white"
                   >Рассчитать стоимость доставки</button>  
                   {suggestions.length > 0 && (
                     <ul className="absolute w-full max-h-40 overflow-y-auto z-50">

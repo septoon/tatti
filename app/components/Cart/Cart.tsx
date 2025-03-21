@@ -225,8 +225,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     onChange={(e) => {
                       const value = e.target.value;
                       setAddress(value);
-                      fetchAddressSuggestions(value);
-                      handleCalculateDeliveryCost(); // Добавлен вызов расчета стоимости
+                      fetchAddressSuggestions(value); // Добавлен вызов расчета стоимости
                     }}
                     className="w-full border-b border-red-500 p-2 outline-0"
                     placeholder="Город, улица, дом, подъезд, квартира"
@@ -249,6 +248,11 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   )}
                 </div>
               )}
+
+                  <button
+                    onClick={() => handleCalculateDeliveryCost()} 
+                    className="mb-3 cursor-pointer bg-amber-500 p-1 rounded-md text-white"
+                  >Рассчитать стоимость доставки</button>  
 
               {/* Телефон */}
               <div className="mb-4">

@@ -26,7 +26,7 @@ const Form: React.FC<FormModalProps> = ({ onFormClose }) => {
     >
       <div
           className="bg-white max-w-[90%] md:max-w-lg rounded-lg shadow-lg 
-            max-h-[50vh] md:w-auto
+            max-h-[60vh] md:max-h-[50vh] md:w-auto
             w-full h-full z-999"
           onClick={(e) => e.stopPropagation()}
         >

@@ -230,9 +230,13 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     className="w-full border-b border-red-500 p-2 outline-0 relative"
                     placeholder="Город, улица, дом, подъезд, квартира"
                   />
-                  <MdCalculate size={30} color={deliveryCost ? 'green' : '#535353'}
+                  <button className={`${isCalculating ? 'animate-pulse' : ''} ${deliveryCost ? 'bg-red-500' : 'bg-[#535353]'} p-2 text-white absolute right-0 bottom-0 cursor-pointer`} 
+                    onClick={() => handleCalculateDeliveryCost()} >
+                    Рассчитать
+                  </button>
+                  {/* <MdCalculate size={30} color={deliveryCost ? 'green' : '#535353'}
                     onClick={() => handleCalculateDeliveryCost()} 
-                    className={`${isCalculating ? 'animate-pulse' : ''} absolute right-0 bottom-2 cursor-pointer`} />
+                    className={`${isCalculating ? 'animate-pulse' : ''} absolute right-0 bottom-2 cursor-pointer`} /> */}
                 </div>
               )}
 

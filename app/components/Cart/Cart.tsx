@@ -230,8 +230,9 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     className="w-full border-b border-red-500 p-2 outline-0 relative"
                     placeholder="Город, улица, дом, подъезд, квартира"
                   />
-                  <MdCalculate size={30} color={deliveryCost ? 'green' : '#535353'} opacity={isCalculating ? 40 : 100} onClick={() => handleCalculateDeliveryCost()} className='absolute right-0 bottom-2 cursor-pointer' />
-                  
+                  <MdCalculate size={30} color={deliveryCost ? 'green' : '#535353'}
+                    onClick={() => handleCalculateDeliveryCost()} 
+                    className={`${isCalculating ? 'animate-pulse' : ''} absolute right-0 bottom-2 cursor-pointer`} />
                 </div>
               )}
 

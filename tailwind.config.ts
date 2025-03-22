@@ -134,13 +134,6 @@ module.exports = {
           '50%': { transform: 'rotate(3deg)' }
         }
       },
-      backgroundImage: {
-        'neon-blue': 'linear-gradient(135deg, #1A2A6C 0%, #B21F1F 50%, #FDBB2D 100%)',
-        'deep-space': 'radial-gradient(circle, #000428 0%, #004e92 100%)',
-        'dark-mystic': 'linear-gradient(120deg, #232526 0%, #414345 100%)',
-        'btn-light': 'linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(200, 200, 200, 0.4), rgba(180, 180, 180, 0.5))',
-        'btn-dark': 'linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(40, 40, 40, 0.7), rgba(10, 10, 10, 0.9))',
-      },
       fontFamily: {
         imFellDoublePica: ['"IM Fell Double Pica"', 'serif'],
         raleway: ['"Raleway"', 'sans-serif'],

@@ -89,30 +89,12 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
   console.log(deliveryCost)
 
   return (
-    <div 
-      className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50"
-      onClick={(e) => {
-        if (window.innerWidth >= 768 && e.target === e.currentTarget) {
-          onClose();
-        }
-      }}
-    >
       <div 
-        className="bg-white max-w-full md:max-w-lg px-6 py-14 md:rounded-lg shadow-lg 
+        className="bg-white max-w-full md:max-w-lg px-6 py-4 md:rounded-lg shadow-lg 
                     max-h-[100vh] md:max-h-[90vh] md:w-auto
                     md:overflow-y-auto 
                     w-full h-full rounded-none overflow-y-auto z-999"
-        onClick={(e) => e.stopPropagation()}
       >
-        <div className='fixed left-0 top-0 right-0 bg-white md:hidden flex justify-end p-3'>
-          <button
-            className="text-4xl text-gray-400"
-            onClick={onClose}
-          >
-            <IoIosCloseCircle />
-          </button>
-        </div>
-        <h2 className="text-xl font-bold mb-4">Ваш заказ:</h2>
 
         {cartItems.length === 0 ? (
           <p className="text-center text-gray-500">Корзина пуста</p>
@@ -349,7 +331,6 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
           </>
         )}
       </div>
-    </div>
   );
 };
 

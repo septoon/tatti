@@ -26,3 +26,7 @@ h4 {
 p, span {
   font-family: "PT Sans", sans-serif;
 }
+
+.p-dialog-content {
+  padding: 0;
+}

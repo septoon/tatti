@@ -29,7 +29,7 @@ const CartIcon = () => {
         )}
       </button>
 
-      {isModalOpen && <CartModal onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && <CartModal onClose={() => setIsModalOpen(false)} isModalOpen={isModalOpen} />}
     </div>
   );
 };

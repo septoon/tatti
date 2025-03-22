@@ -10,8 +10,12 @@
 } */
 
 body {
-  background: var(--background);
+  background: url('/images/main.webp');
   color: var(--foreground);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 h4 {

@@ -19,9 +19,10 @@ import { TiInfoLarge } from "react-icons/ti";
 
 interface CartModalProps {
   onClose: () => void;
+  isModalOpen: boolean;
 }
 
-const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
+const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -105,7 +106,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
       >
         <div className='fixed left-0 top-0 right-0 bg-white md:hidden flex justify-end p-3'>
           <button
-            className="text-2xl text-gray-500"
+            className="text-4xl text-gray-400"
             onClick={onClose}
           >
             <IoIosCloseCircle />

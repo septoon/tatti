@@ -2,6 +2,7 @@ import React from 'react'
 import Logo from '@/public/logo.png'
 import Image from 'next/image'
 import Hamburger from 'hamburger-react'
+import CartIcon from '../Cart/CartIcon';
 
 interface NavMobileProps {
   isOpen: boolean;
@@ -10,14 +11,17 @@ interface NavMobileProps {
 
 const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
   return (
-    <div className='w-full flex justify-between items-center p-4 bg-black/10 text-white'>
-      <a href="/" className='flex items-center'>
-        <Image src={Logo} alt="Logo" width={60} style={{marginRight: 10}} />
-        <h4 className='font-imFellDoublePica font-light italic text-[2rem]'>Tatti_shef</h4>
-      </a>
+    <div className='fixed bg-[#33231B] z-999 w-full flex justify-between items-center p-4 text-white'>
       <div className='z-50'>
         <Hamburger toggled={isOpen} toggle={() => setIsOpen(!isOpen)} rounded size={36} />
       </div>
+      <a href="/" className='flex items-center'>
+        <Image src={Logo} alt="Logo" width={60} style={{marginRight: 10}} />
+        <h4 className='font-imFellDoublePica font-light italic text-[2rem]'>Tatti_sbhef</h4>
+      </a>
+
+      <CartIcon />
+      
       {isOpen && (
         <div 
           className="fixed top-0 left-0 w-full h-full bg-black/30 backdrop-blur-md z-55"

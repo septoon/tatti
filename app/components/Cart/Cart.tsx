@@ -13,7 +13,7 @@ import sendOrder from '@/app/common/sendOrder';
 import { useMask } from '@react-input/mask';
 import axios from 'axios';
 import { calculateDeliveryCost, calculateDeliveryDistance } from '@/app/common/calculateDelivery';
-import { MdCalculate } from "react-icons/md";
+import EmptyCart from "@/public/images/empty_cart.svg";
 import { Tooltip } from 'primereact/tooltip';
 import { TiInfoLarge } from "react-icons/ti";
 
@@ -90,14 +90,23 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
 
   return (
       <div 
-        className="bg-white max-w-full md:max-w-lg px-6 py-4 md:rounded-lg shadow-lg 
+        className="bg-white max-w-full md:max-w-lg px-6 py-4 md:rounded-lg
                     max-h-[100vh] md:max-h-[90vh] md:w-auto
                     md:overflow-y-auto 
                     w-full h-full rounded-none overflow-y-auto z-999"
       >
 
         {cartItems.length === 0 ? (
-          <p className="text-center text-gray-500">Корзина пуста</p>
+           <div className='w-full h-full flex flex-col items-center justify-center'>
+            <Image
+              src={EmptyCart}
+              alt='Такого у нас нет'
+              width={300}
+              height={300}
+              className='mb-4'
+            />
+            <span className=' text-2xl text-red-400'>Корзина пуста</span>
+          </div>
         ) : (
           <>
             <div className="">

@@ -43,7 +43,7 @@ export default function RootLayout({
           <PrimeReactProvider>
             <Header />
             {children}
-            <CartIcon />
+            {/* <CartIcon /> */}
           </PrimeReactProvider>
         </Providers>
         <ChatButton />

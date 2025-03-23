@@ -11,7 +11,7 @@ import { Dialog } from 'primereact/dialog';
 const CartIcon = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const cartItems = useSelector((state: RootState) => state.cart.items);
-  const screenWidth = window.screen.availWidth
+  const screenWidth = typeof window !== 'undefined' ? window.screen.availWidth : 512;
 
   const pos = screenWidth >= 768 ? 'right' : 'bottom'
 

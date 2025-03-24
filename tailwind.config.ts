@@ -159,6 +159,7 @@ module.exports = {
         subGradientDark2: '#778899',
         subGradientDark3: '#708090',
         mainBtn: '#e43024',
+        header: '#33231B',
         transparent: 'transparent',
         primary: '#1E90FF',
         main: '#007da0',

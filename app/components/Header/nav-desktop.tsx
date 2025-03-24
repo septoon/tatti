@@ -5,7 +5,7 @@ import CartIcon from '../Cart/CartIcon'
 
 const NavDesktop = () => {
   return (
-    <div className='fixed w-full flex justify-between px-6 py-4 text-white bg-[#33231B] z-999'>
+    <div className='fixed w-full flex justify-between px-6 py-4 text-white bg-[#1f1d1d] z-999'>
       <div className='flex items-center justify-between font-medium text-md'>
         <a className='mr-3' href="/menu">Меню</a>
         <a className='mr-3' href="/delivery">Доставка</a>
@@ -13,7 +13,7 @@ const NavDesktop = () => {
         <a className='mr-3' href="/contacts">Контакты</a>
       </div>
 
-      <a href="/" className='flex items-center'>
+      <a href="/" className='flex items-center self-center'>
         <Image src={Logo} alt="Logo" width={50} style={{marginRight: 10}} />
         <h4 className='font-light italic text-xl md:text-3xl'>Tatti_shef</h4>
       </a>

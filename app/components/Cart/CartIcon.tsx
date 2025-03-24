@@ -27,10 +27,10 @@ const show = (position: "center" | "top" | "right" | "bottom" | "left" | "top-le
   };
 
   return (
-    <div className={`font-ptSans rounded-full w-16 h-16 cursor-pointer`}>
+    <div className={`font-ptSans rounded-full w-16 h-16`}>
       <Tooltip target=".logo" mouseTrack mouseTrackLeft={10} />
       <button
-        className='relative rounded-full w-full h-full  text-white flex justify-center items-center'
+        className='relative rounded-full w-full h-full cursor-pointer text-white flex justify-center items-center'
         onClick={() => show(pos)}
         title={`Сумма: ${totalAmount.toLocaleString()} р.`}
       >

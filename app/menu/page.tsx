@@ -47,7 +47,7 @@ const Menu = () => {
   }, [searchTerm, filteredMenu]);
 
   return (
-    <div className='px-4 flex-col justify-between pt-8 text-white bg-[#2d2d2d]'>
+    <div className='px-4 flex-col justify-between min-h-[100vh] md:min-h-[100vh] pt-30 md:pt-40 text-white bg-[#2d2d2d]'>
       <h1 className='mb-4 font-bold text-2xl md:hidden'>Меню</h1>
       <div className='relative w-full mb-4'>
         <IoSearch className='absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 text-xl' />

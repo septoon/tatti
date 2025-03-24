@@ -2,7 +2,7 @@ import React from 'react'
 
 const Contacts = () => {
   return (
-    <div className=" text-black p-6 md:p-12 h-[calc(100vh-92px)] md:h-[calc(100vh-150px)]">
+    <div className=" text-white bg-[#2d2d2d] p-6 md:p-12 h-[100vh] md:h-[100vh] pt-30 md:pt-40">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row">
 
         {/* Карта */}

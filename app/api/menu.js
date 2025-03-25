@@ -14,6 +14,9 @@ import { rollsAndCrackers } from "./rollsAndCrackers";
 import { newYearSelection } from "./newYearSelection";
 import { premiumSnacks } from "./premiumSnacks";
 import { summerSelection } from "./summerSelection";
+import { pancakeBoxes } from "./pancakeBoxes";
+import { bentoCakes } from "./bentoCakes";
+import { ossetianPies } from "./ossetianPies";
 
 export const menu = {
   "ПП меню": pp,
@@ -31,5 +34,8 @@ export const menu = {
   "РУЛЕТИКИ И КРЕКЕРЫ": rollsAndCrackers,
   "НОВОГОДНЯЯ ПОДБОРКА": newYearSelection,
   "ЗАКУСКИ ПРЕМИУМ": premiumSnacks,
-  "ЛЕТНЯЯ ПОДБОРКА": summerSelection
+  "ЛЕТНЯЯ ПОДБОРКА": summerSelection,
+  "МАСЛЕНИЦА": pancakeBoxes,
+  "БЕНТО ТОРТЫ ЗАКУСОЧНЫЕ": bentoCakes,
+  "ОСЕТИНСКИЕ ПИРОГИ": ossetianPies
 };

@@ -9,7 +9,7 @@ export const newYearSelection = [
       "Курица/ананас 500 гр",
       "Мимоза 500 гр"
     ],
-    "image": "https://i.ibb.co/Q3LJByDg/image-0.webp"
+    "image": "https://i.ibb.co/gLV6HwCP/image-3.webp"
   },
   {
     "id": 29485,
@@ -23,7 +23,7 @@ export const newYearSelection = [
       "Брускетта с лососем 6 шт",
       "Брускетта с говядиной 6 шт"
     ],
-    "image": "https://i.ibb.co/Nd3MSvjg/image-1.webp"
+    "image": "https://i.ibb.co/Q3LJByDg/image-0.webp"
   },
   {
     "id": 54729,
@@ -36,7 +36,7 @@ export const newYearSelection = [
       "Рулет лососевый 8 шт",
       "Клаб канапе 16 шт"
     ],
-    "image": "https://i.ibb.co/99qDtBKF/image-2.webp"
+    "image": "https://i.ibb.co/Nd3MSvjg/image-1.webp"
   },
   {
     "id": 93812,
@@ -48,7 +48,7 @@ export const newYearSelection = [
       "Тарталетки с креветкой , лососевым пикетом и черри 6 шт",
       "Профитроли черные с лососевым Ринатом и красной икрой 12 шт"
     ],
-    "image": "https://i.ibb.co/gLV6HwCP/image-3.webp"
+    "image": "https://i.ibb.co/N24gntVL/image-4.webp"
   },
   {
     "id": 56281,
@@ -58,7 +58,7 @@ export const newYearSelection = [
       "Шпинатный с лососем 10 шт",
       "Лососевый 10 шт"
     ],
-    "image": "https://i.ibb.co/N24gntVL/image-4.webp"
+    "image": "https://i.ibb.co/99qDtBKF/image-2.webp"
   },
   {
     "id": 18472,
@@ -70,7 +70,7 @@ export const newYearSelection = [
       "Тарталетки с икрой палтуса 10 шт",
       "Лангустины в миндальных лепестках 19 шт"
     ],
-    "image": "https://i.ibb.co/d0kWCTBk/image-5.webp"
+    "image": "https://i.ibb.co/4wzDVCsj/image-10.webp"
   },
   {
     "id": 38762,
@@ -81,7 +81,7 @@ export const newYearSelection = [
       "Чиз Болл 18 шт",
       "Канапе салями/сыр 20 шт"
     ],
-    "image": "https://i.ibb.co/Kxs9QHrL/image-6.webp"
+    "image": "https://i.ibb.co/6LNdMSf/image-8.webp"
   },
   {
     "id": 59483,
@@ -102,7 +102,7 @@ export const newYearSelection = [
       "Рулет с лососем 12 шт",
       "Рулет с копченой курицей 12 шт"
     ],
-    "image": "https://i.ibb.co/6LNdMSf/image-8.webp"
+    "image": "https://i.ibb.co/5X5pWzhW/image-9.webp"
   },
   {
     "id": 73152,
@@ -111,7 +111,7 @@ export const newYearSelection = [
     "description": [
       "Ассорти из овощей"
     ],
-    "image": "https://i.ibb.co/5X5pWzhW/image-9.webp"
+    "image": "https://i.ibb.co/8nXhJvWJ/image-11.webp"
   },
   {
     "id": 62914,
@@ -121,20 +121,20 @@ export const newYearSelection = [
       "Оливье",
       "Шуба"
     ],
-    "image": "https://i.ibb.co/4wzDVCsj/image-10.webp"
+    "image": "https://i.ibb.co/gZ27nGZ2/image-12.webp"
   },
   {
     "id": 15389,
     "name": "Куриный рулет с клюквой",
     "price": 6290,
     "description": [],
-    "image": "https://i.ibb.co/8nXhJvWJ/image-11.webp"
+    "image": "https://i.ibb.co/d0kWCTBk/image-5.webp"
   },
   {
     "id": 84930,
     "name": "Утка с апельсинами и яблоками",
     "price": 6790,
     "description": [],
-    "image": "https://i.ibb.co/gZ27nGZ2/image-12.webp"
+    "image": "https://i.ibb.co/Kxs9QHrL/image-6.webp"
   }
 ]

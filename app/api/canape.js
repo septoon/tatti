@@ -10,7 +10,7 @@ export const canape = [
       "Чиз Болл с ягодами 8 шт",
       "Бри с ягодами 8 шт"
     ],
-    "image": "https://i.ibb.co/zDZW2fN/image-0.webp"
+    "image": "https://i.ibb.co/bRg6r5MC/image-1.webp"
   },
   {
     "id": 402,
@@ -23,7 +23,7 @@ export const canape = [
       "Клад сэндвич с грудинкой 14 шт",
       "Сало на гренке 12 шт"
     ],
-    "image": "https://i.ibb.co/bRg6r5MC/image-1.webp"
+    "image": "https://i.ibb.co/zDZW2fN/image-0.webp"
   },
   {
     "id": 403,
@@ -34,14 +34,14 @@ export const canape = [
       "Лосось, оливка",
       "Шейка, сыр, огурец"
     ],
-    "image": "https://i.ibb.co/cSDndHxx/image-2.webp"
+    "image": "https://i.ibb.co/5zWN4XX/image-3.webp"
   },
   {
     "id": 404,
     "name": "Фруктовое канапе «Мохито» 21 шт",
     "price": 1790,
     "description": [],
-    "image": "https://i.ibb.co/5zWN4XX/image-3.webp"
+    "image": "https://i.ibb.co/cSDndHxx/image-2.webp"
   },
   {
     "id": 405,

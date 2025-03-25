@@ -19,7 +19,7 @@ export const kidsMenu = [
     "description": [
       "4 стакана / 20 шт"
     ],
-    "image": "https://i.ibb.co/zVxfX31g/image-1.webp"
+    "image": "https://i.ibb.co/LDXWmz9G/image-4.webp"
   },
   {
     "id": 703,
@@ -28,7 +28,7 @@ export const kidsMenu = [
     "description": [
       "4 стакана / 24 шт"
     ],
-    "image": "https://i.ibb.co/kVW5GQ60/image-2.webp"
+    "image": "https://i.ibb.co/zVxfX31g/image-1.webp"
   },
   {
     "id": 704,
@@ -40,7 +40,7 @@ export const kidsMenu = [
       "Креветочные чипсы",
       "Овощной / фруктовый стаканчик"
     ],
-    "image": "https://i.ibb.co/XrkQkx9B/image-3.webp"
+    "image": "https://i.ibb.co/W4jgjfdb/image-0.webp"
   },
   {
     "id": 705,
@@ -55,7 +55,7 @@ export const kidsMenu = [
       "Фруктовая корзинка",
       "Мит Болл 12 шт"
     ],
-    "image": "https://i.ibb.co/LDXWmz9G/image-4.webp"
+    "image": "https://i.ibb.co/d0fWXYTY/image-5.webp"
   },
   {
     "id": 706,
@@ -64,6 +64,6 @@ export const kidsMenu = [
     "description": [
       "6 шт"
     ],
-    "image": "https://i.ibb.co/d0fWXYTY/image-5.webp"
+    "image": "https://i.ibb.co/kVW5GQ60/image-2.webp"
   }
 ]

@@ -4,7 +4,7 @@ export const summerSelection = [
     "name": "Лимонный пудинг 16 шт",
     "price": 2190,
     "description": [],
-    "image": "https://i.ibb.co/zqw8tyK/image-0.webp"
+    "image": "https://i.ibb.co/8nLwgTbn/image-1.webp"
   },
   {
     "id": 58462,
@@ -15,7 +15,7 @@ export const summerSelection = [
       "Яблоко / корица",
       "Абрикос, нектарин"
     ],
-    "image": "https://i.ibb.co/8nLwgTbn/image-1.webp"
+    "image": "https://i.ibb.co/R4cMBD7p/image-2.webp"
   },
   {
     "id": 19384,
@@ -24,7 +24,7 @@ export const summerSelection = [
     "description": [
       "С сыром и орехами"
     ],
-    "image": "https://i.ibb.co/R4cMBD7p/image-2.webp"
+    "image": "https://i.ibb.co/MyRhVSSw/image-3.webp"
   },
   {
     "id": 87265,
@@ -36,7 +36,7 @@ export const summerSelection = [
       "Немецкий «Картофельный» 4 шт",
       "Прованский 4 шт"
     ],
-    "image": "https://i.ibb.co/MyRhVSSw/image-3.webp"
+    "image": "https://i.ibb.co/VcXWyZNK/image-4.webp"
   },
   {
     "id": 46591,
@@ -48,7 +48,7 @@ export const summerSelection = [
       "Айран / сыворотка",
       "Кефирное / свекольная"
     ],
-    "image": "https://i.ibb.co/VcXWyZNK/image-4.webp"
+    "image": "https://i.ibb.co/TD6bdcgC/image-6.webp"
   },
   {
     "id": 61783,
@@ -72,6 +72,6 @@ export const summerSelection = [
       "Арбуз / фетакса 10 стак",
       "Канапе арбуз / дыня 18 шт"
     ],
-    "image": "https://i.ibb.co/TD6bdcgC/image-6.webp"
+    "image": "https://i.ibb.co/zqw8tyK/image-0.webp"
   }
 ]

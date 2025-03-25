@@ -8,7 +8,7 @@ export const bruschettaAndCrostini = [
       "Цезарь с курицей",
       "С сыром и конфитюром манго/маракуйя"
     ],
-    "image": "https://i.ibb.co/Xrz5QbPw/image-0.webp"
+    "image": "https://i.ibb.co/SDwvHh6Z/image-1.webp"
   },
   {
     "id": 302,
@@ -20,7 +20,7 @@ export const bruschettaAndCrostini = [
       "Буженина",
       "Куриный паштет с брусникой"
     ],
-    "image": "https://i.ibb.co/SDwvHh6Z/image-1.webp"
+    "image": "https://i.ibb.co/SDy62K39/image-4.webp"
   },
   {
     "id": 303,
@@ -34,7 +34,7 @@ export const bruschettaAndCrostini = [
       "Салями",
       "Кремчиз ягоды"
     ],
-    "image": "https://i.ibb.co/gZwMwhd8/image-2.webp"
+    "image": "https://i.ibb.co/wFHk3LtZ/image-3.webp"
   },
   {
     "id": 304,
@@ -46,7 +46,7 @@ export const bruschettaAndCrostini = [
       "Песто и вяленые томаты",
       "Рикотта, инжир"
     ],
-    "image": "https://i.ibb.co/wFHk3LtZ/image-3.webp"
+    "image": "https://i.ibb.co/gZwMwhd8/image-2.webp"
   },
   {
     "id": 305,
@@ -58,6 +58,6 @@ export const bruschettaAndCrostini = [
       "Дор блю с грушей",
       "Мезе из болгарского перца"
     ],
-    "image": "https://i.ibb.co/SDy62K39/image-4.webp"
+    "image": "https://i.ibb.co/Xrz5QbPw/image-0.webp"
   }
 ]

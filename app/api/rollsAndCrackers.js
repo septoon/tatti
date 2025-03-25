@@ -15,13 +15,13 @@ export const rollsAndCrackers = [
       "Лососевый мусс",
       "Томатный мусс с паприкой"
     ],
-    "image": "https://i.ibb.co/YJhgWdP/image-1.webp"
+    "image": "https://i.ibb.co/9H8xrQdD/image-2.webp"
   },
   {
     "id": 34352234,
     "name": "Лососевые рулетики 30 шт",
     "price": 4190,
     "description": [],
-    "image": "https://i.ibb.co/9H8xrQdD/image-2.webp"
+    "image": "https://i.ibb.co/YJhgWdP/image-1.webp"
   }
 ]

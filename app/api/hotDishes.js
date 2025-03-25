@@ -6,7 +6,7 @@ export const hotDishes = [
     "description": [
       "32 шт"
     ],
-    "image": "https://i.ibb.co/MDC0P6Yk/image-0.webp"
+    "image": "https://i.ibb.co/jPMqPQcH/image-2.webp"
   },
   {
     "id": 502,
@@ -15,7 +15,7 @@ export const hotDishes = [
     "description": [
       "30 шт"
     ],
-    "image": "https://i.ibb.co/Df5QV45B/image-1.webp"
+    "image": "https://i.ibb.co/5g4VFg6V/image-3.webp"
   },
   {
     "id": 503,
@@ -24,7 +24,7 @@ export const hotDishes = [
     "description": [
       "1 кг"
     ],
-    "image": "https://i.ibb.co/jPMqPQcH/image-2.webp"
+    "image": "https://i.ibb.co/qMg68Npk/image-4.webp"
   },
   {
     "id": 504,
@@ -35,7 +35,7 @@ export const hotDishes = [
       "картофель по-деревенски 1 кг",
       "креветки панко 18 шт"
     ],
-    "image": "https://i.ibb.co/5g4VFg6V/image-3.webp"
+    "image": "https://i.ibb.co/qMg68Npk/image-4.webp"
   },
   {
     "id": 505,
@@ -44,14 +44,14 @@ export const hotDishes = [
     "description": [
       "Вес 2,5-2,8 кг"
     ],
-    "image": "https://i.ibb.co/qMg68Npk/image-4.webp"
+    "image": "https://i.ibb.co/C3PmRy3k/image-6.webp"
   },
   {
     "id": 506,
     "name": "Цыплёнок Табака",
     "price": 2590,
     "description": [],
-    "image": "https://i.ibb.co/qMg68Npk/image-4.webp"
+    "image": "https://i.ibb.co/Df5QV45B/image-1.webp"
   },
   {
     "id": 507,
@@ -60,20 +60,20 @@ export const hotDishes = [
     "description": [
       "16 шт"
     ],
-    "image": "https://i.ibb.co/C3PmRy3k/image-6.webp"
+    "image": "https://i.ibb.co/jNqZsmK/image-7.webp"
   },
   {
     "id": 508,
     "name": "Запеченные свиные рёбра в соусе Терияки",
     "price": 3890,
     "description": [],
-    "image": "https://i.ibb.co/jNqZsmK/image-7.webp"
+    "image": "https://i.ibb.co/B2zYXbWM/image-8.webp"
   },
   {
     "id": 509,
     "name": "Мясо по-французски",
     "price": 1890,
     "description": [],
-    "image": "https://i.ibb.co/B2zYXbWM/image-8.webp"
+    "image": "https://i.ibb.co/MDC0P6Yk/image-0.webp"
   }
 ]

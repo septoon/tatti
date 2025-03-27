@@ -9,14 +9,14 @@
   }
 } */
 
-body {
+/* body {
   background: url('/images/main.webp');
   color: var(--foreground);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
-}
+} */
 
 h4 {
   font-family: "IM Fell Double Pica", serif;
@@ -35,12 +35,6 @@ p, span {
 .p-dialog-header {
   background-color: #151515;
   color: white; /* Измените цвет текста при необходимости */
-}
-
-@media (max-width: 767px) {
-  body {
-    background-attachment: scroll !important;
-  }
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {

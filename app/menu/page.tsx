@@ -8,7 +8,7 @@ import { addToCart, removeOne } from '@/app/GlobalRedux/Features/cartSlice';
 import { IoSearch } from "react-icons/io5";
 
 type MenuItem = {
-  id: number; // убедись, что у каждого блюда есть уникальный id
+  id: number;
   name: string;
   price: number;
   description: string[];

@@ -13,12 +13,13 @@ const NavDesktop = () => {
         <a className='mr-3' href="/contacts">Контакты</a>
       </div>
 
-      <a href="/" className='flex items-center self-center'>
+      <a href="/" className='flex items-center self-center hide-between-md-lg'>
         <Image src={Logo} alt="Logo" width={50} style={{marginRight: 10}} />
         <h4 className='font-light italic text-xl md:text-3xl'>Tatti_shef</h4>
       </a>
+      
       <div className=' flex items-center'>
-        <p className='font-bold text-lg'>г. Алушта, ул. Ленина, 13г</p>
+        <p className='font-bold text-lg small-between-md-lg'>г. Алушта, ул. Ленина, 13г</p>
         <div className='border p-2 rounded-sm border-white ml-4'>
           <a href="tel:+79785103520" className=' font-bold'>+7 (978) 510-35-20</a>
         </div>

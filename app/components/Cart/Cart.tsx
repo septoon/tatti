@@ -286,16 +286,16 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
                           <Tooltip target=".custom-tooltip-btn">
                               <div className='w-full h-full flex flex-col'>
                                 <span>Расстояние между точками: {distance} км</span>
-                                  {
+                                {distance !== null && (
                                   distance <= 7 ? (
-                                      <span>Бесплатная доставка по г. Алушта</span>
+                                    <span>Бесплатная доставка по г. Алушта</span>
                                   ) : (
                                     <>
                                       <span>Рассчет: 30р за 1 км</span>
                                       <span>Стоимость доставки = 30р * {distance} км</span>
                                     </>
                                   )
-                                }
+                                )}
                               </div>
                           </Tooltip>
                           <TiInfoLarge size={20} color='green' className="custom-tooltip-btn" type="button" data-pr-position="top" data-pr-at="right+120 top"

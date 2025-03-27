@@ -16,6 +16,7 @@ import { calculateDeliveryCost, calculateDeliveryDistance } from '@/app/common/c
 import EmptyCart from "@/public/images/empty_cart.svg";
 import { Tooltip } from 'primereact/tooltip';
 import { TiInfoLarge } from "react-icons/ti";
+import { Checkbox } from 'primereact/checkbox';
 
 interface CartModalProps {
   onClose: () => void;
@@ -86,15 +87,11 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
     }
   };
 
-  console.log(deliveryCost)
-
   return (
-      <div 
-        className="bg-white max-w-full md:max-w-lg px-6 py-4 md:rounded-lg
+      <div className="bg-[#151515] text-white max-w-full md:max-w-lg px-6 py-4 md:rounded-lg
                     max-h-[100vh] md:max-h-[90vh] md:w-auto
                     md:overflow-y-auto 
-                    w-full h-full rounded-none overflow-y-auto z-999"
-      >
+                    w-full h-full rounded-none overflow-y-auto z-999">
 
         {cartItems.length === 0 ? (
            <div className='w-full h-full flex flex-col items-center justify-center'>
@@ -105,7 +102,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
               height={300}
               className='mb-4'
             />
-            <span className=' text-2xl text-red-400'>Корзина пуста</span>
+            <span className=' text-2xl text-red-400'>Пока тут пусто</span>
           </div>
         ) : (
           <>
@@ -156,33 +153,35 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
 
             {/* Доставка */}
             <div className="mt-4">
-              <h3 className="text-lg font-bold mb-2">Выберите способ доставки</h3>
-              <div className="flex flex-col items-start space-x-4 mb-4">
-                <label className="flex items-center space-x-2 cursor-pointer">
-                  <input
-                    type="radio"
-                    value="pickup"
-                    checked={deliveryMethod === 'pickup'}
-                    onChange={() => {
-                      setDeliveryMethod('pickup');
-                      setDeliveryCost(null);
-                    }}
-                  />
-                  <span>Самовывоз</span>
-                </label>
+              <h3 className="text-lg font-bold mb-6">Выберите способ доставки</h3>
+              <div className="flex items-center space-x-2 mb-2">
+                <Checkbox
+                  inputId="pickup"
+                  name="delivery"
+                  value="pickup"
+                  variant="filled"
+                  onChange={() => {
+                    setDeliveryMethod('pickup');
+                    setDeliveryCost(null);
+                  }}
+                  checked={deliveryMethod === 'pickup'}
+                />
+                <label htmlFor="pickup" className="text-white">Самовывоз</label>
+              </div>
 
-                <label className="flex items-center space-x-2 cursor-pointer">
-                  <input
-                    type="radio"
-                    value="courier"
-                    checked={deliveryMethod === 'courier'}
-                    onChange={() => {
-                      setDeliveryMethod('courier');
-                      handleCalculateDeliveryCost();
-                    }}
-                  />
-                  <span>Доставка курьером </span>
-                </label>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  inputId="courier"
+                  name="delivery"
+                  value="courier"
+                  className='border-0 '
+                  onChange={() => {
+                    setDeliveryMethod('courier');
+                    handleCalculateDeliveryCost();
+                  }}
+                  checked={deliveryMethod === 'courier'}
+                />
+                <label htmlFor="courier" className="text-white">Доставка курьером</label>
               </div>
 
               <p className="text-sm text-gray-500 my-4">
@@ -196,13 +195,13 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
               {/* Имя */}
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Имя
+                  Имя *
                 </label>
                 <input
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full border-b border-red-500 p-2 outline-0"
+                  className="w-full border-b border-gray-500 p-2 outline-0"
                   placeholder="Введите ваше имя"
                 />
               </div>
@@ -210,7 +209,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
               {deliveryMethod === 'courier' && (
                 <div className="mb-4 relative">
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Адрес
+                    Адрес *
                   </label>
                   <input
                     type="text"
@@ -219,33 +218,30 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
                       const value = e.target.value;
                       setAddress(value);
                     }}
-                    className="w-full border-b border-red-500 p-2 outline-0 relative"
+                    className="w-full border-b border-gray-500 p-2 outline-0 relative"
                     placeholder="Город, улица, дом, подъезд, квартира"
                   />
                   <button className={`${isCalculating ? 'animate-pulse' : ''} ${deliveryCost ? 'bg-red-500' : 'bg-[#535353]'} p-2 text-white absolute right-0 bottom-0 cursor-pointer`} 
                     onClick={() => handleCalculateDeliveryCost()} >
                     Рассчитать
                   </button>
-                  {/* <MdCalculate size={30} color={deliveryCost ? 'green' : '#535353'}
-                    onClick={() => handleCalculateDeliveryCost()} 
-                    className={`${isCalculating ? 'animate-pulse' : ''} absolute right-0 bottom-2 cursor-pointer`} /> */}
                 </div>
               )}
 
               {/* Телефон */}
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Телефон
+                  Телефон *
                 </label>
                 <div className='flex'>
-                  <div className='w-10 mr-0 block p-2 pr-0 border-b border-red-500 bg-white'>
-                    <p className='text-black'>+7</p>
+                  <div className='w-10 mr-0 block p-2 pr-0 border-b border-gray-500 bg-[#151515]'>
+                    <p className={phone.length > 0 ? 'text-white' : 'text-gray-500'}>+7</p>
                   </div>
                   <input
                     ref={inputRef}
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="block w-full border-b border-red-500 p-2 pl-0 outline-0"
+                    className="block w-full border-b border-gray-500 p-2 pl-0 outline-0"
                     placeholder="(999) 999-99-99"
                     inputMode="numeric"
                   />
@@ -259,7 +255,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
                   selected={date}
                   onChange={(date) => setDate(date)}
                   dateFormat="dd/MM/yyyy"
-                  className="w-full border-b border-red-500 p-2 outline-0"
+                  className="w-full border-b border-gray-500 p-2 outline-0"
                   placeholderText="Выберите дату"
                 />
               </div>
@@ -273,7 +269,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
                   value={wishes}
                   onChange={(e) => setWishes(e.target.value)}
                   rows={2}
-                  className="w-full border-b border-red-500 p-2 outline-0"
+                  className="w-full border-b border-gray-500 p-2 outline-0"
                   placeholder="Укажите ингредиенты, которые стоит исключить (например, аллергены)"
                 />
               </div>
@@ -290,8 +286,16 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
                           <Tooltip target=".custom-tooltip-btn">
                               <div className='w-full h-full flex flex-col'>
                                 <span>Расстояние между точками: {distance} км</span>
-                                <span>Рассчет: 30р за 1 км</span>
-                                <span>Стоимость доставки = 30р * {distance} км</span>
+                                  {
+                                  distance <= 7 ? (
+                                      <span>Бесплатная доставка по г. Алушта</span>
+                                  ) : (
+                                    <>
+                                      <span>Рассчет: 30р за 1 км</span>
+                                      <span>Стоимость доставки = 30р * {distance} км</span>
+                                    </>
+                                  )
+                                }
                               </div>
                           </Tooltip>
                           <TiInfoLarge size={20} color='green' className="custom-tooltip-btn" type="button" data-pr-position="top" data-pr-at="right+120 top"

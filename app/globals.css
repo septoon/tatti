@@ -29,4 +29,10 @@ p, span {
 
 .p-dialog-content {
   padding: 0;
+  background-color: #151515;
+}
+
+.p-dialog-header {
+  background-color: #151515;
+  color: white; /* Измените цвет текста при необходимости */
 }

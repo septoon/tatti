@@ -47,20 +47,22 @@ const Menu = () => {
   }, [searchTerm, filteredMenu]);
 
   return (
-    <div className='px-4 flex-col justify-between min-h-[100vh] md:min-h-[100vh] pt-30 md:pt-40 text-white bg-[#2d2d2d]'>
-      <h1 className='mb-4 font-bold text-2xl md:hidden'>Меню</h1>
-      <div className='relative w-full mb-4'>
-        <IoSearch className='absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 text-xl' />
-        <input
-          type='text'
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder='Поиск по меню...'
-          className='w-full p-2 pl-10 border border-red-400 rounded-md'
-        />
+    <div className='flex-col justify-between min-h-[100vh] md:min-h-[100vh] pt-30 md:pt-40 text-white bg-[#151515]'>
+      <div className='px-4'>
+        <h1 className='mb-4 font-bold text-2xl md:hidden'>Меню</h1>
+        <div className='relative w-full mb-4'>
+          <IoSearch className='absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 text-xl' />
+          <input
+            type='text'
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder='Поиск по меню...'
+            className='w-full p-2 pl-10 border border-gray-500 rounded-md'
+          />
+        </div>
       </div>
       {/* Кнопки категорий */}
-      <div className='w-full my-4 py-4 flex overflow-x-scroll'>
+      <div className='w-full my-4 p-2 flex overflow-x-scroll sticky top-24 z-10 bg-[#151515]/80 backdrop-blur-md'>
         {categories.map((cat: string) => (
           <button
             key={cat}
@@ -68,8 +70,8 @@ const Menu = () => {
               setCategory(cat)
               setSearchTerm('')
             }}
-            className={`cursor-pointer border ${
-              category === cat ? 'border-red-500 bg-red-400 text-white' : 'border-red-400 text-red-400'
+            className={`cursor-pointer ${
+              category === cat ? ' text-red-400' : ' text-white'
             } font-semibold whitespace-nowrap rounded-md p-2 mr-2`}
           >
             {cat}
@@ -87,7 +89,7 @@ const Menu = () => {
               height={300}
               className='mb-4'
             />
-            <span className=' text-2xl text-red-400'>Не найдено</span>
+            <span className=' text-2xl text-gray-400'>Не найдено</span>
           </div>
         )
       }
@@ -96,7 +98,7 @@ const Menu = () => {
           filteredMenu?.map((item: MenuItem, index: number) => {
             const cartItem = cartItems.find((ci) => ci.id === item.id);
             return (
-              <div key={index} className='flex flex-col w-auto h-full mb-6 p-4 border border-red-500 rounded-md'>
+              <div key={index} className='flex flex-col w-auto h-full mb-6 p-4 rounded-md'>
                 <Image
                   src={item.image}
                   alt={item.name}

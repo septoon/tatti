@@ -6,7 +6,7 @@ import CartModal from './Cart';
 import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { Tooltip } from 'primereact/tooltip';
 import { Dialog } from 'primereact/dialog';
-        
+import { Checkbox } from 'primereact/checkbox';
 
 const CartIcon = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,9 +43,10 @@ const show = (position: "center" | "top" | "right" | "bottom" | "left" | "top-le
       </button>
 
       {isModalOpen && (
-        <Dialog header="Ваш заказ:" blockScroll={true} 
+        <Dialog header="Корзина" blockScroll={true} 
           visible={isModalOpen} position={position} 
           style={{ width: '100vw', maxWidth: '512px', minHeight: '90vh', margin: 0 }} 
+          contentStyle={{ backgroundColor: '#151515' }}
           onHide={() => {if (!isModalOpen) return; setIsModalOpen(false); }} 
           draggable={false} 
           resizable={false}>

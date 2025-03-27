@@ -17,7 +17,7 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
       </div>
       <a href="/" className='flex items-center'>
         <Image src={Logo} alt="Logo" width={60} style={{marginRight: 10}} />
-        <h4 className='font-imFellDoublePica font-light italic text-[2rem]'>Tatti_sbhef</h4>
+        <h4 className='font-imFellDoublePica font-light italic text-[2rem]'>Tatti_shef</h4>
       </a>
 
       <CartIcon />
@@ -28,7 +28,7 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
           onClick={() => setIsOpen(false)}
         />
       )}
-      <div className={`fixed bg-white text-black top-0 bottom-0 right-[20%] left-0 transition-all duration-600 transform z-60 
+      <div className={`fixed bg-[#151515] text-white top-0 bottom-0 right-[20%] left-0 transition-all duration-600 transform z-60 
         ${isOpen ? 'translate-x-0' : 'translate-x-[-100%]'}
         pl-6 pt-6 pb-10 flex flex-col justify-between overflow-y-auto`}>
         <div className='h-[45%] flex flex-col items-start justify-between text-3xl'>
@@ -37,8 +37,8 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
             <h4 className='font-imFellDoublePica font-bold italic text-[2rem]'>Tatti_shef</h4>
           </div>
           <a href="/menu">Меню</a>
+          <a href="/services">Услуги</a>
           <a href="/delivery">Доставка</a>
-          <a href="/about">О нас</a>
           <a href="/contacts">Контакты</a>
         </div>
         <div>

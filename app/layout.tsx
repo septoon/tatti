@@ -7,10 +7,9 @@ import { PrimeReactProvider } from 'primereact/api';
 import Header from "./components/Header/Header";
 import ChatButton from "./components/Chat/Chat";
 import { Providers } from "./GlobalRedux/provider";
-import CartIcon from "./components/Cart/CartIcon";
 
 export const metadata: Metadata = {
-  title: "Tatti shef - Алушта",
+  title: "Tatti shef - Кейтеринг в Алуште",
   description: "Тестовый режим",
 };
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Info = () => {
   return (
-    <section className='w-full min-h-[100vh] bg-[#2d2d2d]'>
+    <section className='w-full min-h-[100vh] bg-[#151515]'>
       <div className='container mx-auto px-6 py-12 flex flex-col md:flex-row items-center min-h-[100vh]'>
         <div className='md:w-1/2'>
           <h1 className='text-6xl font-bold text-orange-500 mb-6'>Tatti_shef</h1>

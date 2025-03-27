@@ -2,7 +2,7 @@ export const bentoCakes = [
   {
     "id": 87431,
     "name": "Торт «Италия» 500 г",
-    "price": null,
+    // "price": null,
     "description": [
       "Бисквит с итальянскими травами",
       "Крем песто",
@@ -13,7 +13,7 @@ export const bentoCakes = [
   {
     "id": 58902,
     "name": "Торт «Рыбный» 500 г",
-    "price": null,
+    // "price": null,
     "description": [
       "Сочный бисквит с укропом",
       "Рыбный крем",
@@ -24,7 +24,7 @@ export const bentoCakes = [
   {
     "id": 42178,
     "name": "Торт «Куриный жюльен» 500 г",
-    "price": null,
+    // "price": null,
     "description": [
       "Бисквит с тимьяном",
       "Крем с зеленью",
@@ -35,7 +35,7 @@ export const bentoCakes = [
   {
     "id": 74620,
     "name": "Торт «Гурме» 500 г",
-    "price": null,
+    // "price": null,
     "description": [
       "Бисквит с мускатным орехом",
       "Крем с Дор блю",
@@ -46,7 +46,7 @@ export const bentoCakes = [
   {
     "id": 30895,
     "name": "Слоёный торт мясной «Умами» 500 г",
-    "price": null,
+    // "price": null,
     "description": [
       "Коржи из слоеного теста",
       "Начинка: запечённая говядина со специями",
@@ -57,7 +57,7 @@ export const bentoCakes = [
   {
     "id": 96741,
     "name": "Слоёный торт «Рыбный» 500 г",
-    "price": null,
+    // "price": null,
     "description": [
       "Коржи из слоёного теста",
       "Начинка: скумбрия, припущенная в белом вине со специями",
@@ -68,7 +68,7 @@ export const bentoCakes = [
   {
     "id": 61284,
     "name": "Суши-торт 500 г",
-    "price": null,
+    // "price": null,
     "description": [
       "Нори",
       "Лосось",

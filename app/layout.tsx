@@ -42,7 +42,6 @@ export default function RootLayout({
           <PrimeReactProvider>
             <Header />
             {children}
-            {/* <CartIcon /> */}
           </PrimeReactProvider>
         </Providers>
         <ChatButton />

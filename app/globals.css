@@ -37,6 +37,12 @@ p, span {
   color: white; /* Измените цвет текста при необходимости */
 }
 
+@media (max-width: 767px) {
+  body {
+    background-attachment: scroll !important;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
   .hide-between-md-lg {
     display: none !important;

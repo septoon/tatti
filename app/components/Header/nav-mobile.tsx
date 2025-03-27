@@ -11,7 +11,7 @@ interface NavMobileProps {
 
 const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
   return (
-    <div className='fixed bg-[#1f1d1d] z-999 w-full flex justify-between items-center p-4 text-white'>
+    <div className='fixed bg-[#1f1d1d] z-999 w-full flex justify-between items-center px-4 py-2 text-white'>
       <div className='z-50'>
         <Hamburger toggled={isOpen} toggle={() => setIsOpen(!isOpen)} rounded size={36} />
       </div>

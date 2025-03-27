@@ -47,7 +47,7 @@ const Menu = () => {
   }, [searchTerm, filteredMenu]);
 
   return (
-    <div className='flex-col justify-between min-h-[100vh] md:min-h-[100vh] pt-30 md:pt-40 text-white bg-[#151515]'>
+    <div className='flex-col justify-between min-h-[100vh] md:min-h-[100vh] pt-26 md:pt-40 text-white bg-[#151515]'>
       <div className='px-4'>
         <h1 className='mb-4 font-bold text-2xl md:hidden'>Меню</h1>
         <div className='relative w-full mb-4'>
@@ -62,7 +62,7 @@ const Menu = () => {
         </div>
       </div>
       {/* Кнопки категорий */}
-      <div className='w-full my-4 p-2 flex overflow-x-scroll sticky top-24 z-10 bg-[#151515]/80 backdrop-blur-md'>
+      <div className='w-full my-4 p-2 flex overflow-x-scroll sticky top-20 z-10 bg-[#151515]/80 backdrop-blur-md'>
         {categories.map((cat: string) => (
           <button
             key={cat}

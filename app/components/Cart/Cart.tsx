@@ -10,10 +10,7 @@ import { CiCirclePlus } from "react-icons/ci";
 import 'react-datepicker/dist/react-datepicker.css';
 import sendOrder from '@/app/common/sendOrder';
 import { useMask } from '@react-input/mask';
-import { calculateDeliveryCost, calculateDeliveryDistance } from '@/app/common/calculateDelivery';
 import EmptyCart from "@/public/images/empty_cart.svg";
-import { Tooltip } from 'primereact/tooltip';
-import { TiInfoLarge } from "react-icons/ti";
 import { Checkbox } from 'primereact/checkbox';
 
 interface CartModalProps {
@@ -38,28 +35,6 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
   const [name, setName] = useState('');
   const [deliveryCost, setDeliveryCost] = useState<number | null>(null);
   const [distance, setDistance] = useState<number | null>(null);
-  // const [isCalculating, setIsCalculating] = useState(false);
-
-  const handleCalculateDeliveryCost = async () => {
-    if (!address.trim()) {
-      setDeliveryCost(null);
-      return;
-    }
-
-    setIsCalculating(true); // Начало загрузки
-
-    try {
-      const dist = await calculateDeliveryDistance(address)
-      const cost = await calculateDeliveryCost(address);
-      setDeliveryCost(cost);
-      setDistance(Math.round(dist));
-    } catch (error) {
-      console.error('Ошибка при расчете стоимости доставки:', error);
-      setDeliveryCost(null);
-    } finally {
-      setIsCalculating(false);
-    }
-  };
 
   return (
       <div className="bg-[#151515] text-white max-w-full md:max-w-lg px-6 py-4 md:rounded-lg
@@ -155,7 +130,6 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
                   className='border-0 '
                   onChange={() => {
                     setDeliveryMethod('courier');
-                    handleCalculateDeliveryCost();
                   }}
                   checked={deliveryMethod === 'courier'}
                 />

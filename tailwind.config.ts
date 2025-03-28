@@ -5,7 +5,7 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  safelist: ["bg-transparent"],
+  safelist: ["bg-transparent", "bg-main"],
   theme: {
     screens: {
       'sm': '360px',
@@ -162,7 +162,7 @@ module.exports = {
         header: '#33231B',
         transparent: 'transparent',
         primary: '#1E90FF',
-        main: '#007da0',
+        main: '#151515',
         secondary: '#1E40AF',
         back: '#21A599',
         bgOrder: '#EFEFF4',

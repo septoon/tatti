@@ -49,7 +49,7 @@ const Menu = () => {
   return (
     <div className='flex-col justify-between min-h-[100vh] md:min-h-[100vh] pt-26 md:pt-40 text-white bg-[#151515]'>
       <div className='px-4'>
-        <h1 className='mb-4 font-bold text-2xl md:hidden'>Меню</h1>
+        <h1 className='mb-4 font-bold text-2xl md:hidden'>Фуршетное меню</h1>
         <div className='relative w-full mb-4'>
           <IoSearch className='absolute left-3 top-1/2 transform -translate-y-1/2 text-red-400 text-xl' />
           <input
@@ -57,7 +57,7 @@ const Menu = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder='Поиск по меню...'
-            className='w-full p-2 pl-10 border border-gray-500 rounded-md'
+            className='w-full p-2 pl-10 border-b border-gray-500 focus:border-0'
           />
         </div>
       </div>
@@ -117,7 +117,7 @@ const Menu = () => {
                 <div className='flex items-end justify-between mt-auto'>
                   <p className='text-bold text-xl'>{item.price} р</p>
                   {cartItem ? (
-                    <div className='flex items-center bg-neutral-600 rounded-md px-1'>
+                    <div className='flex items-center bg-red-500 rounded-md px-1'>
                       <button
                         onClick={() => dispatch(removeOne(item.id))}
                         className=' p-3 text-white cursor-pointer'

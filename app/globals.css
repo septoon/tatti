@@ -2,22 +2,6 @@
 
 @layer tailwind-base, primereact, tailwind-utilities;
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-
-/* body {
-  background: url('/images/main.webp');
-  color: var(--foreground);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
-} */
-
 h4 {
   font-family: "IM Fell Double Pica", serif;
 

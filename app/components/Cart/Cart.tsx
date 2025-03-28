@@ -1,17 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/app/GlobalRedux/store';
 import { removeFromCart, addToCart, removeOne, clearCart } from '@/app/GlobalRedux/Features/cartSlice';
 import Image from 'next/image';
 import DatePicker from 'react-datepicker';
 import { IoIosCloseCircleOutline } from "react-icons/io";
-import { IoIosCloseCircle } from "react-icons/io";
 import { CiCircleMinus } from "react-icons/ci";
 import { CiCirclePlus } from "react-icons/ci";
 import 'react-datepicker/dist/react-datepicker.css';
 import sendOrder from '@/app/common/sendOrder';
 import { useMask } from '@react-input/mask';
-import axios from 'axios';
 import { calculateDeliveryCost, calculateDeliveryDistance } from '@/app/common/calculateDelivery';
 import EmptyCart from "@/public/images/empty_cart.svg";
 import { Tooltip } from 'primereact/tooltip';
@@ -40,31 +38,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
   const [name, setName] = useState('');
   const [deliveryCost, setDeliveryCost] = useState<number | null>(null);
   const [distance, setDistance] = useState<number | null>(null);
-  const [suggestions, setSuggestions] = useState<string[]>([]);
-  const [isCalculating, setIsCalculating] = useState(false);
-
-  const fetchAddressSuggestions = async (input: string) => {
-    if (input.length < 3) {
-      setSuggestions([]);
-      return;
-    }
-
-    try {
-      const response = await axios.get(`https://api.geoapify.com/v1/geocode/autocomplete`, {
-        params: {
-          text: `Республика Крым, ${input}`,
-          apiKey: process.env.NEXT_PUBLIC_GEOAPIFY_API_KEY,
-          limit: 1,
-          lang: 'ru'
-        }
-      });
-
-      const suggestions = response.data.features.map((feature: any) => feature.properties.formatted);
-      setSuggestions(suggestions);
-    } catch (error) {
-      console.error('Ошибка при получении подсказок адресов:', error);
-    }
-  };
+  // const [isCalculating, setIsCalculating] = useState(false);
 
   const handleCalculateDeliveryCost = async () => {
     if (!address.trim()) {
@@ -110,7 +84,11 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
               {cartItems.map((item) => (
                 <div key={item.id} className="flex items-center justify-between border-b border-black/40 py-3">
                   <Image
-                    src={item.image}
+                    src={
+                      Array.isArray(item.images) && item.images.length > 0
+                        ? item.images[0]
+                        : item.image
+                    }
                     alt={item.name}
                     width={50}
                     height={50}
@@ -125,7 +103,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
                       >
                         <CiCircleMinus />
                       </button>
-                      <span className="mx-2">{item.quantity}</span>
+                      <span className="mx-2">{`${item.quantity} ${item.unit}`}</span>
                       <button
                         className="p-1 rounded-full cursor-pointer"
                         onClick={() =>
@@ -221,10 +199,6 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
                     className="w-full border-b border-gray-500 p-2 outline-0 relative"
                     placeholder="Город, улица, дом, подъезд, квартира"
                   />
-                  <button className={`${isCalculating ? 'animate-pulse' : ''} ${deliveryCost ? 'bg-red-500' : 'bg-[#535353]'} p-2 text-white absolute right-0 bottom-0 cursor-pointer`} 
-                    onClick={() => handleCalculateDeliveryCost()} >
-                    Рассчитать
-                  </button>
                 </div>
               )}
 
@@ -275,38 +249,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
               </div>
 
               <div className="mt-4 text-left">
-                <p className="font-bold text-lg">Сумма заказа: {totalPrice} р.</p>
-                {deliveryMethod === 'courier' && (
-                  isCalculating ? (
-                    <p className="text-sm text-gray-500">Расчитываем стоимость...</p>
-                  ) : deliveryCost !== null && (
-                    <div className='flex items-center'>
-                      <p className="font-bold text-lg">Стоимость доставки: {deliveryCost} р.</p>
-                      <div className="card flex justify-center">
-                          <Tooltip target=".custom-tooltip-btn">
-                              <div className='w-full h-full flex flex-col'>
-                                <span>Расстояние между точками: {distance} км</span>
-                                {distance !== null && (
-                                  distance <= 7 ? (
-                                    <span>Бесплатная доставка по г. Алушта</span>
-                                  ) : (
-                                    <>
-                                      <span>Рассчет: 30р за 1 км</span>
-                                      <span>Стоимость доставки = 30р * {distance} км</span>
-                                    </>
-                                  )
-                                )}
-                              </div>
-                          </Tooltip>
-                          <TiInfoLarge size={20} color='green' className="custom-tooltip-btn" type="button" data-pr-position="top" data-pr-at="right+120 top"
-                data-pr-my="top center-62"/>
-                      </div>
-                    </div>
-                  )
-                )}
-                <p className="font-bold text-lg">
-                  Итоговая сумма: {totalPrice + (deliveryMethod === 'courier' ? (deliveryCost || 0) : 0)} р.
-                </p>
+                <p className="font-bold text-lg">Итоговая сумма: {totalPrice} р.</p>
               </div>
 
               <button
@@ -338,7 +281,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
               </button>
 
               <p className="text-sm text-center text-gray-500 mt-4">
-                Бесплатная доставка при заказе от 5 000 руб. в черте города
+                Стоимость доставки уточняйте у менеджера.
               </p>
             </div>
           </>

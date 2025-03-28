@@ -5,6 +5,8 @@ interface CartItem {
   name: string;
   price: number;
   image: string;
+  unit?: string;
+  images?: string[];
   quantity: number;
 }
 
@@ -29,24 +31,35 @@ const saveCartToLocalStorage = (cart: CartItem[]) => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 };
+const kilogramItems = [301, 302, 303];
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    // Добавляем товар в корзину
-    addToCart: (state, action: PayloadAction<Omit<CartItem, 'quantity'>>) => {
-      const existingItem = state.items.find((item) => item.id === action.payload.id);
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        state.items.push({
-          ...action.payload,
-          quantity: 1,
-        });
-      }
-      saveCartToLocalStorage(state.items);
-    },
+// Добавляем товар в корзину
+// Список id товаров, измеряемых в килограммах
+
+addToCart: (state, action: PayloadAction<Omit<CartItem, 'quantity'>>) => {
+  const existingItem = state.items.find((item) => item.id === action.payload.id);
+  const isKilogram = kilogramItems.includes(action.payload.id);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    const image = Array.isArray(action.payload.images) && action.payload.images.length > 0
+      ? action.payload.images[0]
+      : action.payload.image || '';
+
+    state.items.push({
+      ...action.payload,
+      image,
+      quantity: 1,
+      unit: isKilogram ? 'кг' : 'шт'
+    });
+  }
+  saveCartToLocalStorage(state.items);
+},
 
     // Удаляем единицу товара из корзины
     removeOne: (state, action: PayloadAction<number>) => {

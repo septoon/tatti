@@ -53,7 +53,7 @@ const Services = () => {
           </div>
         </div>
       </div>
-      <button className="w-full bg-red-500 text-white py-3 rounded-md my-8"
+      <button className="w-full max-w-[400px] bg-red-500 text-white py-3 rounded-md my-8"
       // onClick={() => }
       >
         Выбрать услугу

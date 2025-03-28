@@ -36,7 +36,8 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
             <Image src={Logo} alt="Logo" width={60} style={{marginRight: 10}} />
             <h4 className='font-imFellDoublePica font-bold italic text-[2rem]'>Tatti_shef</h4>
           </div>
-          <a href="/menu">Меню</a>
+          <a href="/menu">Фуршетное меню</a>
+          <a href="/cakes">Торты и десерты</a>
           <a href="/services">Услуги</a>
           <a href="/delivery">Доставка</a>
           <a href="/contacts">Контакты</a>

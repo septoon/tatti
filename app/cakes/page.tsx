@@ -35,7 +35,7 @@ const Cakes = () => {
       <div className='grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 content-stretch pb-16'>
         {
           Object.values(cakes).map((item: CakeItem, index: number) => {
-            const cartItem: CartItem | undefined = cartItems.find((ci) => ci.id === item.id);
+            const cartItem: CartItem | undefined = cartItems.find((ci: CartItem) => ci.id === item.id);
             return (
               <div key={index} className='flex flex-col w-auto h-full mb-6 p-4 rounded-md'>
                 <div className="w-full h-[300px] overflow-hidden">

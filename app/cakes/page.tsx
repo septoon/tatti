@@ -67,7 +67,7 @@ const Cakes = () => {
                               id: item.id,
                               name: item.name,
                               price: item.price,
-                              image: item.image,
+                              image: item.image ?? '',
                             })
                           )
                         }
@@ -84,7 +84,7 @@ const Cakes = () => {
                             id: item.id,
                             name: item.name,
                             price: item.price,
-                            image: Array.isArray(item.images) ? item.images[0] : item.image || '',
+                            image: Array.isArray(item.images) ? item.images[0] : item.image ?? '',
                           })
                         )
                       }

@@ -1,7 +1,8 @@
 'use client'
 
 import React, { useCallback, useEffect, useRef } from 'react';
-import useEmblaCarousel, { EmblaCarouselType } from 'embla-carousel-react';
+import useEmblaCarousel from 'embla-carousel-react';
+import type { EmblaCarouselType } from 'embla-carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 import './ParallaxCarousel.css';
@@ -82,7 +83,7 @@ const ParallaxCarousel: React.FC<Props> = ({ images }) => {
       .on('slideFocus', tweenParallax);
   }, [emblaApi, tweenParallax]);
 
-  const imagesToUse = images.length < 7 ? [...images, ...images] : images;
+  const imagesToUse = images.length < 7 ? [...images] : images;
 
   return (
     <div className="embla">

@@ -52,7 +52,9 @@ module.exports = {
         slideInRight: 'slideInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
         scaleUp: 'scaleUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards',
         float: 'float 3s ease-in-out infinite',
-        wiggle: 'wiggle 1s ease-in-out infinite'
+        wiggle: 'wiggle 1s ease-in-out infinite',
+        'slide-out-right': 'slideOutRight 0.3s forwards',
+        'slide-in-left': 'slideInLeft 0.3s forwards',
       },
       keyframes: {
         scan: {
@@ -132,7 +134,17 @@ module.exports = {
         wiggle: {
           '0%, 100%': { transform: 'rotate(-3deg)' },
           '50%': { transform: 'rotate(3deg)' }
-        }
+        },
+        slideOutRight: {
+          '0%': {
+            transform: 'translateX(0)',
+            opacity: '1',
+          },
+          '100%': {
+            transform: 'translateX(100%)',
+            opacity: '0',
+          },
+        },
       },
       fontFamily: {
         imFellDoublePica: ['"IM Fell Double Pica"', 'serif'],

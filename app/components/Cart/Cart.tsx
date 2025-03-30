@@ -12,13 +12,41 @@ import sendOrder from '@/app/common/sendOrder';
 import { useMask } from '@react-input/mask';
 import EmptyCart from "@/public/images/empty_cart.svg";
 import { Checkbox } from 'primereact/checkbox';
+import { Tooltip } from 'primereact/tooltip';
+import { TiInfoLarge } from "react-icons/ti";
+import { servicePackages } from '@/app/api/servicePackages';
 
 interface CartModalProps {
   onClose: () => void;
   isModalOpen: boolean;
 }
 
-const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
+type ServicePackage = {
+  id: number;
+  name: string;
+  price: number;
+  cost: string;
+  includes: string[];
+  image: string;
+};
+
+type ExtraService = {
+  id: number;
+  name: string;
+  price: number;
+  cost: string;
+  note: string;
+  image: string;
+};
+
+type ServicePackages = {
+  packages: ServicePackage[];
+  extras: ExtraService[];
+};
+
+const data: ServicePackages = servicePackages;
+
+const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -34,7 +62,17 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
   const [wishes, setWishes] = useState('');
   const [name, setName] = useState('');
   const [deliveryCost, setDeliveryCost] = useState<number | null>(null);
-  const [distance, setDistance] = useState<number | null>(null);
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const handleSelect = (itemName: string) => {
+    setSelected((prevSelected) => {
+      if (prevSelected.includes(itemName)) {
+        return prevSelected.filter((name) => name !== itemName); // Удаляем элемент
+      } else {
+        return [...prevSelected, itemName]; // Добавляем элемент
+      }
+    });
+  };
 
   return (
       <div className="bg-[#151515] text-white max-w-full md:max-w-lg px-6 py-4 md:rounded-lg
@@ -102,6 +140,81 @@ const CartModal: React.FC<CartModalProps> = ({ onClose, isModalOpen }) => {
                   </div>
                 </div>
               ))}
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-semibold mt-10 mb-4">Дополнительно</h2>
+              <div className="grid gap-6 md:grid-cols-2 mb-4">
+                {data.packages.map((pkg, index) => {
+                  const cartItem = cartItems.find((item) => item.id === pkg.id);
+                  return (
+                    <div key={pkg.id} className={`${cartItem ? 'border-2 border-gray-400' : 'border-none'} bg-[#1e1e1e] p-4 rounded-lg`}
+                      onClick={() => {
+                        handleSelect(pkg.name);
+                        if (cartItem) {
+                          dispatch(removeOne(pkg.id));
+                        } else {
+                          dispatch(
+                            addToCart({
+                              id: pkg.id,
+                              name: pkg.name,
+                              price: Number(pkg.price),
+                              image: pkg.image,
+                            })
+                          );
+                        }
+                      }}>
+                      <h2 className="text-xl font-semibold mb-2">{pkg.name}</h2>
+                      <div className='flex justify-between'>
+                        <p className="text-sm text-gray-300 mb-2">{pkg.price}</p>
+                        <div className="card flex justify-center">
+                          <Tooltip target={`#tooltip-package-${index}`} className="custom-tooltip w-1/2">
+                            {pkg.includes.map((item, idx) => (
+                              <li key={idx}>{item}</li>
+                            ))}
+                          </Tooltip>
+                          <TiInfoLarge size={20} color='green' id={`tooltip-package-${index}`} type="button" data-pr-position="top" data-pr-at="right+0 top" data-pr-my="top center-150" />
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                {data.extras.map((extra, index) => {
+                  const cartItem = cartItems.find((item) => item.id === extra.id);
+                  return (
+                    <div key={extra.id} className={`${cartItem ? 'border-2 border-gray-400' : 'border-none'} bg-[#1e1e1e] p-4 rounded-lg`} 
+                    onClick={() => {
+                      handleSelect(extra.name);
+                      if (cartItem) {
+                        dispatch(removeOne(extra.id));
+                      } else {
+                        dispatch(
+                          addToCart({
+                            id: extra.id,
+                            name: extra.name,
+                            price: Number(extra.price),
+                            image: extra.image,
+                          })
+                        );
+                      }
+                    }}>
+                      <h3 className="text-xl font-medium">{extra.name}</h3>
+                      <div className='flex justify-between'>
+                        <p className="text-sm text-gray-300">{extra.price}</p>
+                        <div className="card flex justify-center">
+                          <Tooltip target={`#tooltip-extra-${index}`} className="custom-tooltip w-1/2 min-h30">
+                            <p className="text-sm ">{extra.note}</p>
+                          </Tooltip>
+                          <TiInfoLarge size={20} color='green' id={`tooltip-extra-${index}`} type="button" data-pr-position="top" data-pr-at="right+120 top" data-pr-my="top center-120" />
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
             </div>
 
             {/* Доставка */}

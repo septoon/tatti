@@ -52,14 +52,14 @@ const Cakes = () => {
                 <div className='flex items-end justify-between mt-auto'>
                   <p className='text-bold text-xl'>{item.price} р/кг</p>
                   {cartItem ? (
-                    <div className='flex items-center bg-red-500 rounded-md px-1'>
+                    <div className='flex items-center bg-red-500 rounded-xl px-1'>
                       <button
                         onClick={() => dispatch(removeOne(item.id))}
-                        className=' p-3 text-white cursor-pointer'
+                        className='px-4 py-2 text-white cursor-pointer'
                       >
                         -
                       </button>
-                      <span className='mx-2 text-white font-pt-sans'>{cartItem.quantity}</span>
+                      <span className='mx-1.5 text-white font-pt-sans'>{cartItem.quantity}</span>
                       <button
                         onClick={() =>
                           dispatch(
@@ -71,7 +71,7 @@ const Cakes = () => {
                             })
                           )
                         }
-                        className='p-3 text-white cursor-pointer'
+                        className='px-4 py-2 text-white cursor-pointer'
                       >
                         +
                       </button>
@@ -88,9 +88,9 @@ const Cakes = () => {
                           })
                         )
                       }
-                      className='bg-neutral-500 p-3 rounded-md text-white cursor-pointer'
+                      className='bg-neutral-500 px-4 py-2 rounded-xl text-white cursor-pointer'
                     >
-                      Добавить
+                      В корзину
                     </button>
                   )}
                 </div>

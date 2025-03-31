@@ -1,21 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/app/GlobalRedux/store';
-import { removeFromCart, addToCart, removeOne, clearCart } from '@/app/GlobalRedux/Features/cartSlice';
-import Image from 'next/image';
 import DatePicker from 'react-datepicker';
-import { IoIosCloseCircleOutline } from "react-icons/io";
-import { CiCircleMinus } from "react-icons/ci";
-import { CiCirclePlus } from "react-icons/ci";
 import 'react-datepicker/dist/react-datepicker.css';
 import sendOrder from '@/app/common/sendOrder';
 import { useMask } from '@react-input/mask';
-import EmptyCart from "@/public/images/empty_cart.svg";
-import { Checkbox } from 'primereact/checkbox';
 import { Button } from 'primereact/button';
-import CartServices from './CartServices';
-        
-
+import EmptyCart from './EmptyCart';
+import CartItems from './CartItems';
+import DeliveryMethod from './DeliveryMethod';
+import { clearCart } from '@/app/GlobalRedux/Features/cartSlice';
 interface CartModalProps {
   onClose: () => void;
   isModalOpen: boolean;
@@ -36,7 +30,6 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   });
   const [wishes, setWishes] = useState('');
   const [name, setName] = useState('');
-  const [deliveryCost, setDeliveryCost] = useState<number | null>(null);
 
 
   const isBtnDisabled = deliveryMethod === 'courier' ? name.length < 2 || phone.length < 16 || address.length < 4 : name.length < 2 || phone.length < 16
@@ -47,101 +40,15 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     md:overflow-y-auto 
                     w-full h-full rounded-none overflow-y-auto z-999">
 
+        <DeliveryMethod deliveryMethod={deliveryMethod} setDeliveryMethod={setDeliveryMethod} />
         {cartItems.length === 0 ? (
-           <div className='w-full h-full flex flex-col items-center justify-center'>
-            <Image
-              src={EmptyCart}
-              alt='Такого у нас нет'
-              width={300}
-              height={300}
-              className='mb-4'
-            />
-            <span className=' text-2xl text-red-400'>Пока тут пусто</span>
-          </div>
+           <EmptyCart />
         ) : (
           <>
-            <div className="">
-              <CartServices />
-              {cartItems.map((item) => (
-                <div key={item.id} className="flex items-center justify-between border-b border-black/40 py-3">
-                  <Image
-                    src={
-                      Array.isArray(item.images) && item.images.length > 0
-                        ? item.images[0]
-                        : item.image
-                    }
-                    alt={item.name}
-                    width={50}
-                    height={50}
-                    className="rounded-md"
-                  />
-                  <div className="flex-grow mx-4">
-                    <span className="">{item.name}</span>
-                    <div className="flex items-center">
-                      <button
-                        className="p-1 rounded-full cursor-pointer"
-                        onClick={() => dispatch(removeOne(item.id))}
-                      >
-                        <CiCircleMinus />
-                      </button>
-                      <span className="mx-2">{`${item.quantity} ${item.unit}`}</span>
-                      <button
-                        className="p-1 rounded-full cursor-pointer"
-                        onClick={() =>
-                          dispatch(
-                            addToCart({
-                              id: item.id,
-                              name: item.name,
-                              price: item.price,
-                              image: item.image,
-                            })
-                          )
-                        }
-                      >
-                        <CiCirclePlus />
-                      </button>
-                    </div>
-                  </div>
-                  <div className='flex flex-col items-end'>
-                    <button onClick={() => dispatch(removeFromCart(item.id))} className='mb-2 cursor-pointer'><IoIosCloseCircleOutline /></button>
-                    <p className="text-sm text-gray-500">{item.price * item.quantity} р</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <CartItems/>
 
             {/* Доставка */}
             <div className="mt-4">
-              <h3 className="text-lg font-bold mb-6">Выберите способ доставки</h3>
-              <div className="flex items-center space-x-2 mb-2">
-                <Checkbox
-                  inputId="pickup"
-                  name="delivery"
-                  value="pickup"
-                  variant="filled"
-                  onChange={() => {
-                    setDeliveryMethod('pickup');
-                    setDeliveryCost(null);
-                  }}
-                  checked={deliveryMethod === 'pickup'}
-                />
-                <label htmlFor="pickup" className="text-white">Самовывоз</label>
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  inputId="courier"
-                  name="delivery"
-                  value="courier"
-                  className='border-0 '
-                  onChange={() => {
-                    setDeliveryMethod('courier');
-                  }}
-                  checked={deliveryMethod === 'courier'}
-                />
-                <label htmlFor="courier" className="text-white">Доставка курьером</label>
-              </div>
-
               <p className="text-sm text-gray-500 my-4">
                 Уважаемые клиенты!<br />
                 Прием заказов: пн-вс с 09:00-20:00.<br />
@@ -240,10 +147,9 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     date,
                     wishes,
                     deliveryMethod,
-                    deliveryCost: deliveryCost !== null ? deliveryCost : undefined,
                     address,
                     cartItems,
-                    totalPrice: totalPrice + (deliveryCost || 0)
+                    totalPrice: totalPrice
                   });
                   setName('');
                   setPhone('');
@@ -251,7 +157,6 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   setWishes('');
                   setDeliveryMethod('pickup');
                   setAddress('');
-                  setDeliveryCost(null);
                   dispatch(clearCart());
                   onClose()
                 }}

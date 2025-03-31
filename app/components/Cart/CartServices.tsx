@@ -59,7 +59,7 @@ const CartServices = () => {
                       {data.packages.map((pkg, index) => {
                         const cartItem = cartItems.find((item) => item.id === pkg.id);
                         return (
-                          <div key={pkg.id} className={`${cartItem ? 'border-2 border-gray-400 text-white' : 'text-gray-300 border-none'} bg-[#1e1e1e] p-4 rounded-lg cursor-pointer`}
+                          <div key={pkg.id} className={`${cartItem ? 'border-gray-400 bg-[#393939] text-white' : 'text-gray-300  border-transparent'} transition-all duration-200 border-2 bg-[#1e1e1e] p-4 rounded-lg cursor-pointer`}
                             onClick={() => {
                               handleSelect(pkg.name);
                               if (cartItem) {
@@ -96,7 +96,7 @@ const CartServices = () => {
                       {data.extras.map((extra, index) => {
                         const cartItem = cartItems.find((item) => item.id === extra.id);
                         return (
-                          <div key={extra.id} className={`${cartItem ? 'border-2 border-gray-400 text-white' : 'text-gray-300 border-none'} bg-[#1e1e1e] p-4 rounded-lg cursor-pointer`} 
+                          <div key={extra.id} className={`${cartItem ? 'border-gray-400 bg-[#393939] text-white' : 'text-gray-300 border-transparent'} transition-all duration-200 border-2 bg-[#1e1e1e] p-4 rounded-lg cursor-pointer`} 
                           onClick={() => {
                             handleSelect(extra.name);
                             if (cartItem) {

@@ -13,7 +13,6 @@ interface OrderDetails {
   date?: Date | null;
   wishes?: string;
   deliveryMethod?: 'pickup' | 'courier';
-  deliveryCost?: number;
   address?: string;
   cartItems?: CartItem[];
   totalPrice?: number;
@@ -25,7 +24,6 @@ const sendOrder = async ({
   date,
   wishes,
   deliveryMethod,
-  deliveryCost,
   address,
   cartItems,
   totalPrice
@@ -38,7 +36,7 @@ const sendOrder = async ({
   ).join('\n') || 'Нет товаров в заказе';
 
   const deliveryInfo = deliveryMethod === 'courier'
-    ? `Доставка: Курьер\nАдрес: ${address || 'Не указан'}\nСтоимость доставки: ${deliveryCost ? deliveryCost : '0р.'}`
+    ? `Доставка: Курьер\nАдрес: ${address || 'Не указан'}\n`
     : deliveryMethod === 'pickup'
     ? `Доставка: Самовывоз`
     : '';

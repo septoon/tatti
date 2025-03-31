@@ -15,6 +15,8 @@ import { Checkbox } from 'primereact/checkbox';
 import { Tooltip } from 'primereact/tooltip';
 import { TiInfoLarge } from "react-icons/ti";
 import { servicePackages } from '@/app/api/servicePackages';
+import { Button } from 'primereact/button';
+        
 
 interface CartModalProps {
   onClose: () => void;
@@ -67,12 +69,14 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   const handleSelect = (itemName: string) => {
     setSelected((prevSelected) => {
       if (prevSelected.includes(itemName)) {
-        return prevSelected.filter((name) => name !== itemName); // Удаляем элемент
+        return prevSelected.filter((name) => name !== itemName);
       } else {
-        return [...prevSelected, itemName]; // Добавляем элемент
+        return [...prevSelected, itemName];
       }
     });
   };
+
+  const isBtnDisabled = deliveryMethod === 'courier' ? name.length < 2 || phone.length < 16 || address.length < 4 : name.length < 2 || phone.length < 16
 
   return (
       <div className="bg-[#151515] text-white max-w-full md:max-w-lg px-6 py-4 md:rounded-lg
@@ -173,7 +177,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                               <li key={idx}>{item}</li>
                             ))}
                           </Tooltip>
-                          <TiInfoLarge size={20} color='green' id={`tooltip-package-${index}`} type="button" data-pr-position="top" data-pr-at="right+0 top" data-pr-my="top center-150" />
+                          <TiInfoLarge onClick={(event) => event.stopPropagation()} size={20} color='green' id={`tooltip-package-${index}`} type="button" data-pr-position="top" data-pr-at="right+0 top" data-pr-my="top center-150" />
                         </div>
                       </div>
                     </div>
@@ -335,11 +339,11 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                 />
               </div>
 
-              <div className="mt-4 text-left">
+              <div className="my-4 text-left">
                 <p className="font-bold text-lg">Итоговая сумма: {totalPrice} р.</p>
               </div>
 
-              <button
+              <Button label='Оформить заказ' disabled={isBtnDisabled}
                 onClick={async () => {
                   await sendOrder({
                     name,
@@ -363,10 +367,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   onClose()
                 }}
                 className="w-full bg-red-500 text-white py-3 rounded-md mt-4"
-              >
-                Оформить заказ
-              </button>
-
+              />
               <p className="text-sm text-center text-gray-500 mt-4">
                 Стоимость доставки уточняйте у менеджера.
               </p>

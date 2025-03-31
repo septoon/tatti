@@ -21,8 +21,14 @@ p, span {
   color: white; /* Измените цвет текста при необходимости */
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (max-width: 1260px) {
   .hide-between-md-lg {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1060px) {
+  .large-header-info {
     display: none !important;
   }
 }

@@ -21,6 +21,23 @@ p, span {
   color: white; /* Измените цвет текста при необходимости */
 }
 
+.p-accordion .p-accordion-header .p-accordion-header-link {
+  background: #1e1e1e;
+  color: white;
+  border-color: gray;
+}
+
+.p-accordion .p-accordion-header:not(.p-disabled).p-highlight .p-accordion-header-link {
+  background: #1e1e1e;
+  color: white;
+  border: none;
+}
+
+.p-accordion .p-accordion-content  {
+  background: #151515;
+  border: none;
+}
+
 @media (max-width: 1260px) {
   .hide-between-md-lg {
     display: none !important;

@@ -19,15 +19,18 @@ const Contacts = () => {
         </div>
 
         {/* Контактная информация */}
-        <div className="flex-1 space-y-4">
-          <h2 className="text-2xl font-bold">Контакты</h2>
-          <p>
-            <strong>Tatti_shef г. Алушта</strong>
-            <br />
-            Адрес: г. Алушта, ул. Ленина, 13
-            <br />
-            Телефон: <a href="tel:+79785103520" className='underline'>+7 (978) 510-35-20</a>
-          </p>
+        <div className="flex-1">
+          <div className='flex flex-col  space-y-2'>
+            <h2 className="text-2xl font-bold">Контакты</h2>
+            <span className='uppercase font-bold text-sm text-gray-500 mt-2'> Адрес</span>
+            <span>г. Алушта, ул. Ленина, 13г</span>
+            <span className='uppercase font-bold text-sm text-gray-500 mt-2'> Режим работы</span>
+            <span>Пн.-Вс. с 9.00 до 22.00</span>
+            <span className='uppercase font-bold text-sm text-gray-500 mt-2'> Телефон</span>
+            <a href="tel:+79785103520" className='underline'>+7 (978) 510-35-20</a>
+            <span className='uppercase font-bold text-sm text-gray-500 mt-2'> E-mail</span>
+            <a href="mailto:contact@tatti-shef.ru" className='underline'>contact@tatti-shef.ru</a>
+          </div>
         </div>
       </div>
     </div>

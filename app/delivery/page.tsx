@@ -7,7 +7,6 @@ const Delivery = () => {
         {/* Левая колонка */}
         <div className="flex-1 mb-6 md:mb-0">
           <h1 className="text-3xl md:text-5xl font-bold">Доставка и оплата</h1>
-          <p className="text-xl md:text-2xl mt-2">г. Алушта</p>
         </div>
 
         {/* Правая колонка */}

@@ -7,6 +7,7 @@ import { PrimeReactProvider } from 'primereact/api';
 import Header from "./components/Header/Header";
 import ChatButton from "./components/Chat/Chat";
 import { Providers } from "./GlobalRedux/provider";
+import Footer from "./components/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "Tatti shef - Кейтеринг в Алуште",
@@ -42,6 +43,7 @@ export default function RootLayout({
           <PrimeReactProvider>
             <Header />
             {children}
+            <Footer />
           </PrimeReactProvider>
         </Providers>
         <ChatButton />

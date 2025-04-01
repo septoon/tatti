@@ -18,7 +18,7 @@ p, span {
 
 .p-dialog-header {
   background-color: #151515;
-  color: white; /* Измените цвет текста при необходимости */
+  color: white;
 }
 
 .p-accordion .p-accordion-header .p-accordion-header-link {

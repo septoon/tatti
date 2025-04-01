@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/app/GlobalRedux/store';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { Calendar } from 'primereact/calendar';
+// import { addLocale } from 'primereact/api';
 import sendOrder from '@/app/common/sendOrder';
 import { useMask } from '@react-input/mask';
 import { Button } from 'primereact/button';
@@ -10,6 +12,25 @@ import EmptyCart from './EmptyCart';
 import CartItems from './CartItems';
 import DeliveryMethod from './DeliveryMethod';
 import { clearCart } from '@/app/GlobalRedux/Features/cartSlice';
+import { formatSelectedDate, shortDates } from '@/app/common/shortDates';
+import { addLocale, locale } from 'primereact/api';
+
+addLocale('ru', {
+  firstDayOfWeek: 1,
+  
+  dayNames: ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
+  dayNamesShort: ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
+  dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+  monthNames: [
+    'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+    'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря',
+  ],
+  monthNamesShort: ['янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'],
+  today: 'Сегодня',
+  clear: 'Очистить'
+});
+
+locale('ru');
 interface CartModalProps {
   onClose: () => void;
   isModalOpen: boolean;
@@ -31,6 +52,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   const [wishes, setWishes] = useState('');
   const [name, setName] = useState('');
 
+  addLocale('ru', shortDates);
 
   const isBtnDisabled = deliveryMethod === 'courier' ? name.length < 2 || phone.length < 16 || address.length < 4 : name.length < 2 || phone.length < 16
 
@@ -95,7 +117,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   Телефон *
                 </label>
                 <div className='flex'>
-                  <div className='w-10 mr-0 block p-2 pr-0 border-b border-gray-500 bg-[#151515]'>
+                  <div className=' block p-2 pr-1 border-b border-gray-500 bg-[#151515]'>
                     <p className={phone.length > 0 ? 'text-white' : 'text-gray-500'}>+7</p>
                   </div>
                   <input
@@ -111,16 +133,22 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
 
               {/* Выбор даты */}
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Дата</label>
-                <DatePicker
-                  selected={date}
-                  onChange={(date) => setDate(date)}
-                  dateFormat="dd/MM/yyyy"
-                  className="w-full border-b border-gray-500 p-2 outline-0"
-                  placeholderText="Выберите дату"
-                />
+                <label htmlFor="buttondisplay" className="block text-sm font-medium text-gray-700 mb-2">
+                  Дата
+                </label>
+                <div className='flex'>
+                  <div className='flex items-center pl-2 w-[150px]'>{date ? (<p className='text-white'>{formatSelectedDate(date)}</p>) : <p className='text-gray-500'>Выберите дату</p>}</div>
+                  <Calendar
+                    id="buttondisplay"
+                    placeholder="Выберите дату"
+                    value={date}
+                    onChange={(e) => setDate(e.value as Date)}
+                    showIcon
+                    locale="ru"
+                    dateFormat="dd MM yy" 
+                  />
+                </div>
               </div>
-
               {/* Пожелания */}
               <div className="mb-4">
                 <label className="block text-sm font-medium text-gray-700 mb-2">

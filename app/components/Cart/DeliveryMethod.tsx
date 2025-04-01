@@ -8,11 +8,11 @@ interface DeliveryMethodProps {
 const DeliveryMethod: React.FC<DeliveryMethodProps> = ({ deliveryMethod, setDeliveryMethod }) => {
   return (
     <div className='mb-6 w-full flex justify-center'>
-      <div className={`px-3 py-1 rounded-md ${deliveryMethod === 'pickup' ? 'bg-[#393939]' : 'bg-[#1e1e1e]'}`} onClick={() => setDeliveryMethod('pickup')}>
+      <div className={`px-3 py-1 rounded-md transition-all duration-300 ${deliveryMethod === 'pickup' ? 'bg-[#393939]' : 'bg-[#1e1e1e]'}`} onClick={() => setDeliveryMethod('pickup')}>
         <span className="text-white ">Самовывоз</span>
       </div>
 
-      <div className={`px-3 py-1 rounded-md ${deliveryMethod === 'courier' ? 'bg-[#393939]' : 'bg-[#1e1e1e]'}`} onClick={() => setDeliveryMethod('courier')}>
+      <div className={`px-3 py-1 rounded-md transition-all duration-300 ${deliveryMethod === 'courier' ? 'bg-[#393939]' : 'bg-[#1e1e1e]'}`} onClick={() => setDeliveryMethod('courier')}>
         <span className="text-white ">Доставка курьером</span>
       </div>
     </div>

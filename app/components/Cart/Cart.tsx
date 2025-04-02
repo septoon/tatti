@@ -62,11 +62,11 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                     md:overflow-y-auto 
                     w-full h-full rounded-none overflow-y-auto z-999">
 
-        <DeliveryMethod deliveryMethod={deliveryMethod} setDeliveryMethod={setDeliveryMethod} />
         {cartItems.length === 0 ? (
-           <EmptyCart />
+          <EmptyCart />
         ) : (
           <>
+          <DeliveryMethod deliveryMethod={deliveryMethod} setDeliveryMethod={setDeliveryMethod} />
             <CartItems/>
 
             {/* Доставка */}

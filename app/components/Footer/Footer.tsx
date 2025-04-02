@@ -16,7 +16,7 @@ const Footer = () => {
             <a href="https://t.me/" target="_blank" aria-label="Instagram" className="text-gray-400 hover:text-white">
               <FaTelegram size={24} />
             </a>
-            <a href="https://vk.com/tatti_shef" target="_blank"blank aria-label="VK" className="text-gray-400 hover:text-white">
+            <a href="https://vk.com/tatti_shef" target="_blank" aria-label="VK" className="text-gray-400 hover:text-white">
               <FaVk size={24} />
             </a>
             <a href="https://wa.me/79785103520" target="_blank" aria-label="WhatsApp" className="text-gray-400 hover:text-white">

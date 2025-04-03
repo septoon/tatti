@@ -6,24 +6,17 @@ import CartModal from './Cart';
 import { HiOutlineShoppingCart } from "react-icons/hi2";
 import { Tooltip } from 'primereact/tooltip';
 import { Dialog } from 'primereact/dialog';
-import { Checkbox } from 'primereact/checkbox';
+import { position, handleShow } from '@/app/common/positions';
 
 const CartIcon = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const cartItems = useSelector((state: RootState) => state.cart.items);
-  const screenWidth = typeof window !== 'undefined' ? window.screen.availWidth : 512;
-
-  const pos = screenWidth >= 768 ? 'right' : 'bottom'
 
   const totalQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
   const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
-  const [position, setPosition] = useState<"center" | "top" | "right" | "bottom" | "left" | 
-"top-left" | "top-right" | "bottom-left" | "bottom-right">('center');
-
-const show = (position: "center" | "top" | "right" | "bottom" | "left" | "top-left" | "top-right" | "bottom-left" | "bottom-right") => {
-      setPosition(position);
-      setIsModalOpen(true);
+  const handleShowModal = () => {
+    handleShow(setIsModalOpen);
   };
 
   return (
@@ -31,7 +24,7 @@ const show = (position: "center" | "top" | "right" | "bottom" | "left" | "top-le
       <Tooltip target=".logo" mouseTrack mouseTrackLeft={10} />
       <button
         className='relative rounded-full w-full h-full cursor-pointer text-white flex justify-center items-center'
-        onClick={() => show(pos)}
+        onClick={handleShowModal}
         title={`Сумма: ${totalAmount.toLocaleString()} р.`}
       >
         <HiOutlineShoppingCart size={30} />

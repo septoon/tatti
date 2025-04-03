@@ -188,7 +188,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                   dispatch(clearCart());
                   onClose()
                 }}
-                className="w-full bg-red-500 text-white py-3 rounded-md mt-4"
+                className="w-full bg-green-600 text-white py-3 rounded-md mt-4"
               />
               <p className="text-sm text-center text-gray-500 mt-4">
                 Стоимость доставки уточняйте у менеджера.

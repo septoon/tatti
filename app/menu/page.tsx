@@ -117,7 +117,7 @@ const Menu = () => {
                 <div className='flex items-end justify-between mt-auto'>
                   <p className='text-bold text-xl'>{item.price} р</p>
                   {cartItem ? (
-                    <div className='flex items-center bg-red-500 rounded-xl px-1'>
+                    <div className='flex items-center bg-red-500 rounded-lg px-1'>
                       <button
                         onClick={() => dispatch(removeOne(item.id))}
                         className='px-4 py-2 text-white cursor-pointer'
@@ -153,7 +153,7 @@ const Menu = () => {
                           })
                         )
                       }
-                      className='bg-neutral-500 px-4 py-2 rounded-xl text-white cursor-pointer transition-transform'
+                      className='bg-green-600 px-4 py-2 rounded-lg text-white cursor-pointer transition-transform'
                     >
                       В корзину
                     </button>

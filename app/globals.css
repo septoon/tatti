@@ -45,7 +45,7 @@ p, span {
 }
 
 .p-button {
-  background: #393939;
+  background: oklch(0.627 0.194 149.214);
   border: none;
 }
 

@@ -10,8 +10,8 @@ const TWEEN_FACTOR_BASE = 0.2;
 
 type Review = {
   name: string;
-  review: string;
-  grade: number | null;
+  reviewText: string;
+  rating: number | null;
   image: string;
 };
 
@@ -99,7 +99,7 @@ const ParallaxCarouselReviews: React.FC<Props> = ({ reviews }) => {
                 <div className="embla__parallax__layer">
                   <div className='bg-[#171717] p-4 rounded-lg'>
                     <h3 className='text-orange-500 text-xl mb-2'>{rev.name}</h3>
-                    <span className='text-white'>{rev.review}</span>
+                    <span className='text-white'>{rev.reviewText}</span>
                     
                   </div>
                 </div>

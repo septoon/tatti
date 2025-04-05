@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { HiOutlinePaperClip } from 'react-icons/hi2';
 
@@ -12,6 +13,37 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
   const [image, setImage] = useState<File | null>(null);
   const [imageName, setImageName] = useState('Выберите файл');
   const [loading, setLoading] = useState(false);
+
+
+  const handleChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      uploadImage(file);
+    }
+  };
+
+  const uploadImage = (file) => {
+    const formData = new FormData();
+    formData.append('image', file);
+
+    const apiKey = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
+    const imgbbUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`;
+
+    // Отправка POST-запроса на ImgBB
+    axios
+      .post(imgbbUrl, formData)
+      .then((response) => {
+        const uploadedImageUrl = response.data.data.url; // Получение ссылки на загруженное изображение
+        onUpload(uploadedImageUrl); // Передаем URL в родительский компонент
+      })
+      .catch((error) => {
+        console.error('Ошибка загрузки изображения:', error);
+        alert('Ошибка загрузки изображения');
+      })
+      .finally(() => {
+        setIsLoading(false); // Отключаем индикатор загрузки
+      });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -5,6 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react';
 import type { EmblaCarouselType } from 'embla-carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import './ParallaxCarousel.css';
+import Image from 'next/image';
 
 const TWEEN_FACTOR_BASE = 0.2;
 
@@ -89,8 +90,21 @@ const ParallaxCarouselReviews: React.FC<Props> = ({ reviews }) => {
       .on('slideFocus', tweenParallax);
   }, [emblaApi, tweenParallax]);
 
+  const renderStars = (rating: number | null) => {
+    if (!rating) return null;
+    return (
+      <div className="flex items-center gap-1">
+        {[...Array(5)].map((_, index) => (
+          <span key={index} className={index < rating ? 'text-yellow-500' : 'text-gray-400'}>
+            ★
+          </span>
+        ))}
+      </div>
+    );
+  };
+
   return (
-    <div className="embla">
+    <div className="embla_review">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {reviews.map((rev, index) => (
@@ -98,9 +112,20 @@ const ParallaxCarouselReviews: React.FC<Props> = ({ reviews }) => {
               <div className="embla__parallax">
                 <div className="embla__parallax__layer">
                   <div className='bg-[#171717] p-4 rounded-lg'>
-                    <h3 className='text-orange-500 text-xl mb-2'>{rev.name}</h3>
-                    <span className='text-white'>{rev.reviewText}</span>
-                    
+                  <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-orange-500 text-2xl">{rev.name}</h3>
+                      {renderStars(rev.rating)}
+                    </div>
+                    {rev.image && (
+                      <Image
+                        src={rev.image}
+                        alt={`Slide ${index}`}
+                        width={600}
+                        height={250}
+                        className="embla__slide__img embla__parallax__img mb-4 w-[90%] rounded-lg"
+                      />
+                    )}
+                    <p className="text-white">{rev.reviewText}</p>
                   </div>
                 </div>
               </div>

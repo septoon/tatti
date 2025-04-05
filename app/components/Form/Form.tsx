@@ -37,24 +37,24 @@ const Form: React.FC<FormModalProps> = ({ onFormClose }) => {
             <IoIosCloseCircle />
           </button>
         </div>
-        <h2 className="text-xl px-6 font-bold mb-4">Оставьте ваши данные и мы свяжемся с вами.</h2>
+        <h2 className="text-xl px-6 font-bold mb-4">Заполните форму, и мы вам перезвоним!</h2>
         <div className='w-full h-full px-6'>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Имя
+              Ваше имя
             </label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full border-b border-red-500 p-2 outline-0"
-              placeholder="Введите ваше имя"
+              placeholder="Введите имя"
             />
           </div>
 
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Телефон
+              Номер телефона
             </label>
             <div className='flex'>
               <div className='w-10 mr-0 block p-2 pr-0 border-b border-red-500 bg-white'>
@@ -82,7 +82,7 @@ const Form: React.FC<FormModalProps> = ({ onFormClose }) => {
             }}
             className="w-full bg-red-500 text-white py-3 rounded-md mt-4"
           >
-            Оформить заказ
+            Отправить заявку
           </button>
         </div>
       </div>

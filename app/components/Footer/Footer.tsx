@@ -34,6 +34,10 @@ const Footer = () => {
           </div>
           <p className="text-sm text-gray-400 mt-2">© {new Date().getFullYear()} Все права защищены</p>
          </div>
+         <div className='flex items-center'>
+          <p className='text-sm mr-2'>Разработано студией </p> 
+          <a href="https://lumastack.ru" target="_blank" rel="noopener noreferrer" className='text-sm underline'>LumaStack</a>
+         </div>
       </div>
     </footer>
   );

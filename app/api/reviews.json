@@ -2,19 +2,19 @@
   {
     "name": "Тест",
     "reviewText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit quibusdam laboriosam facilis odio magnam voluptas rerum necessitatibus harum consequatur quaerat est dignissimos soluta, iste mollitia aperiam non blanditiis porro beatae.",
-    "rating": null,
-    "image": ""
+    "rating": 3,
+    "image": "https://i.ibb.co/RTV1c51M/image-0.webp"
   },
   {
     "name": "Тест2",
     "reviewText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit quibusdam laboriosam facilis odio magnam voluptas rerum necessitatibus harum consequatur quaerat est dignissimos soluta, iste mollitia aperiam non blanditiis porro beatae.",
-    "rating": null,
-    "image": ""
+    "rating": 5,
+    "image": "https://i.ibb.co/RTV1c51M/image-0.webp"
   },
   {
     "name": "Тест3",
     "reviewText": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit quibusdam laboriosam facilis odio magnam voluptas rerum necessitatibus harum consequatur quaerat est dignissimos soluta, iste mollitia aperiam non blanditiis porro beatae.",
-    "rating": null,
+    "rating": 4,
     "image": ""
   }
 ]

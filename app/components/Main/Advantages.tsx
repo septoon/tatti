@@ -5,7 +5,7 @@ const Advantages = () => {
     <section className='w-full min-h-[100vh] bg-[#2d2d2d]'>
     
     <div className='container mx-auto px-6 py-12'>
-      <h2 className='text-5xl font-bold text-orange-500 text-center mb-12'>Наши Преимущества</h2>
+      <h2 className='text-5xl font-light text-[#bd6c20] text-center mb-12'>Наши Преимущества</h2>
       
       <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
         

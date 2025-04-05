@@ -6,7 +6,7 @@ const Info = () => {
       <div className='container mx-auto px-6 py-12 flex flex-col md:flex-row items-center min-h-[100vh] gap-8'>
         {/* Левая часть с текстом */}
         <div className='md:w-1/2 space-y-6'>
-          <h1 className='text-5xl md:text-6xl lg:text-7xl font-extrabold text-orange-500 tracking-tight'>Tatti_shef</h1>
+          <h1 className='text-5xl md:text-6xl lg:text-7xl font-light text-[#bd6c20] tracking-tight'>Tatti_shef</h1>
           <p className='text-white text-lg leading-relaxed'>
             Если вы хотите порадовать себя и своих близких изысканными блюдами, Tatti_shef станет вашим надежным помощником. Мы предлагаем полный спектр кулинарных услуг: от кейтеринга и фуршетов до организации банкетов и праздников под ключ. Наша команда готовит разнообразные закуски, десерты и горячие блюда, которые сделают ваш праздник незабываемым. Более 9 лет мы радуем клиентов не только вкусной едой, но и эстетичной подачей, высоким уровнем сервиса и вниманием к каждой детали.
           </p>

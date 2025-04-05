@@ -1,11 +1,11 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  safelist: ["bg-transparent", "bg-main"],
   theme: {
     screens: {
       'sm': '360px',
@@ -158,18 +158,6 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        gradientLight1: '#1E90FF',
-        gradientLight2: '#6A5ACD',
-        gradientLight3: '#FF69B4',
-        gradientDark1: '#FF8C00',
-        gradientDark2: '#FFD700',
-        gradientDark3: '#FF4500',
-        subGradientLight1: '#008080',
-        subGradientLight2: '#20B2AA',
-        subGradientLight3: '#FF007F',
-        subGradientDark1: '#B0C4DE',
-        subGradientDark2: '#778899',
-        subGradientDark3: '#708090',
         mainBtn: '#e43024',
         header: '#33231B',
         transparent: 'transparent',
@@ -195,11 +183,6 @@ module.exports = {
         mainBgMiddle: '#ba7b6a',
         mainBgStart: '#ba9084',
         darkSwitch: '#2b2b2f',
-        purple: '#3f3cbb',
-        blue: '#316ff4',
-        midnight: '#121063',
-        metal: '#565584',
-        tahiti: '#3ab7bf',
         silverAdmin: '#f0eef6',
         bubblegum: '#ff77e9',
         bermuda: '#78dcca',
@@ -216,16 +199,6 @@ module.exports = {
         orange600: '#FB8C00',
         dark: "#1d1d1d",
         silver: '#ecebff',
-        accent: '#8E44AD',
-        neonGreen: '#39ff14',
-        neonBlue: '#00F5FF',
-        cyberYellow: '#FFD700',
-        cyberPink: '#FF007F',
-        deepPurple: '#2E1A47',
-        darkNavy: '#000C1D',
-        frostWhite: '#E0F7FA',
-        shadowGray: '#2C2C2C',
-        glassy: 'rgba(255, 255, 255, 0.2)',
       },
     },
   },
@@ -235,3 +208,5 @@ module.exports = {
   ],
    darkMode: 'class',
 };
+
+export default config;

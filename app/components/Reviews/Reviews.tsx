@@ -13,7 +13,7 @@ const Reviews = () => {
     };
   return (
     <div className='bg-[#130E0C] mx-auto px-6 pt-12 pb-8 min-h-[190px]'>
-      <h1 className='text-5xl text-orange-500 opacity-55 mb-12 font-black'>Отзывы</h1>
+      <h1 className='text-5xl font-light text-[#bd6c20] opacity-60 mb-12'>Отзывы</h1>
 
       <ParallaxCarouselReviews reviews={reviews} />
       <button className='text-orange-300 mt-8 border rounded-2xl px-4 py-2' 

@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://tatti-shef.ru
+
+# Sitemaps
+Sitemap: https://tatti-shef.ru/sitemap.xml

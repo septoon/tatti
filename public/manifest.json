@@ -1,0 +1,20 @@
+{
+  "name": "Tatti Shef",
+  "short_name": "Tatti",
+  "start_url": "/",
+  "display": "fullscreen",
+  "background_color": "#1f1d1d",
+  "theme_color": "#1f1d1d",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

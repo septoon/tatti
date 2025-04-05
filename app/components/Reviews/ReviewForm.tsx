@@ -11,9 +11,8 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
   const [rating, setRating] = useState(0);
   const [reviewText, setReviewText] = useState('');
   const [image, setImage] = useState<File | null>(null);
-  const [imageName, setImageName] = useState('Выберите файл');
+  const [imageName, setImageName] = useState('Выберите фото');
   const [loading, setLoading] = useState(false);
-
 
   const handleChange = (e) => {
     const file = e.target.files[0];
@@ -22,27 +21,32 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
     }
   };
 
-  const uploadImage = (file) => {
-    const formData = new FormData();
-    formData.append('image', file);
+  const uploadImage = async (file: File): Promise<string | null> => {
+    setLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append('image', file);
 
-    const apiKey = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
-    const imgbbUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`;
+      const apiKey = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
+      const imgbbUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`;
 
-    // Отправка POST-запроса на ImgBB
-    axios
-      .post(imgbbUrl, formData)
-      .then((response) => {
-        const uploadedImageUrl = response.data.data.url; // Получение ссылки на загруженное изображение
-        onUpload(uploadedImageUrl); // Передаем URL в родительский компонент
-      })
-      .catch((error) => {
-        console.error('Ошибка загрузки изображения:', error);
+      const response = await axios.post(imgbbUrl, formData);
+      if (response.data.success) {
+        const uploadedImageUrl = response.data.data.url;
+        setImageName(file.name);
+        setImage(file);
+        return uploadedImageUrl;
+      } else {
         alert('Ошибка загрузки изображения');
-      })
-      .finally(() => {
-        setIsLoading(false); // Отключаем индикатор загрузки
-      });
+        return null;
+      }
+    } catch (error) {
+      console.error('Ошибка загрузки изображения:', error);
+      alert('Ошибка при загрузке изображения');
+      return null;
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -52,7 +56,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
       name,
       reviewText,
       rating,
-      image: image ? image.name : ''
+      image: image ? await uploadImage(image) : ''
     };
 
     try {
@@ -72,7 +76,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
       setRating(0);
       setReviewText('');
       setImage(null);
-      setImageName('Выберите файл');
+      setImageName('Выберите фото');
       onClose();
     } catch (error) {
       console.error(error);
@@ -85,7 +89,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files ? e.target.files[0] : null;
     setImage(selectedFile);
-    setImageName(selectedFile ? selectedFile.name : 'Файл не выбран');
+    setImageName(selectedFile ? selectedFile.name : 'Фото не выбрано');
   };
 
   return (

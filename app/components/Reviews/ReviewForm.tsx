@@ -14,8 +14,8 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
   const [imageName, setImageName] = useState('Выберите фото');
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    const file = e.target.files[0];
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files ? e.target.files[0] : null;
     if (file) {
       uploadImage(file);
     }

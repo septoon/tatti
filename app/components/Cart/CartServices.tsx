@@ -32,7 +32,7 @@ type ServicePackages = {
 };
 
 const CartServices = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { data, loading } = useSelector((state: RootState) => state.services);
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const [selected, setSelected] = useState<string[]>([]);

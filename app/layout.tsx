@@ -69,7 +69,6 @@ export default function RootLayout({
           </PrimeReactProvider>
         </Providers>
         <ChatButton />
-        <script id="pixel-chaty" async src="https://cdn.chaty.app/pixel.js?id=njyZmWFm"></script>
       </body>
     </html>
   );

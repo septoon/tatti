@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import EmptyCartImg from "@/public/images/empty_cart.svg";
+import EmptyCartImg from "@/public/images/empty_cart.webp";
 
 const EmptyCart = () => {
   return (

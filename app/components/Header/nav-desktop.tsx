@@ -22,7 +22,7 @@ const NavDesktop = () => {
       <div className=' flex items-center'>
         <p className='font-bold text-lg small-between-md-lg large-header-info'>г. Алушта, ул. Ленина, 13г</p>
         <div className='border p-2 rounded-sm border-white ml-4 large-header-info'>
-          <a href="tel:+79785103520" className=' font-bold'>+7 (978) 510-35-20</a>
+          <a href="tel:+79785103520" className='font-bold'>+7 (978) 510-35-20</a>
         </div>
         <CartIcon />
       </div>

@@ -56,5 +56,6 @@
 @media (min-width: 768px) and (max-width: 1920px) {
   .embla_review {
     --slide-size: 60%;
+    --slide-spacing: 10rem;
   }
 }

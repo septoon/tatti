@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import { RootState } from '@/app/GlobalRedux/store';
+import { AppDispatch, RootState } from '@/app/GlobalRedux/store';
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Tooltip } from 'primereact/tooltip';
 import { TiInfoLarge } from "react-icons/ti";

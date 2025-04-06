@@ -1,8 +1,8 @@
-'use client'
+'use client';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchServicePackages } from '@/app/GlobalRedux/Features/serviceSlice';
-import { RootState } from '@/app/GlobalRedux/store';
+import { AppDispatch, RootState } from '@/app/GlobalRedux/store';
 import Loader from '../components/Loader/Loader';
 
 type ServicePackage = {
@@ -29,7 +29,7 @@ type ServicePackages = {
 };
 
 const Services = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { data, loading, error } = useSelector((state: RootState) => state.services);
 
   React.useEffect(() => {
@@ -38,7 +38,7 @@ const Services = () => {
     }
   }, [dispatch, data]);
 
-  if (loading) return <Loader />
+  if (loading) return <Loader />;
 
   return (
     <div className="min-h-screen bg-[#151515] text-white px-4 pt-28 pb-16">
@@ -48,7 +48,7 @@ const Services = () => {
 
       {data ? (
         <div className="grid gap-6 md:grid-cols-2">
-          {data.packages.map(pkg => (
+          {data.packages.map((pkg) => (
             <div key={pkg.id} className="bg-[#1e1e1e] p-4 rounded-lg">
               <h2 className="text-2xl font-semibold mb-2">{pkg.name}</h2>
               <p className="text-sm text-gray-300 mb-2">{pkg.cost}</p>
@@ -63,7 +63,7 @@ const Services = () => {
           <div>
             <h2 className="text-2xl font-semibold mt-10 mb-4">Дополнительно</h2>
             <div className="grid gap-4 md:grid-cols-2">
-              {data.extras.map(extra => (
+              {data.extras.map((extra) => (
                 <div key={extra.id} className="bg-[#1e1e1e] p-4 rounded-lg">
                   <h3 className="text-xl font-medium">{extra.name}</h3>
                   <p className="text-sm text-gray-300">{extra.cost}</p>

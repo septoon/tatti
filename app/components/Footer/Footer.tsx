@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { FaTelegram, FaVk, FaWhatsapp } from 'react-icons/fa';
+import { FaTelegram, FaVk, FaWhatsapp, FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -13,8 +13,11 @@ const Footer = () => {
           <p>г. Алушта, ул. Ленина, 13г</p>
           <a href="tel:+79785103520" className="mt-1 text-red-400 hover:text-red-300">+7 (978) 510-35-20</a>
           <div className="flex justify-center md:justify-start space-x-4 mt-4">
-            <a href="https://t.me/" target="_blank" aria-label="Instagram" className="text-gray-400 hover:text-white">
+            <a href="https://t.me/+o6rCb4Wm0PtmZGM6" target="_blank" aria-label="Instagram" className="text-gray-400 hover:text-white">
               <FaTelegram size={24} />
+            </a>
+            <a href="https://www.instagram.com/tatti_shef" target="_blank" aria-label="Instagram" className="text-gray-400 hover:text-white">
+              <FaInstagram size={24} />
             </a>
             <a href="https://vk.com/tatti_shef" target="_blank" aria-label="VK" className="text-gray-400 hover:text-white">
               <FaVk size={24} />

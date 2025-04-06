@@ -6,6 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import PhoneIcon from '@mui/icons-material/Phone';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import TelegramIcon from '@mui/icons-material/Telegram';
+import InstagramIcon from '@mui/icons-material/Instagram';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faVk } from '@fortawesome/free-brands-svg-icons';
 import { motion } from 'framer-motion';
@@ -13,7 +14,8 @@ import { motion } from 'framer-motion';
 const actions = [
   { icon: <PhoneIcon />, name: 'Позвонить', url: 'tel:+79785103520' },
   { icon: <WhatsAppIcon />, name: 'WhatsApp', url: 'https://wa.me/79785103520' },
-  { icon: <TelegramIcon />, name: 'Telegram', url: 'https://t.me/' },
+  { icon: <TelegramIcon />, name: 'Telegram', url: 'https://t.me/+o6rCb4Wm0PtmZGM6' },
+  { icon: <InstagramIcon />, name: 'Instagram', url: 'https://www.instagram.com/tatti_shef' },
   { icon: <FontAwesomeIcon icon={faVk} size='xl' style={{color: "#535353",}} />, name: 'Messenger', url: 'https://vk.com/tatti_shef' },
 ];
 

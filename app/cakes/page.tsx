@@ -1,10 +1,9 @@
-'use client'
+'use client';
 
 import React, { useEffect, useState } from 'react';
+import { NextPage } from 'next';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '@/app/GlobalRedux/store';
-import Image from 'next/image';
-import NotFoundImage from '/public/images/not_found.svg';
 import { addToCart, removeOne } from '../GlobalRedux/Features/cartSlice';
 import ParallaxCarousel from '../components/Carousel/ParallaxCarousel';
 import Loader from '../components/Loader/Loader';
@@ -26,7 +25,7 @@ type CartItem = {
   quantity: number;
 };
 
-const Cakes = () => {
+const Cakes: NextPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
@@ -83,7 +82,7 @@ const Cakes = () => {
                 ))}
               </div>
               <div className="flex items-end justify-between mt-auto">
-                <p className="text-bold text-xl">{`${item.price} ${item.name === 'Мини эклеры 24 шт' ? 'р' : 'р/кг'}`}</p>
+                <p className="text-bold text-xl">{`${item.price} р`}</p>
                 {cartItem ? (
                   <div className="flex items-center bg-red-500 rounded-lg px-1">
                     <button
@@ -134,3 +133,5 @@ const Cakes = () => {
     </div>
   );
 };
+
+export default Cakes;

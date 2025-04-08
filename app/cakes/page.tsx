@@ -13,7 +13,7 @@ type CakeItem = {
   id: number;
   name: string;
   price: number;
-  description?: string[];
+  description: string[];
   image?: string;
   images?: string[];
 };

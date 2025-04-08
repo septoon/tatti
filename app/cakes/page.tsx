@@ -76,14 +76,14 @@ const Cakes = () => {
               </div>
               <p className="mt-2 font-bold text-lg">{item.name}</p>
               <div className="flex flex-col flex-grow">
-                {item.description?.map((desc: string, desIndex: number) => (
+                {(Array.isArray(item.description) ? item.description : []).map((desc, desIndex) => (
                   <p className="text-xs text-gray-500" key={desIndex}>
                     • {desc}
                   </p>
                 ))}
               </div>
               <div className="flex items-end justify-between mt-auto">
-                <p className="text-bold text-xl">{item.price} р/кг</p>
+                <p className="text-bold text-xl">{`${item.price} ${item.name === 'Мини эклеры 24 шт' ? 'р' : 'р/кг'}`}</p>
                 {cartItem ? (
                   <div className="flex items-center bg-red-500 rounded-lg px-1">
                     <button
@@ -135,4 +135,55 @@ const Cakes = () => {
   );
 };
 
-export default Cakes;
+export default Cakes;{
+  "decorated": {
+    "id": 301,
+    "name": "Торты с декором",
+    "price": 2200,
+    "description": [],
+    "images": [
+      "https://i.ibb.co/x8CyvsbR/image-6.webp",
+      "https://i.ibb.co/mCs8hnJn/image-3.webp"
+    ]
+  },
+  "mousse": {
+    "id": 302,
+    "name": "Муссовые торты",
+    "price": 2500,
+    "description": [],
+    "images": [
+      "https://i.ibb.co/1YFrvTTV/image-0.webp",
+      "https://i.ibb.co/spPcDXDp/image-11.webp",
+      "https://i.ibb.co/fVK953BP/image-12.webp"
+    ]
+  },
+  "threeD": {
+    "id": 303,
+    "name": "3D торты",
+    "price": 2500,
+    "description": [],
+    "images": [
+      "https://i.ibb.co/DHf6F8XB/image-4.webp",
+      "https://i.ibb.co/qLqXYJPt/image-8.webp",
+      "https://i.ibb.co/wr3NGsRC/image-7.webp",
+      "https://i.ibb.co/r2ndm5Nw/image-5.webp",
+      "https://i.ibb.co/nMZLCG17/image-1.webp",
+      "https://i.ibb.co/p6RD8xsZ/image-0.webp",
+      "https://i.ibb.co/5X9DyHgP/image-2.webp"
+    ]
+  },
+  "eclair": {
+      "id": 809,
+      "name": "Мини эклеры 24 шт",
+      "price": 4990,
+      "description": [
+        "Дор блю с персиком",
+        "Манго, авокадо, креветка",
+        "С икрой",
+        "С лососем и авокадо кремом"
+      ],
+      "images": [
+          "https://i.ibb.co/b5WvT3Dq/image-1.webp"
+      ]
+    }
+}

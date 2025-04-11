@@ -1,7 +1,7 @@
-import React from 'react'
-import Logo from '@/public/logo.png'
-import Image from 'next/image'
-import Hamburger from 'hamburger-react'
+import React, { useState } from 'react';
+import Logo from '@/public/logo.png';
+import Image from 'next/image';
+import Hamburger from 'hamburger-react';
 import CartIcon from '../Cart/CartIcon';
 
 interface NavMobileProps {
@@ -38,6 +38,7 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
           </div>
           <a className='font-extralight mb-4' href="/">Главная</a>
           <a className='font-extralight mb-4' href="/menu">Фуршетное меню</a>
+          <a className='font-extralight mb-4' href="/easter">Пасхальное меню</a>
           <a className='font-extralight mb-4' href="/cakes">Торты и десерты</a>
           <a className='font-extralight mb-4' href="/services">Услуги</a>
           <a className='font-extralight mb-4' href="/delivery">Доставка</a>

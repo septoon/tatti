@@ -63,7 +63,7 @@ const Cakes: NextPage = () => {
   return (
     <div className="flex-col justify-between min-h-[100vh] md:min-h-[100vh] pt-26 md:pt-40 text-white bg-[#151515]">
       <div className="px-4">
-        <h1 className="mb-4 font-bold text-2xl md:hidden">Торты</h1>
+        <h1 className="mb-4 font-bold text-2xl md:hidden">Торты и десерты</h1>
       </div>
       <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 content-stretch pb-16">
         {cakesData.map((item: CakeItem, index: number) => {

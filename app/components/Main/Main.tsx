@@ -17,10 +17,12 @@ const Main = () => {
         />
       </div>
       <div className='absolute top-0 left-0 right-0 bottom-0 z-5 flex flex-col justify-center items-center'>
-        <h1 className='text-3xl md:text-4xl text-white font-bold shadow-3xl text-center'>Празднуйте с нами — получите скидку <br></br> <b className='text-red-400 text-4xl md:text-5xl'>10%</b> <br></br>
-        В ДЕНЬ РОЖДЕНИЯ!</h1>
+        <h1 className='text-3xl md:text-4xl text-white font-bold shadow-3xl text-center'>
+          Кейтеринг<br></br> с доставкой <br></br> 
+          <b className='text-4xl md:text-5xl'>по ЮБК<br></br>и Симферополю</b>
+         </h1>
 
-        <button onClick={() => setIsFormOpen(true)} className='p-4 bg-amber-700 text-amber-50 shadow-lg font-bold rounded-sm mt-20 hover:bg-amber-800 transition-all cursor-pointer'>Получить скидку!</button>
+        <button onClick={() => setIsFormOpen(true)} className='p-4 bg-amber-700 text-amber-50 shadow-lg font-bold rounded-md mt-20 hover:bg-amber-800 transition-all cursor-pointer'>Рссчитать фуршет</button>
       </div>
       {isFormOpen && <Form onFormClose={() => setIsFormOpen(false)} />}
     </section>

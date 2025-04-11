@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/app/GlobalRedux/store';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Calendar } from 'primereact/calendar';
-// import { addLocale } from 'primereact/api';
 import sendOrder from '@/app/common/sendOrder';
 import { useMask } from '@react-input/mask';
 import { Button } from 'primereact/button';
@@ -13,47 +11,9 @@ import CartItems from './CartItems';
 import DeliveryMethod from './DeliveryMethod';
 import { clearCart } from '@/app/GlobalRedux/Features/cartSlice';
 import { formatSelectedDate, shortDates } from '@/app/common/shortDates';
-import { addLocale, locale } from 'primereact/api';
+import {setupPrimeReactLocale} from '@/app/common/primereact-locale';
 
-addLocale('ru', {
-  firstDayOfWeek: 1,
-
-  dayNames: ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
-  dayNamesShort: ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
-  dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
-  monthNames: [
-    'января',
-    'февраля',
-    'марта',
-    'апреля',
-    'мая',
-    'июня',
-    'июля',
-    'августа',
-    'сентября',
-    'октября',
-    'ноября',
-    'декабря',
-  ],
-  monthNamesShort: [
-    'янв',
-    'фев',
-    'мар',
-    'апр',
-    'май',
-    'июн',
-    'июл',
-    'авг',
-    'сен',
-    'окт',
-    'ноя',
-    'дек',
-  ],
-  today: 'Сегодня',
-  clear: 'Очистить',
-});
-
-locale('ru');
+setupPrimeReactLocale();
 interface CartModalProps {
   onClose: () => void;
   isModalOpen: boolean;
@@ -74,8 +34,6 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   });
   const [wishes, setWishes] = useState('');
   const [name, setName] = useState('');
-
-  addLocale('ru', shortDates);
 
   const isBtnDisabled =
     deliveryMethod === 'courier'
@@ -223,7 +181,9 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
                 dispatch(clearCart());
                 onClose();
               }}
-              className="w-full bg-green-600 text-white py-3 rounded-md mt-4"
+              className={`w-full text-white py-3 rounded-md mt-4 ${
+                isBtnDisabled ? 'bg-red-300 cursor-not-allowed' : 'bg-red-500'
+              }`}
             />
             <p className="text-sm text-center text-gray-500 mt-4">
               Стоимость доставки уточняйте у менеджера.

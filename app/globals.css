@@ -80,7 +80,7 @@ p, span {
   }
 }
 
-@media (min-width: 768px) and (max-width: 1060px) {
+@media (min-width: 768px) and (max-width: 1096px) {
   .large-header-info {
     display: none !important;
   }

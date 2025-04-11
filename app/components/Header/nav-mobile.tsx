@@ -4,13 +4,15 @@ import Image from 'next/image';
 import Hamburger from 'hamburger-react';
 import CartIcon from '../Cart/CartIcon';
 import { Badge } from 'primereact/badge';
+import { navLinks } from '@/app/common/navLinks';
 
 interface NavMobileProps {
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
+  pathname: string;
 }
 
-const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
+const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen, pathname }) => {
   return (
     <div className='fixed bg-[#1f1d1d] z-999 w-full flex justify-between items-center px-4 py-2 text-white'>
       <div className='z-50'>
@@ -37,16 +39,30 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
             <Image src={Logo} alt="Logo" width={60} style={{marginRight: 10}} />
             <h4 className='font-imFellDoublePica font-bold italic text-[2rem]'>Tatti_shef</h4>
           </div>
-          <a className='font-extralight mb-4' href="/">Главная</a>
-          <a className='font-extralight mb-4' href="/menu">Фуршетное меню</a>
-          <div className='flex items-center mb-4'>
-            <a className='font-extralight mr-4' href="/easter">Пасхальное меню</a>
-            <Badge value="New" severity="secondary"></Badge>
-          </div>
-          <a className='font-extralight mb-4' href="/cakes">Торты и десерты</a>
-          <a className='font-extralight mb-4' href="/services">Услуги</a>
-          <a className='font-extralight mb-4' href="/delivery">Доставка</a>
-          <a className='font-extralight mb-4' href="/contacts">Контакты</a>
+          {navLinks.map(({ link, title }) => {
+            if (link === "/easter") {
+              return (
+                <div key={link} className='flex items-center mb-4'>
+                  <a className={`font-extralight mr-4 ${
+                    pathname === link ? 'text-red-300' : ''
+                  }`} href={link}>Пасхальное меню</a>
+                  <Badge value="New" severity="secondary"></Badge>
+                </div>
+              )
+            } else {
+              return (
+                <a
+                  key={link}
+                  href={link}
+                  className={`font-extralight mb-4 ${
+                    pathname === link ? 'text-red-300' : ''
+                  }`}
+                >
+                  {title}
+                </a>
+              )
+            }
+          })}
         </div>
         <div>
           <p className='text-xl font-black'>г. Алушта, ул. Ленина, 13г</p>

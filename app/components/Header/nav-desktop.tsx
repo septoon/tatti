@@ -2,18 +2,23 @@ import React from 'react'
 import Logo from '@/public/logo.png'
 import Image from 'next/image'
 import CartIcon from '../Cart/CartIcon'
+import { navLinks } from '@/app/common/navLinks'
 
-const NavDesktop = () => {
+const NavDesktop = ({ pathname }: { pathname: string }) => {
   return (
     <div className='fixed w-full flex justify-between px-6 py-4 text-white md:text-xs bg-[#1f1d1d] z-999'>
       <div className='flex items-center justify-between font-medium text-md'>
-        <a className='mr-4 hover:text-red-300 transition-all duration-300' href="/">Главная</a>
-        <a className='mr-4 hover:text-red-300 transition-all duration-300' href="/menu">Фуршетное меню</a>
-        <a className='mr-4 hover:text-red-300 transition-all duration-300' href="/easter">Пасхальное меню</a>
-        <a className='mr-4 hover:text-red-300 transition-all duration-300' href="/cakes">Торты и десерты</a>
-        <a className='mr-4 hover:text-red-300 transition-all duration-300' href="/services">Услуги</a>
-        <a className='mr-4 hover:text-red-300 transition-all duration-300' href="/delivery">Доставка</a>
-        <a className='mr-4 hover:text-red-300 transition-all duration-300' href="/contacts">Контакты</a>
+        {navLinks.map(({ link, title }) => (
+          <a
+            key={link}
+            href={link}
+            className={`mr-4 transition-all duration-300 hover:text-red-300 ${
+              pathname === link ? 'text-red-300' : ''
+            }`}
+          >
+            {title}
+          </a>
+        ))}
       </div>
 
       <a href="/" className='flex items-center self-center hide-between-md-lg'>

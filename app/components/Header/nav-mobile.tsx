@@ -3,6 +3,7 @@ import Logo from '@/public/logo.png';
 import Image from 'next/image';
 import Hamburger from 'hamburger-react';
 import CartIcon from '../Cart/CartIcon';
+import { Badge } from 'primereact/badge';
 
 interface NavMobileProps {
   isOpen: boolean;
@@ -38,7 +39,10 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen }) => {
           </div>
           <a className='font-extralight mb-4' href="/">Главная</a>
           <a className='font-extralight mb-4' href="/menu">Фуршетное меню</a>
-          <a className='font-extralight mb-4' href="/easter">Пасхальное меню</a>
+          <div className='flex items-center mb-4'>
+            <a className='font-extralight mr-4' href="/easter">Пасхальное меню</a>
+            <Badge value="New" severity="secondary"></Badge>
+          </div>
           <a className='font-extralight mb-4' href="/cakes">Торты и десерты</a>
           <a className='font-extralight mb-4' href="/services">Услуги</a>
           <a className='font-extralight mb-4' href="/delivery">Доставка</a>

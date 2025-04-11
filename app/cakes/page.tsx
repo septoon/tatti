@@ -73,7 +73,7 @@ const Cakes: NextPage = () => {
               <div className="w-full h-[300px] overflow-hidden">
                 <ParallaxCarousel images={item.images ?? (item.image ? [item.image] : [])} />
               </div>
-              <p className="mt-2 font-bold text-lg">{item.name}</p>
+              <p className="mt-2 font-bold text-lg uppercase">{item.name}</p>
               <div className="flex flex-col flex-grow">
                 {(Array.isArray(item.description) ? item.description : []).map((desc, desIndex) => (
                   <p className="text-xs text-gray-500" key={desIndex}>

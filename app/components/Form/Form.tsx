@@ -26,7 +26,7 @@ const Form: React.FC<FormModalProps> = ({ onFormClose }) => {
 
   return (
     <div 
-      className="fixed inset-0 bg-black bg-opacity-60 flex items-center pt-10 justify-center z-50"
+      className="fixed inset-0 bg-black/60 flex items-center pt-10 justify-center z-50"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           onFormClose();

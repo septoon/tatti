@@ -146,7 +146,7 @@ const Menu: React.FC = () => {
                 height={250}
                 className="object-cover w-full h-[250px] rounded-md"
               />
-              <p className="my-2 font-bold text-lg">{item.name}</p>
+              <p className="my-2 font-bold text-lg uppercase">{item.name}</p>
               <div className="flex flex-col flex-grow">
                 {(Array.isArray(item.description) ? item.description : []).map((desc, desIndex) => (
                   <p className="text-xs text-gray-500" key={desIndex}>

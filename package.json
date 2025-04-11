@@ -7,7 +7,8 @@
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "git pull origin main && npm run build && pm2 restart 0"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

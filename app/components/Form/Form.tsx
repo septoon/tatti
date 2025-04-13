@@ -34,13 +34,13 @@ const Form: React.FC<FormModalProps> = ({ onFormClose }) => {
       }}
     >
       <div
-          className="bg-white max-w-[90%] md:max-w-lg rounded-lg shadow-lg h-auto overflow-y-scroll max-h-[525px] md:w-auto
+          className="bg-[#151515] text-white max-w-[90%] md:max-w-lg rounded-lg shadow-lg h-auto overflow-y-scroll max-h-[525px] md:w-auto
             w-full pb-6 z-99999"
           onClick={(e) => e.stopPropagation()}
         >
-        <div className='mb-2 flex justify-end p-3'>
+        <div className='my-2 flex justify-end p-3'>
           <button
-            className="text-2xl text-gray-500"
+            className="text-2xl text-gray-500 cursor-pointer"
             onClick={onFormClose}
           >
             <IoIosCloseCircle />
@@ -57,7 +57,7 @@ const Form: React.FC<FormModalProps> = ({ onFormClose }) => {
                 <div className="flex">
                   <div className="pl-2 w-[150px] flex items-center">
                     {date ? (
-                      <p className="text-black">{formatSelectedDate(date)}</p>
+                      <p className="text-white">{formatSelectedDate(date)}</p>
                     ) : (
                       <p className="text-gray-500">Выберите дату</p>
                     )}
@@ -94,8 +94,8 @@ const Form: React.FC<FormModalProps> = ({ onFormClose }) => {
               Телефон *
             </label>
             <div className='flex'>
-              <div className='w-10 mr-0 block p-2 pr-0 border-b border-red-500 bg-white'>
-                <p className='text-black'>+7</p>
+              <div className='w-8 mr-0 block p-2 pr-0 border-b border-red-500 bg-[#151515]'>
+                <p className={`${phone.length < 1 ? 'text-gray-500' : 'text-white'} mb-[1px]`}>+7</p>
               </div>
               <input
                 ref={inputRef}

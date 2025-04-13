@@ -30,10 +30,10 @@ const Footer = () => {
         </div>
 
          {/* Логотип и бренд */}
-         <div className=''>
+         <div className='flex flex-col justify-center items-center '>
           <div className="flex flex-col justify-center items-center md:flex-row">
-            <Image src="/logo.png" alt="Tatti_shef Logo" width={80} height={80} className="mb-2 md:mb-0 md:mr-2 md:w-10" />
-            <h4 className="text-2xl font-light italic">Tatti_shef</h4>
+            <Image src="/logo.png" alt="Tatti_shef Logo" width={80} height={80} className="mb-2 md:mb-0 md:mr-1 md:w-10" />
+            <h4 className="text-2xl font-light italic md:ml-1">Tatti_shef</h4>
           </div>
           <p className="text-sm text-gray-400 mt-2">© {new Date().getFullYear()} Все права защищены</p>
           <div className='flex items-center'>

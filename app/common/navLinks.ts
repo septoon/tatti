@@ -7,10 +7,10 @@ export const navLinks = [
     title: 'Фуршетное меню',
     link: '/menu'
   },
-  {
-    title: 'Пасхальное меню',
-    link: '/easter'
-  },
+  // {
+  //   title: 'Пасхальное меню',
+  //   link: '/easter'
+  // },
   {
     title: 'Торты и десерты',
     link: '/cakes'

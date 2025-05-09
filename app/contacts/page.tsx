@@ -1,4 +1,11 @@
 import React from 'react'
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Контакты — Tatti Shef | Кейтеринг в Алуште и по ЮБК',
+  description: 'Свяжитесь с кейтерингом Tatti Shef: адрес, телефон, email и режим работы. Мы всегда на связи и готовы обсудить ваше мероприятие!',
+  keywords: 'контакты Tatti Shef, кейтеринг Алушта, связаться с кейтерингом, адрес Tatti Shef, телефон Tatti Shef'
+};
 
 const Contacts = () => {
   return (

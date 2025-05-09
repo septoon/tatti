@@ -1,6 +1,11 @@
-import Image from 'next/image'
 import React from 'react'
-import DeliveryImage from '@/public/images/delivery.webp'
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Доставка и оплата — Tatti Shef | Кейтеринг и доставка блюд по Крыму',
+  description: 'Узнайте условия доставки и оплаты в Tatti Shef. Быстрая и удобная доставка свежих блюд по Алуште, Ялте и всему Южному Берегу Крыма.',
+  keywords: 'доставка еды, оплата кейтеринга, условия доставки, Алушта, ЮБК, Tatti Shef'
+};
 
 const Delivery = () => {
   return (

@@ -1,8 +1,10 @@
 'use client'
 import React, { useState } from 'react'
 import NavDesktop from './nav-desktop'
-import NavMobile from './nav-mobile'
+import dynamic from 'next/dynamic';
 import { usePathname } from 'next/navigation';
+
+const NavMobile = dynamic(() => import('./nav-mobile'), { ssr: false });
 
 const Header = () => {
   const pathname = usePathname();

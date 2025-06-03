@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+'use client'
+
+import React, { useEffect, useState } from 'react';
 import Logo from '@/public/logo.png';
 import Image from 'next/image';
 import Hamburger from 'hamburger-react';
@@ -13,6 +15,13 @@ interface NavMobileProps {
 }
 
 const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen, pathname }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
   return (
     <div className='fixed bg-[#1f1d1d] z-999 w-full flex justify-between items-center px-4 py-2 text-white'>
       <div className='z-50'>
@@ -32,7 +41,7 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen, pathname }) =>
         />
       )}
       <div className={`fixed bg-[#151515] text-white top-0 bottom-0 right-[20%] left-0 transition-all duration-600 transform z-60 
-        ${isOpen ? 'translate-x-0' : 'translate-x-[-100%]'}
+        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         pl-6 pt-6 pb-10 flex flex-col justify-between overflow-y-auto`}>
         <div className=' flex flex-col items-start justify-between text-2xl'>
           <div className='flex items-center mb-10'>
@@ -45,7 +54,8 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen, pathname }) =>
                 <div key={link} className='flex items-center mb-4'>
                   <a className={`font-extralight mr-4 ${
                     pathname === link ? 'text-red-300' : ''
-                  }`} href={link}>Пасхальное меню</a>
+                  }`} href={link}
+                  onClick={() => setIsOpen(false)}>Пасхальное меню</a>
                   <Badge value="New" severity="secondary"></Badge>
                 </div>
               )
@@ -54,6 +64,7 @@ const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen, pathname }) =>
                 <a
                   key={link}
                   href={link}
+                  onClick={() => setIsOpen(false)}
                   className={`font-extralight mb-4 ${
                     pathname === link ? 'text-red-300' : ''
                   }`}

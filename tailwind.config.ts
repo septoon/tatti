@@ -6,6 +6,7 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: ['-translate-x-full', 'translate-x-0'],
   theme: {
     screens: {
       'sm': '360px',

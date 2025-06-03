@@ -6,6 +6,7 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  // @ts-expect-error – Tailwind type defs <3.4 don't include `safelist`
   safelist: ['-translate-x-full', 'translate-x-0'],
   theme: {
     screens: {

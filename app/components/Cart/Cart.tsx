@@ -158,6 +158,8 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
               <p className="font-bold text-lg">Итоговая сумма: {totalPrice} р.</p>
             </div>
 
+            <p className='text-sm text-center text-gray-500 my-4'>Оформляя заказ, вы соглашаетесь с <a href='/policy' className='underline font-semibold cursor-pointer'>политикой конфиденциальности</a></p>
+
             <Button
               label="Оформить заказ"
               disabled={isBtnDisabled}

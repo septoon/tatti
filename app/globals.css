@@ -49,6 +49,26 @@ p, span {
   border: none;
 }
 
+/* === Checkbox default, hover & focus states === */
+.p-checkbox .p-checkbox-box {
+  /* border & outline when UNchecked */
+  border: 2px solid oklch(0.627 0.194 149.214) !important;
+  background: transparent !important;
+}
+
+/* Hover & focus */
+.p-checkbox .p-checkbox-box:not(.p-disabled):hover,
+.p-checkbox .p-checkbox-box.p-focus {
+  border-color: oklch(0.627 0.194 149.214) !important;
+  border: none;
+  box-shadow: none !important;
+}
+
+/* Цвет галочки внутри */
+.p-checkbox .p-checkbox-box.p-highlight .p-checkbox-icon {
+  color: white !important;
+}
+
 .p-datepicker .p-datepicker-header .p-datepicker-title .p-datepicker-month, .p-datepicker-year {
   color: white;
 }

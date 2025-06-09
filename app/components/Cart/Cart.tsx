@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/app/GlobalRedux/store';
 import 'react-datepicker/dist/react-datepicker.css';
+import { Checkbox } from "primereact/checkbox";
 import { Calendar } from 'primereact/calendar';
 import sendOrder from '@/app/common/sendOrder';
 import { useMask } from '@react-input/mask';
@@ -28,6 +29,7 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   const [date, setDate] = useState<Date | null>(null);
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
+  const [checked, setChecked] = useState(false);
   const inputRef = useMask({
     mask: ' (___) ___-__-__',
     replacement: { _: /\d/ },
@@ -35,10 +37,10 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
   const [wishes, setWishes] = useState('');
   const [name, setName] = useState('');
 
-  const isBtnDisabled =
+  const isBtnDisabled = 
     deliveryMethod === 'courier'
-      ? name.length < 2 || phone.length < 16 || address.length < 4
-      : name.length < 2 || phone.length < 16;
+      ? name.length < 2 || phone.length < 16 || address.length < 4 || !checked
+      : name.length < 2 || phone.length < 16 || !checked;
 
   return (
     <div
@@ -158,7 +160,10 @@ const CartModal: React.FC<CartModalProps> = ({ onClose }) => {
               <p className="font-bold text-lg">Итоговая сумма: {totalPrice} р.</p>
             </div>
 
-            <p className='text-sm text-center text-gray-500 my-4'>Оформляя заказ, вы соглашаетесь с <a href='/policy' className='underline font-semibold cursor-pointer'>политикой конфиденциальности</a></p>
+            <div className="card flex justify-content-center items-center">
+              <Checkbox onChange={e => setChecked(!!e.checked)} color='black' checked={checked}></Checkbox>
+            <p className='text-sm text-center text-gray-500 ml-3 my-4'>Я соглашаюсь с <a href='/policy' className='underline font-semibold cursor-pointer'>политикой конфиденциальности</a></p>
+            </div>
 
             <Button
               label="Оформить заказ"

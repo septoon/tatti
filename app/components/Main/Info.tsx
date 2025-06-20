@@ -45,7 +45,7 @@ const Info = () => {
   console.log(infoData)
   return (
     <section className='w-full min-h-[100vh] bg-gradient-to-b from-[#151515] to-[#1e1e1e] text-white py-12'>
-      <div className='container mx-auto px-6 py-12 flex flex-col md:flex-row items-center min-h-[100vh] gap-8'>
+      <div className='container mx-auto px-6 pt-12 flex flex-col md:flex-row items-center min-h-[100vh] gap-8'>
         {/* Левая часть с текстом */}
         <div className='md:w-1/2 space-y-6'>
           <h1 className='text-5xl md:text-6xl lg:text-7xl font-light text-[#bd6c20] tracking-tight'>Tatti_shef</h1>

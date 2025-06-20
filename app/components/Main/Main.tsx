@@ -12,7 +12,7 @@ const Main = () => {
       handleShow(setIsFormOpen)
     }
   return (
-    <section className='relative w-full h-[100vh] bg-black/40 shadow-[inset_0_-10px_15px_rgba(0,0,0,0.5)]'>
+    <section className='relative max-w-[100wv] h-[100vh] bg-black/40 shadow-[inset_0_-10px_15px_rgba(0,0,0,0.5)]'>
       <div className="fixed inset-0 -z-10">
         <Image
           src="/images/main.webp"

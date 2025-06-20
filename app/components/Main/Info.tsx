@@ -1,9 +1,51 @@
-import React from 'react'
+'use client';
+
+import React, { useEffect, useState } from 'react'
+import InfoCarousel from './InfoCarousel';
+import Loader from '../Loader/Loader';
+  
+type InfoItem = {
+  name: string;
+  image?: string;
+  images?: string[];
+};
 
 const Info = () => {
+
+  const [infoData, setInfoData] = useState<InfoItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchCakes = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/info.json`);
+        if (!res.ok) {
+          throw new Error('Ошибка при загрузке данных');
+        }
+        const data = await res.json();
+        const infoArray: InfoItem[] = Array.isArray(data) ? data : Object.values(data);
+        setInfoData(infoArray);
+      } catch (err: any) {
+        setError(err.message || 'Ошибка');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCakes();
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <div className="text-center py-8 text-red-500">{error}</div>;
+  }
+  console.log(infoData)
   return (
-    <section className='w-full min-h-[100vh] bg-gradient-to-b from-[#151515] to-[#1e1e1e] text-white py-12'>
-      <div className='container mx-auto px-6 py-12 flex flex-col md:flex-row items-center min-h-[100vh] gap-8'>
+    <section className='w-full min-h-[100vh] bg-gradient-to-b from-[#151515] to-[#1e1e1e] text-white pt-12'>
+      <div className='container mx-auto px-6 pt-12 flex flex-col md:flex-row items-center min-h-[100vh] gap-8'>
         {/* Левая часть с текстом */}
         <div className='md:w-1/2 space-y-6'>
           <h1 className='text-5xl md:text-6xl lg:text-7xl font-light text-[#bd6c20] tracking-tight'>Tatti_shef</h1>
@@ -25,14 +67,11 @@ const Info = () => {
         </div>
 
         {/* Правая часть с изображением */}
-        <div className='md:w-1/2 flex justify-center items-center'>
-          <div className='relative group'>
-            <img src="https://i.ibb.co/CpQ5KzMD/image-0.webp" alt="Кейтеринг Алушта" className='md:w-3/2 lg:w-1/2 rounded-lg shadow-lg transform transition-transform duration-300 group-hover:scale-105 group-hover:rotate-1' />
-            <div className='absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center items-center'>
-              <p className='text-xl font-semibold text-white'>Гастрономическое искусство</p>
-            </div>
+        {infoData.map((item: InfoItem, idx: number) => (
+          <div key={idx} className="md:w-1/2 w-full min-h-[600px] overflow-hidden flex-shrink-0">
+            <InfoCarousel images={item.images ?? (item.image ? [item.image] : [])} />
           </div>
-        </div>
+        ))}
       </div>
     </section>
   )

@@ -36,7 +36,7 @@ const Reviews = () => {
     ? (reviewsData.reduce((sum, r) => sum + r.rating, 0) / reviewsData.length).toFixed(1)
     : 0;
 
-  const renderStars = (rating) => {
+  const renderStars = (rating: number) => {
     return (
       <div className="flex items-center gap-1">
         {[...Array(5)].map((_, index) => {

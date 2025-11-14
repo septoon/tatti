@@ -4,6 +4,10 @@ export const navLinks = [
     link: '/'
   },
   {
+    title: 'Новый Год',
+    link: '/new-year'
+  },
+  {
     title: 'Фуршетное меню',
     link: '/menu'
   },

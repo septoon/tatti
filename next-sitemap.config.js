@@ -8,6 +8,7 @@ module.exports = {
     return [
       { loc: '/', lastmod: now },
       { loc: '/menu', lastmod: now },
+      { loc: '/new-year', lastmod: now },
       { loc: '/cakes', lastmod: now },
       { loc: '/contacts', lastmod: now },
       { loc: '/delivery', lastmod: now },

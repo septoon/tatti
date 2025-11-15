@@ -15,16 +15,21 @@ interface CartState {
 }
 
 // Получаем корзину из localStorage или устанавливаем пустой массив
-const loadCartFromLocalStorage = (): CartItem[] => {
-  if (typeof window !== 'undefined') {
+export const loadCartFromLocalStorage = (): CartItem[] => {
+  if (typeof window === 'undefined') {
+    return [];
+  }
+
+  try {
     const savedCart = localStorage.getItem('cart');
     return savedCart ? JSON.parse(savedCart) : [];
+  } catch {
+    return [];
   }
-  return [];
 };
 
 const initialState: CartState = {
-  items: loadCartFromLocalStorage(),
+  items: [],
 };
 const saveCartToLocalStorage = (cart: CartItem[]) => {
   if (typeof window !== 'undefined') {
@@ -86,8 +91,11 @@ addToCart: (state, action: PayloadAction<Omit<CartItem, 'quantity'>>) => {
       state.items = [];
       saveCartToLocalStorage(state.items);
     },
+    hydrateCart: (state, action: PayloadAction<CartItem[]>) => {
+      state.items = action.payload;
+    },
   },
 });
 
-export const { addToCart, removeOne, removeFromCart, clearCart } = cartSlice.actions;
+export const { addToCart, removeOne, removeFromCart, clearCart, hydrateCart } = cartSlice.actions;
 export default cartSlice.reducer;

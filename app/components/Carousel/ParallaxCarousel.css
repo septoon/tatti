@@ -1,7 +1,8 @@
 .embla {
   max-width: 100%;
   margin: auto;
-  --slide-height: 19rem;
+  height: 330px;
+  --slide-height: 100%;
   --slide-spacing: 1rem;
   --slide-size: 100%;
 }
@@ -16,29 +17,35 @@
 
 .embla__viewport {
   overflow: hidden;
+  width: 353px;
+  height: 330px;
 }
 .embla__container {
   display: flex;
   touch-action: pan-y pinch-zoom;
   margin-left: calc(var(--slide-spacing) * -1);
+  height: 100%;
 }
 .embla__slide {
   transform: translate3d(0, 0, 0);
   flex: 0 0 var(--slide-size);
   min-width: 0;
   padding-left: var(--slide-spacing);
+  height: 100%;
 }
 .embla__slide__img {
   border-radius: 1.2rem;
   display: block;
-  height: var(--slide-height);
+  height: 100%;
   width: 100%;
   object-fit: cover;
 }
 .embla__parallax {
   border-radius: 1.2rem;
   height: 100%;
+  width: 100%;
   overflow: hidden;
+  background: transparent;
 }
 .embla__parallax__layer {
   position: relative;
@@ -48,8 +55,10 @@
   justify-content: center;
 }
 .embla__parallax__img {
-  max-width: none;
-  flex: 0 0 calc(115% + (var(--slide-spacing) * 2));
+  max-width: 100%;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 

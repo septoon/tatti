@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '@/app/GlobalRedux/store';
 import { addToCart, removeOne } from '@/app/GlobalRedux/Features/cartSlice';
 import Loader from '@/app/components/Loader/Loader';
+import ParallaxCarousel from '@/app/components/Carousel/ParallaxCarousel';
 
 /* ------------------------------------------------------
    Types
@@ -14,6 +14,7 @@ export type NewYearItem = {
   id: number;
   name: string;
   order?: number;
+  images?: string[];
   price?: number;
   description?: string[];
   image?: string;
@@ -28,7 +29,7 @@ type NewYearJSON =
 ------------------------------------------------------ */
 const LOCAL_IMAGE_FILES = new Set([
   '1.webp', '2.webp', '3.webp', '4.webp', '5.webp', '6.webp', '7.webp', '8.webp',
-  '9.webp', '10.webp', '12.webp', '13.webp', '14.webp', '15.webp', '16.webp',
+  '9.webp', '10.webp', '12.webp', '13.webp', '14.webp', '15.webp', '16.webp', '16-1.webp', '16-2.webp', '16-3.webp',
   '17.webp', '18.webp', '19.webp', '22.webp',
   'IMG-3487.webp',
 ]);
@@ -48,6 +49,43 @@ const getFileNameFromUrl = (url: string) => {
   } catch {
     return '';
   }
+};
+
+const resolveFileName = (candidate: string, item: NewYearItem) => {
+  const raw = candidate?.trim();
+  const fromUrl = getFileNameFromUrl(raw);
+  const name = fromUrl || raw;
+
+  if (name && LOCAL_IMAGE_FILES.has(name)) {
+    return name;
+  }
+
+  if (item.order) {
+    const override = LOCAL_IMAGE_BY_ORDER[item.order];
+    if (override && LOCAL_IMAGE_FILES.has(override)) return override;
+
+    const orderFile = `${item.order}.webp`;
+    if (LOCAL_IMAGE_FILES.has(orderFile)) return orderFile;
+  }
+
+  return '';
+};
+
+const resolveImages = (item: NewYearItem): string[] => {
+  const candidates =
+    Array.isArray(item.images) && item.images.length > 0
+      ? item.images
+      : item.image
+        ? [item.image]
+        : item.order
+          ? [`${item.order}.webp`]
+          : [];
+
+  const resolved = candidates
+    .map((img) => resolveFileName(img, item))
+    .filter((name): name is string => Boolean(name));
+
+  return Array.from(new Set(resolved)).map((name) => `/new-year/${name}`);
 };
 
 /* ------------------------------------------------------
@@ -115,21 +153,6 @@ const NewYear: React.FC = () => {
   /* ------------------------------------------------------
      Resolve final image path
   ------------------------------------------------------ */
-  const resolveImage = (item: NewYearItem): string => {
-    const order = item.order;
-    const orderFile = order ? `${order}.webp` : '';
-    const customOverride = order ? LOCAL_IMAGE_BY_ORDER[order] : undefined;
-    const urlFile = getFileNameFromUrl(item.image ?? '');
-
-    const chosen =
-      (customOverride && LOCAL_IMAGE_FILES.has(customOverride) && customOverride) ||
-      (orderFile && LOCAL_IMAGE_FILES.has(orderFile) && orderFile) ||
-      (urlFile && LOCAL_IMAGE_FILES.has(urlFile) && urlFile) ||
-      '';
-
-    return chosen ? `/new-year/${chosen}` : '';
-  };
-
   /* ------------------------------------------------------
      Rendering
   ------------------------------------------------------ */
@@ -145,7 +168,9 @@ const NewYear: React.FC = () => {
       <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 content-stretch pb-16">
         {items.map((item, index) => {
           const cartItem = cartItems.find((ci) => ci.id === item.id);
-          const resolvedImage = resolveImage(item);
+          const resolvedImages = resolveImages(item);
+          const displayImages = resolvedImages.length > 0 ? resolvedImages : [];
+          const firstImage = displayImages[0];
 
           const price = item.price ?? 0;
           const description = item.description?.filter((s) => s.trim().length > 0) ?? [];
@@ -154,22 +179,11 @@ const NewYear: React.FC = () => {
           const loadingType: 'eager' | 'lazy' = prioritize ? 'eager' : 'lazy';
 
           return (
-            <div key={item.id} className="flex flex-col w-auto h-full mb-6 p-4 rounded-md">
-              <div className="w-full h-[300px] overflow-hidden rounded-md bg-gray-900 flex items-center justify-center">
-                {resolvedImage && (
-                  <Image
-                    src={resolvedImage}
-                    alt={item.name}
-                    width={350}
-                    height={300}
-                    className="object-cover w-full h-full"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
-                    priority={prioritize}
-                    loading={loadingType}
-                    quality={70}
-                    unoptimized
-                  />
-                )}
+            <div key={item.id} className="flex flex-col items-start w-full h-full mb-6 p-4 rounded-md">
+              <div className="w-full h-[330px] mb-6 py-4 rounded-md">
+                {displayImages.length > 0 ? (
+                  <ParallaxCarousel images={displayImages} />
+                ) : null}
               </div>
 
               <p className="my-4 font-bold text-lg uppercase">{item.name}</p>
@@ -182,7 +196,7 @@ const NewYear: React.FC = () => {
                 ))}
               </div>
 
-              <div className="flex items-end justify-between mt-auto">
+              <div className="flex items-end justify-between w-full mt-auto">
                 <p className="text-bold text-xl mr-4">{price} р</p>
 
                 {cartItem ? (
@@ -203,7 +217,7 @@ const NewYear: React.FC = () => {
                             id: item.id,
                             name: item.name,
                             price,
-                            image: item.image ?? '',
+                            image: firstImage ?? item.image ?? '',
                           })
                         )
                       }
@@ -220,7 +234,7 @@ const NewYear: React.FC = () => {
                           id: item.id,
                           name: item.name,
                           price,
-                          image: item.image ?? '',
+                          image: firstImage ?? item.image ?? '',
                         })
                       )
                     }

@@ -10,6 +10,7 @@ import Loader from '@/app/components/Loader/Loader';
 type NewYearItem = {
   id: number;
   name: string;
+  order?: number;
   price?: number;
   description?: string[];
   image?: string;
@@ -38,17 +39,18 @@ const LOCAL_IMAGE_FILES = new Set([
   'IMG-3487.webp',
 ]);
 
-const getLocalImagePath = (url: string) => {
+const LOCAL_IMAGE_BY_ORDER: Record<number, string> = {
+  // Несовпадающие имена файлов
+  20: 'IMG-3487.webp',
+};
+
+const getFileNameFromUrl = (url: string) => {
   if (!url) return '';
   try {
     const parsed = new URL(url.trim());
-    const fileName = parsed.pathname.split('/').pop();
-    if (fileName && LOCAL_IMAGE_FILES.has(fileName)) {
-      return `/new-year/${fileName}`;
-    }
-    return url;
+    return parsed.pathname.split('/').pop() || '';
   } catch {
-    return url;
+    return '';
   }
 };
 
@@ -59,7 +61,6 @@ const NewYear: React.FC = () => {
   const [newYearData, setNewYearData] = useState<NewYearItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [fallbackImages, setFallbackImages] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     let isMounted = true;
@@ -75,7 +76,14 @@ const NewYear: React.FC = () => {
         }
 
         const data = await res.json();
-        const newYearArray: NewYearItem[] = Array.isArray(data) ? data : Object.values(data);
+        const entries = Array.isArray(data) ? data.entries() : Object.entries(data);
+
+        const newYearArray: NewYearItem[] = Array.from(entries)
+          .map(([key, value]: any) => ({
+            ...(value as NewYearItem),
+            order: Number(key) || undefined,
+          }))
+          .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
         if (isMounted) {
           setNewYearData(newYearArray);
@@ -98,20 +106,21 @@ const NewYear: React.FC = () => {
     };
   }, []);
 
-  const resolveImageSrc = (imageUrl: string, id: number) => {
-    if (!imageUrl) return '';
-    if (fallbackImages[id]) {
-      return imageUrl;
-    }
-    const localPath = getLocalImagePath(imageUrl);
-    return localPath || imageUrl;
-  };
+  const resolveImageSrc = (item: NewYearItem) => {
+    const orderFileName = item.order ? `${item.order}.webp` : '';
+    const overrideFile = item.order ? LOCAL_IMAGE_BY_ORDER[item.order] : undefined;
+    const urlFileName = getFileNameFromUrl(item.image ?? '');
 
-  const handleImageError = (id: number) => {
-    setFallbackImages((prev) => {
-      if (prev[id]) return prev;
-      return { ...prev, [id]: true };
-    });
+    const picked =
+      overrideFile && LOCAL_IMAGE_FILES.has(overrideFile)
+        ? overrideFile
+        : orderFileName && LOCAL_IMAGE_FILES.has(orderFileName)
+          ? orderFileName
+          : urlFileName && LOCAL_IMAGE_FILES.has(urlFileName)
+            ? urlFileName
+            : '';
+
+    return picked ? `/new-year/${picked}` : '';
   };
 
   if (loading) return <Loader />;
@@ -131,7 +140,7 @@ const NewYear: React.FC = () => {
           const description = (item.description ?? []).filter((desc) => desc?.trim().length > 0);
           const prioritizeImage = index < 2;
           const loadingType: 'lazy' | 'eager' = prioritizeImage ? 'eager' : 'lazy';
-          const resolvedImage = resolveImageSrc(image, item.id);
+          const resolvedImage = resolveImageSrc(item);
 
           return (
             <div key={item.id} className="flex flex-col w-auto h-full mb-6 p-4 rounded-md">
@@ -148,7 +157,6 @@ const NewYear: React.FC = () => {
                     loading={loadingType}
                     quality={70}
                     unoptimized
-                    onError={() => handleImageError(item.id)}
                   />
                 )}
               </div>

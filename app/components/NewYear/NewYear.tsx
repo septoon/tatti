@@ -10,7 +10,7 @@ import Loader from '@/app/components/Loader/Loader';
 /* ------------------------------------------------------
    Types
 ------------------------------------------------------ */
-type NewYearItem = {
+export type NewYearItem = {
   id: number;
   name: string;
   order?: number;
@@ -24,12 +24,13 @@ type NewYearJSON =
   | NewYearItem[];                // если массив
 
 /* ------------------------------------------------------
-   Local Images
+   Local image sets
 ------------------------------------------------------ */
 const LOCAL_IMAGE_FILES = new Set([
   '1.webp', '2.webp', '3.webp', '4.webp', '5.webp', '6.webp', '7.webp', '8.webp',
   '9.webp', '10.webp', '12.webp', '13.webp', '14.webp', '15.webp', '16.webp',
-  '17.webp', '18.webp', '19.webp', '22.webp', 'IMG-3487.webp',
+  '17.webp', '18.webp', '19.webp', '22.webp',
+  'IMG-3487.webp',
 ]);
 
 const LOCAL_IMAGE_BY_ORDER: Record<number, string> = {
@@ -42,8 +43,8 @@ const LOCAL_IMAGE_BY_ORDER: Record<number, string> = {
 const getFileNameFromUrl = (url: string) => {
   if (!url) return '';
   try {
-    const parsed = new URL(url.trim());
-    return parsed.pathname.split('/').pop() || '';
+    const u = new URL(url.trim());
+    return u.pathname.split('/').pop() || '';
   } catch {
     return '';
   }
@@ -56,7 +57,7 @@ const NewYear: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  const [newYearData, setNewYearData] = useState<NewYearItem[]>([]);
+  const [items, setItems] = useState<NewYearItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -64,9 +65,9 @@ const NewYear: React.FC = () => {
      Load JSON
   ------------------------------------------------------ */
   useEffect(() => {
-    let isMounted = true;
+    let mounted = true;
 
-    const fetchNewYear = async () => {
+    const fetchData = async () => {
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/new-year.json`, {
           cache: 'no-store',
@@ -74,65 +75,64 @@ const NewYear: React.FC = () => {
 
         if (!res.ok) throw new Error('Ошибка при загрузке данных');
 
-        const data: NewYearJSON = await res.json();
+        const json: NewYearJSON = await res.json();
 
-        // ВАЖНО: отдельно обрабатываем объект и массив
         let entries: [string | number, NewYearItem][];
 
-        if (Array.isArray(data)) {
-          // массив → entries() → превращаем в массив
-          entries = Array.from(data.entries()).map(
+        if (Array.isArray(json)) {
+          // массив -> entries()
+          entries = Array.from(json.entries()).map(
             ([index, value]): [number, NewYearItem] => [index, value]
           );
         } else {
-          // объект → Object.entries()
-          entries = Object.entries(data).map(
+          // объект -> Object.entries()
+          entries = Object.entries(json).map(
             ([key, value]): [string, NewYearItem] => [key, value]
           );
         }
 
-        const newYearArray: NewYearItem[] = entries
-          .map(([key, value]) => ({
-            ...(value as NewYearItem),
+        const normalized: NewYearItem[] = entries
+          .map(([key, val]) => ({
+            ...(val as NewYearItem),
             order: Number(key) || undefined,
           }))
           .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
-        if (isMounted) setNewYearData(newYearArray);
+        if (mounted) setItems(normalized);
       } catch (err: any) {
-        if (isMounted) setError(err.message ?? 'Ошибка');
+        if (mounted) setError(err.message ?? 'Ошибка');
       } finally {
-        if (isMounted) setLoading(false);
+        if (mounted) setLoading(false);
       }
     };
 
-    fetchNewYear();
+    fetchData();
     return () => {
-      isMounted = false;
+      mounted = false;
     };
   }, []);
 
   /* ------------------------------------------------------
-     Resolve Image Source
+     Resolve final image path
   ------------------------------------------------------ */
-  const resolveImageSrc = (item: NewYearItem) => {
-    const orderFileName = item.order ? `${item.order}.webp` : '';
-    const overrideFile = item.order ? LOCAL_IMAGE_BY_ORDER[item.order] : undefined;
-    const urlFileName = getFileNameFromUrl(item.image ?? '');
+  const resolveImage = (item: NewYearItem): string => {
+    const order = item.order;
+    const orderFile = order ? `${order}.webp` : '';
+    const customOverride = order ? LOCAL_IMAGE_BY_ORDER[order] : undefined;
+    const urlFile = getFileNameFromUrl(item.image ?? '');
 
-    const picked =
-      (overrideFile && LOCAL_IMAGE_FILES.has(overrideFile) && overrideFile) ||
-      (orderFileName && LOCAL_IMAGE_FILES.has(orderFileName) && orderFileName) ||
-      (urlFileName && LOCAL_IMAGE_FILES.has(urlFileName) && urlFileName) ||
+    const chosen =
+      (customOverride && LOCAL_IMAGE_FILES.has(customOverride) && customOverride) ||
+      (orderFile && LOCAL_IMAGE_FILES.has(orderFile) && orderFile) ||
+      (urlFile && LOCAL_IMAGE_FILES.has(urlFile) && urlFile) ||
       '';
 
-    return picked ? `/new-year/${picked}` : '';
+    return chosen ? `/new-year/${chosen}` : '';
   };
 
   /* ------------------------------------------------------
-     Render
+     Rendering
   ------------------------------------------------------ */
-
   if (loading) return <Loader />;
   if (error) return <div className="text-center py-8 text-red-500">{error}</div>;
 
@@ -143,15 +143,15 @@ const NewYear: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 content-stretch pb-16">
-        {newYearData.map((item, index) => {
+        {items.map((item, index) => {
           const cartItem = cartItems.find((ci) => ci.id === item.id);
-          const resolvedImage = resolveImageSrc(item);
+          const resolvedImage = resolveImage(item);
 
           const price = item.price ?? 0;
-          const description = item.description?.filter((d) => d.trim().length > 0) ?? [];
+          const description = item.description?.filter((s) => s.trim().length > 0) ?? [];
 
-          const prioritizeImage = index < 2;
-          const loadingType: 'lazy' | 'eager' = prioritizeImage ? 'eager' : 'lazy';
+          const prioritize = index < 2;
+          const loadingType: 'eager' | 'lazy' = prioritize ? 'eager' : 'lazy';
 
           return (
             <div key={item.id} className="flex flex-col w-auto h-full mb-6 p-4 rounded-md">
@@ -164,7 +164,7 @@ const NewYear: React.FC = () => {
                     height={300}
                     className="object-cover w-full h-full"
                     sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw"
-                    priority={prioritizeImage}
+                    priority={prioritize}
                     loading={loadingType}
                     quality={70}
                     unoptimized
@@ -193,12 +193,19 @@ const NewYear: React.FC = () => {
                     >
                       -
                     </button>
-                    <span className="mx-1.5 text-white font-pt-sans">
-                      {cartItem.quantity}
-                    </span>
+
+                    <span className="mx-1.5 text-white font-pt-sans">{cartItem.quantity}</span>
+
                     <button
                       onClick={() =>
-                        dispatch(addToCart({ id: item.id, name: item.name, price, image: item.image }))
+                        dispatch(
+                          addToCart({
+                            id: item.id,
+                            name: item.name,
+                            price,
+                            image: item.image ?? '',
+                          })
+                        )
                       }
                       className="px-4 py-2 text-white"
                     >
@@ -208,7 +215,14 @@ const NewYear: React.FC = () => {
                 ) : (
                   <button
                     onClick={() =>
-                      dispatch(addToCart({ id: item.id, name: item.name, price, image: item.image }))
+                      dispatch(
+                        addToCart({
+                          id: item.id,
+                          name: item.name,
+                          price,
+                          image: item.image ?? '',
+                        })
+                      )
                     }
                     className="bg-green-600 px-4 py-2 rounded-lg text-white"
                   >

@@ -3,10 +3,10 @@ export const navLinks = [
     title: 'Главная',
     link: '/'
   },
-  {
-    title: 'Новый Год',
-    link: '/new-year'
-  },
+  // {
+  //   title: 'Новый Год',
+  //   link: '/new-year'
+  // },
   {
     title: 'Фуршетное меню',
     link: '/menu'

@@ -25,50 +25,47 @@ type NewYearJSON =
   | NewYearItem[];                // если массив
 
 /* ------------------------------------------------------
-   Local image sets
+   Image helpers
 ------------------------------------------------------ */
-const LOCAL_IMAGE_FILES = new Set([
-  '1.webp', '2.webp', '3.webp', '4.webp', '5.webp', '6.webp', '7.webp', '8.webp',
-  '9.webp', '10.webp', '12.webp', '13.webp', '14.webp', '15.webp', '16.webp', '16-1.webp', '16-2.webp', '16-3.webp',
-  '17.webp', '18.webp', '19.webp', '22.webp',
-  'IMG-3487.webp',
-]);
-
-const LOCAL_IMAGE_BY_ORDER: Record<number, string> = {
-  20: 'IMG-3487.webp',
-};
+const API_BASE_URL = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/$/, '');
+const NEW_YEAR_IMAGES_BASE = `${API_BASE_URL}/images/new-year`;
 
 /* ------------------------------------------------------
    Helpers
 ------------------------------------------------------ */
-const getFileNameFromUrl = (url: string) => {
-  if (!url) return '';
-  try {
-    const u = new URL(url.trim());
-    return u.pathname.split('/').pop() || '';
-  } catch {
-    return '';
+const extractFileName = (value: string): string => {
+  const input = value.trim();
+  if (!input) return '';
+
+  if (/^https?:\/\//i.test(input)) {
+    try {
+      const url = new URL(input);
+      return url.pathname.split('/').pop() || '';
+    } catch {
+      return '';
+    }
   }
+
+  const clean = input.split('?')[0].split('#')[0];
+  if (!clean) return '';
+  return clean.split('/').pop() || '';
 };
 
-const resolveFileName = (candidate: string, item: NewYearItem) => {
-  const raw = candidate?.trim();
-  const fromUrl = getFileNameFromUrl(raw);
-  const name = fromUrl || raw;
-
-  if (name && LOCAL_IMAGE_FILES.has(name)) {
-    return name;
+const toAbsoluteImageUrl = (value: string): string => {
+  const input = value.trim();
+  if (!input) return '';
+  if (/^https?:\/\//i.test(input)) return input;
+  if (input.startsWith('//')) return `https:${input}`;
+  if (input.startsWith('/images/new-year/')) return API_BASE_URL ? `${API_BASE_URL}${input}` : input;
+  if (input.startsWith('/new-year/')) {
+    const fileName = extractFileName(input);
+    if (!fileName) return '';
+    return `${NEW_YEAR_IMAGES_BASE}/${encodeURIComponent(fileName)}`;
   }
 
-  if (item.order) {
-    const override = LOCAL_IMAGE_BY_ORDER[item.order];
-    if (override && LOCAL_IMAGE_FILES.has(override)) return override;
-
-    const orderFile = `${item.order}.webp`;
-    if (LOCAL_IMAGE_FILES.has(orderFile)) return orderFile;
-  }
-
-  return '';
+  const fileName = extractFileName(input);
+  if (!fileName) return '';
+  return `${NEW_YEAR_IMAGES_BASE}/${encodeURIComponent(fileName)}`;
 };
 
 const resolveImages = (item: NewYearItem): string[] => {
@@ -82,10 +79,10 @@ const resolveImages = (item: NewYearItem): string[] => {
           : [];
 
   const resolved = candidates
-    .map((img) => resolveFileName(img, item))
-    .filter((name): name is string => Boolean(name));
+    .map(toAbsoluteImageUrl)
+    .filter((url): url is string => Boolean(url));
 
-  return Array.from(new Set(resolved)).map((name) => `/new-year/${name}`);
+  return Array.from(new Set(resolved));
 };
 
 /* ------------------------------------------------------
@@ -175,11 +172,10 @@ const NewYear: React.FC = () => {
           const price = item.price ?? 0;
           const description = item.description?.filter((s) => s.trim().length > 0) ?? [];
 
-          const prioritize = index < 2;
-          const loadingType: 'eager' | 'lazy' = prioritize ? 'eager' : 'lazy';
+          const itemKey = `${item.id}-${item.order ?? index}`;
 
           return (
-            <div key={item.id} className="flex flex-col items-start w-full h-full mb-6 p-4 rounded-md">
+            <div key={itemKey} className="flex flex-col items-start w-full h-full mb-6 p-4 rounded-md">
               <div className="w-full h-[330px] mb-6 py-4 rounded-md">
                 {displayImages.length > 0 ? (
                   <ParallaxCarousel images={displayImages} />

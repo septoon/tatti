@@ -3,7 +3,6 @@ import React from 'react'
 import { RootState } from '@/app/GlobalRedux/store';
 import { useDispatch, useSelector } from 'react-redux';
 import CartServices from './CartServices'
-import Image from 'next/image';
 import { CiCircleMinus, CiCirclePlus } from 'react-icons/ci';
 import { addToCart, removeFromCart, removeOne } from '@/app/GlobalRedux/Features/cartSlice';
 import { IoIosCloseCircleOutline } from 'react-icons/io';
@@ -17,16 +16,18 @@ const CartItems = () => {
       <CartServices />
       {cartItems.map((item) => (
         <div key={item.id} className="flex items-center justify-between border-b border-black/40 py-3">
-          <Image
+          <img
             src={
               Array.isArray(item.images) && item.images.length > 0
                 ? item.images[0]
                 : item.image
             }
             alt={item.name}
-            width={50}
-            height={50}
-            className="rounded-md"
+            loading="lazy"
+            className="rounded-md w-[50px] h-[50px] object-cover"
+            onError={(e) => {
+              e.currentTarget.src = '/images/not_found.svg';
+            }}
           />
           <div className="flex-grow mx-4">
             <span className="">{item.name}</span>

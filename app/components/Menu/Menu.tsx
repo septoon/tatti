@@ -5,10 +5,46 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '@/app/GlobalRedux/store';
 import Image from 'next/image';
-import NotFoundImage from '/public/images/not_found.svg';
+import NotFoundImage from '@/public/images/not_found.svg';
 import { addToCart, removeOne } from '@/app/GlobalRedux/Features/cartSlice';
 import { IoSearch } from 'react-icons/io5';
 import Loader from '../Loader/Loader';
+
+/* ------------------------------------------------------
+   Image helpers
+------------------------------------------------------ */
+const CATEGORY_DIR_MAP: Record<string, string> = {
+  'ГАСТРОБОКСЫ': 'ГАСТРОБОКСЫ',
+  'ПП МЕНЮ': 'ПП МЕНЮ',
+  'ДЕТСКОЕ МЕНЮ': 'ДЕТСКОЕ МЕНЮ',
+  'ТОРТЫ ЗАКУСОЧНЫЕ И ПИРОГИ': 'Торты закусочные и пироги',
+};
+const API_BASE_URL = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/$/, '');
+
+const normalizeName = (value?: string) =>
+  (value || '')
+    .replace(/\u00a0/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toUpperCase();
+
+const resolveLocalImage = (item: MenuItem) => {
+  const categoryKey = normalizeName(item.category);
+  const dir = CATEGORY_DIR_MAP[categoryKey];
+  const fileName = normalizeName(item.name);
+
+  if (!dir || !fileName) return '';
+  return `/Фуршетное меню/${dir}/${fileName}.webp`;
+};
+
+const toAbsoluteImageUrl = (src?: string) => {
+  const value = (src || '').trim();
+  if (!value) return '';
+  if (/^https?:\/\//i.test(value)) return value;
+  if (value.startsWith('//')) return `https:${value}`;
+  if (!API_BASE_URL) return value;
+  return value.startsWith('/') ? `${API_BASE_URL}${value}` : `${API_BASE_URL}/${value}`;
+};
 
 interface MenuItem {
   id: number;
@@ -40,7 +76,7 @@ const Menu: React.FC = () => {
         if (!Array.isArray(data)) {
           // data — объект с ключами (категориями)
           for (const cat in data) {
-            let items = data[cat];
+            const items = data[cat];
             // Если items - массив, разворачиваем вложенные массивы, если есть
             const flatItems: MenuItem[] = Array.isArray(items) ? items.flat(Infinity) : [];
             // Для каждого элемента всегда задаем category равное ключу cat
@@ -56,7 +92,7 @@ const Menu: React.FC = () => {
         }
         setMenu(groupedData);
         setCategories(Object.keys(groupedData));
-      } catch (err) {
+      } catch {
         setError('Ошибка при загрузке меню');
       } finally {
         setLoading(false);
@@ -137,17 +173,32 @@ const Menu: React.FC = () => {
       <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 pb-16">
         {filteredMenu.map((item, index) => {
           const cartItem = cartItems.find((ci) => ci.id === item.id);
+          const remoteImage = toAbsoluteImageUrl(item.image);
+          const localImage = remoteImage ? '' : resolveLocalImage(item);
+          const initialImage = remoteImage || localImage || '/images/not_found.svg';
+
           return (
             <div key={index} className="flex flex-col w-auto h-full mb-6 p-4 rounded-md">
-              <Image
-                src={item.image}
-                alt={item.name}
-                width={350}
-                height={250}
-                className="object-cover w-full h-[250px] rounded-md"
-              />
+              <div className="w-full aspect-[3/4] overflow-hidden rounded-md">
+                <img
+                  src={initialImage}
+                  alt={item.name}
+                  loading="lazy"
+                  className="object-cover object-center w-full h-full"
+                  onError={(e) => {
+                    const localFallback = e.currentTarget.dataset.localFallback || '';
+                    if (localFallback && e.currentTarget.src !== localFallback) {
+                      e.currentTarget.src = localFallback;
+                      e.currentTarget.dataset.localFallback = '';
+                      return;
+                    }
+                    e.currentTarget.src = '/images/not_found.svg';
+                  }}
+                  data-local-fallback={localImage}
+                />
+              </div>
               <p className="my-2 font-bold text-lg uppercase">{item.name}</p>
-              <div className="flex flex-col flex-grow">
+              <div className="flex flex-col grow">
                 {(Array.isArray(item.description) ? item.description : []).map((desc, desIndex) => (
                   <p className="text-xs text-gray-500" key={desIndex}>
                     • {desc}
@@ -172,7 +223,7 @@ const Menu: React.FC = () => {
                             id: item.id,
                             name: item.name,
                             price: item.price,
-                            image: item.image,
+                            image: initialImage,
                           })
                         )
                       }
@@ -189,7 +240,7 @@ const Menu: React.FC = () => {
                           id: item.id,
                           name: item.name,
                           price: item.price,
-                          image: item.image,
+                          image: initialImage,
                         })
                       )
                     }

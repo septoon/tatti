@@ -14,6 +14,17 @@ interface CartState {
   items: CartItem[];
 }
 
+const LEGACY_CAKE_IMAGE_PREFIX = '/ТОРТЫ И ДЕСЕРТЫ/';
+const LEGACY_MENU_IMAGE_PREFIX = '/Фуршетное меню/';
+
+const sanitizeImagePath = (image?: string) => {
+  const value = (image || '').trim();
+  if (!value) return '';
+  if (value.startsWith(LEGACY_CAKE_IMAGE_PREFIX)) return '/images/not_found.svg';
+  if (value.startsWith(LEGACY_MENU_IMAGE_PREFIX)) return '/images/not_found.svg';
+  return value;
+};
+
 // Получаем корзину из localStorage или устанавливаем пустой массив
 export const loadCartFromLocalStorage = (): CartItem[] => {
   if (typeof window === 'undefined') {
@@ -22,7 +33,14 @@ export const loadCartFromLocalStorage = (): CartItem[] => {
 
   try {
     const savedCart = localStorage.getItem('cart');
-    return savedCart ? JSON.parse(savedCart) : [];
+    if (!savedCart) return [];
+    const parsed = JSON.parse(savedCart);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.map((item) => ({
+      ...item,
+      image: sanitizeImagePath(item?.image),
+      images: Array.isArray(item?.images) ? item.images.map((src: string) => sanitizeImagePath(src)) : item?.images,
+    }));
   } catch {
     return [];
   }

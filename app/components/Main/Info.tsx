@@ -1,48 +1,44 @@
 'use client';
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import InfoCarousel from './InfoCarousel';
-import Loader from '../Loader/Loader';
-  
-type InfoItem = {
-  name: string;
-  image?: string;
-  images?: string[];
-};
+
+const infoVideos = [
+  '/video/info1.mp4',
+  '/video/info2.mp4',
+  '/video/info3.mp4',
+  '/video/info4.MP4',
+  '/video/info5.mp4',
+  '/video/info6.mp4',
+];
 
 const Info = () => {
-
-  const [infoData, setInfoData] = useState<InfoItem[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const [shouldLoadCarousel, setShouldLoadCarousel] = useState(false);
+  const carouselHostRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const fetchCakes = async () => {
-      try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/info.json`);
-        if (!res.ok) {
-          throw new Error('Ошибка при загрузке данных');
+    if (!carouselHostRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry?.isIntersecting) {
+          setShouldLoadCarousel(true);
+          observer.disconnect();
         }
-        const data = await res.json();
-        const infoArray: InfoItem[] = Array.isArray(data) ? data : Object.values(data);
-        setInfoData(infoArray);
-      } catch (err: any) {
-        setError(err.message || 'Ошибка');
-      } finally {
-        setLoading(false);
+      },
+      {
+        root: null,
+        // Подгружаем чуть заранее, чтобы к моменту скролла видео уже стартовало.
+        rootMargin: '300px 0px',
+        threshold: 0.01,
       }
-    };
-    fetchCakes();
+    );
+
+    observer.observe(carouselHostRef.current);
+    return () => observer.disconnect();
   }, []);
 
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <div className="text-center py-8 text-red-500">{error}</div>;
-  }
-  console.log(infoData)
   return (
     <section className='w-full min-h-[100vh] bg-gradient-to-b from-[#151515] to-[#1e1e1e] text-white py-12'>
       <div className='container mx-auto px-6 pt-12 flex flex-col md:flex-row items-center min-h-[100vh] gap-8'>
@@ -66,12 +62,14 @@ const Info = () => {
           </p>
         </div>
 
-        {/* Правая часть с изображением */}
-        {infoData.map((item: InfoItem, idx: number) => (
-          <div key={idx} className="md:w-1/2 w-full min-h-[600px] overflow-hidden flex-shrink-0">
-            <InfoCarousel images={item.images ?? (item.image ? [item.image] : [])} />
-          </div>
-        ))}
+        {/* Правая часть с видео */}
+        <div ref={carouselHostRef} className="md:w-1/2 w-screen -mx-6 md:mx-0 overflow-hidden flex-shrink-0">
+          {shouldLoadCarousel ? (
+            <InfoCarousel videos={infoVideos} />
+          ) : (
+            <div className="w-full aspect-[9/16] md:aspect-[3/4] rounded-none md:rounded-2xl bg-[#0f0f0f] border border-white/10" />
+          )}
+        </div>
       </div>
     </section>
   )

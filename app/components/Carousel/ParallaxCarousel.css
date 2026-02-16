@@ -20,6 +20,30 @@
   width: 353px;
   height: 330px;
 }
+
+.embla__viewport--reviews {
+  width: min(100%, 1180px);
+  height: auto;
+  min-height: 520px;
+  margin: 0 auto;
+}
+
+.embla__viewport--reviews .embla__container {
+  height: auto;
+}
+
+.embla__viewport--reviews .embla__slide {
+  height: auto;
+}
+
+.embla__viewport--reviews .embla__parallax {
+  height: auto;
+}
+
+.embla__viewport--reviews .embla__slide__img {
+  height: auto;
+}
+
 .embla__container {
   display: flex;
   touch-action: pan-y pinch-zoom;
@@ -64,7 +88,26 @@
 
 @media (min-width: 768px) and (max-width: 1920px) {
   .embla_review {
-    --slide-size: 60%;
-    --slide-spacing: 10rem;
+    --slide-size: 78%;
+    --slide-spacing: 2rem;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .embla_review {
+    --slide-size: 86%;
+    --slide-spacing: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .embla__viewport--reviews {
+    height: 65vh;
+    min-height: 380px;
+  }
+
+  .embla_review {
+    --slide-size: 100%;
+    --slide-spacing: 0.75rem;
   }
 }

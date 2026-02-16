@@ -4,7 +4,6 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import type { EmblaCarouselType } from 'embla-carousel';
 import Autoplay from 'embla-carousel-autoplay';
-import Image from 'next/image';
 import './ParallaxCarousel.css';
 
 const TWEEN_FACTOR_BASE = 0.2;
@@ -12,6 +11,8 @@ const TWEEN_FACTOR_BASE = 0.2;
 type Props = { images: string[] };
 
 const ParallaxCarousel: React.FC<Props> = ({ images }) => {
+  const safeImages = images.filter(Boolean);
+
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
     [Autoplay({ delay: 4000, stopOnInteraction: false })]
@@ -83,7 +84,7 @@ const ParallaxCarousel: React.FC<Props> = ({ images }) => {
       .on('slideFocus', tweenParallax);
   }, [emblaApi, tweenParallax]);
 
-  const imagesToUse = images.length < 7 ? [...images] : images;
+  const imagesToUse = safeImages.length < 7 ? [...safeImages] : safeImages;
 
   return (
     <div className="embla">
@@ -93,12 +94,14 @@ const ParallaxCarousel: React.FC<Props> = ({ images }) => {
             <div className="embla__slide" key={index}>
               <div className="embla__parallax">
                 <div className="embla__parallax__layer">
-                  <Image
+                  <img
                     src={img}
                     alt={`Slide ${index}`}
-                    width={600}
-                    height={250}
+                    loading="lazy"
                     className="embla__slide__img embla__parallax__img"
+                    onError={(e) => {
+                      e.currentTarget.src = '/images/not_found.svg';
+                    }}
                   />
                 </div>
               </div>

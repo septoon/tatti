@@ -20,7 +20,14 @@ const actions = [
 ];
 
 export default function ChatButton() {
+  const [mounted, setMounted] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
     <SpeedDial

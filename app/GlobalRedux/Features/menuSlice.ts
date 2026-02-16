@@ -28,7 +28,7 @@ export const fetchMenu = createAsyncThunk<MenuType, void, { rejectValue: string 
       if (!Array.isArray(data)) {
         // data — объект с ключами (категориями)
         for (const cat in data) {
-          let items = data[cat];
+          const items = data[cat];
           const flatItems: MenuItem[] = Array.isArray(items) ? items.flat(Infinity) : [];
           // Для каждого элемента всегда задаем category равное ключу cat
           groupedData[cat] = flatItems.map(item => ({ ...item, category: cat }));

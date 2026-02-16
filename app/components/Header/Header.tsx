@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation';
 const NavMobile = dynamic(() => import('./nav-mobile'), { ssr: false });
 
 const Header = () => {
-  const pathname = usePathname();
+  const pathname = usePathname() || '';
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (

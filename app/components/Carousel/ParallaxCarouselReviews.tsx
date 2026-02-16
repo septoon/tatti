@@ -5,9 +5,8 @@ import useEmblaCarousel from 'embla-carousel-react';
 import type { EmblaCarouselType } from 'embla-carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import './ParallaxCarousel.css';
-import Image from 'next/image';
 
-const TWEEN_FACTOR_BASE = 0.2;
+const TWEEN_FACTOR_BASE = 0.06;
 
 type Review = {
   name: string;
@@ -28,7 +27,7 @@ const ParallaxCarouselReviews: React.FC<Props> = ({ reviews }) => {
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true },
-    [Autoplay({ delay: 4000, stopOnInteraction: false })]
+    [Autoplay({ delay: 5500, stopOnInteraction: true })]
   );
 
   const tweenFactor = useRef(0);
@@ -112,30 +111,32 @@ const ParallaxCarouselReviews: React.FC<Props> = ({ reviews }) => {
 
   return (
     <div className="embla_review">
-      <div className="embla__viewport" ref={emblaRef}>
+      <div className="embla__viewport embla__viewport--reviews" ref={emblaRef}>
         <div className="embla__container">
           {reviews.map((rev, index) => (
-            <div className="embla__slide flex justify-center px-2" key={index}>
+            <div className="embla__slide flex justify-center px-1 md:px-2" key={index}>
               <div className="embla__parallax">
                 <div className="embla__parallax__layer flex flex-col">
-                  <div className="bg-[#171717] p-4 rounded-lg flex flex-col gap-3 max-h-[70vh] overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-orange-500/50">
+                  <div className="bg-[#171717]/95 backdrop-blur-sm p-4 md:p-6 rounded-xl flex flex-col gap-3 border border-white/10 shadow-[0_18px_40px_rgba(0,0,0,0.45)] max-h-[70vh] overflow-y-auto md:max-h-none md:overflow-visible overscroll-contain scrollbar-thin scrollbar-thumb-orange-500/50">
                     <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-orange-500 text-2xl">{rev.name}</h3>
+                      <h3 className="text-orange-400 text-2xl md:text-3xl leading-tight">{rev.name}</h3>
                       {renderStars(rev.rating)}
                     </div>
 
                     {rev.image && (
-                      <Image
+                      <img
                         src={rev.image}
                         alt={`Slide ${index}`}
-                        width={600}
-                        height={250}
-                        className="embla__slide__img embla__parallax__img mb-4 w-full rounded-lg object-cover max-h-60 md:max-h-72"
+                        loading="lazy"
+                        className="embla__slide__img embla__parallax__img mb-4 w-full rounded-lg object-cover max-h-60 md:max-h-[360px]"
+                        onError={(e) => {
+                          e.currentTarget.src = '/images/not_found.svg';
+                        }}
                       />
                     )}
 
                     <p
-                      className={`text-white whitespace-pre-line leading-relaxed ${
+                      className={`text-white/95 whitespace-pre-line leading-relaxed text-base md:text-lg ${
                         rev.reviewText.length > 150 && !expanded[index] ? 'line-clamp-3' : ''
                       }`}
                     >

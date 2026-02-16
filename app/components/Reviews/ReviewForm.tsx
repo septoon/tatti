@@ -6,6 +6,45 @@ interface ReviewFormProps {
   onClose: () => void
 }
 
+const MAX_IMAGE_SIZE_MB = 2
+const MAX_IMAGE_DIMENSION = 1920
+
+const isHeic = (file: File) =>
+  /image\/hei(c|f)/i.test(file.type) || /\.(heic|heif)$/i.test(file.name)
+
+const toWebpName = (fileName: string) => {
+  const baseName = fileName.replace(/\.[^/.]+$/, '')
+  return `${baseName}.webp`
+}
+
+const ensureWebpFile = async (file: File): Promise<File> => {
+  const { default: imageCompression } = await import('browser-image-compression')
+  let sourceFile: File = file
+
+  if (isHeic(file)) {
+    const { default: heic2any } = await import('heic2any')
+    const converted = await heic2any({ blob: file, toType: 'image/jpeg', quality: 0.9 }) as Blob | Blob[]
+    const blob = Array.isArray(converted) ? converted[0] : converted
+    sourceFile = new File([blob], file.name.replace(/\.(heic|heif)$/i, '.jpg'), {
+      type: 'image/jpeg',
+      lastModified: Date.now(),
+    })
+  }
+
+  const compressed = await imageCompression(sourceFile, {
+    maxSizeMB: MAX_IMAGE_SIZE_MB,
+    maxWidthOrHeight: MAX_IMAGE_DIMENSION,
+    useWebWorker: true,
+    fileType: 'image/webp',
+    initialQuality: 0.85,
+  })
+
+  return new File([compressed], toWebpName(file.name), {
+    type: 'image/webp',
+    lastModified: Date.now(),
+  })
+}
+
 const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
   const [name, setName] = useState('')
   const [rating, setRating] = useState(0)
@@ -23,29 +62,15 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
   const isFormValid = name.trim() !== '' && reviewText.trim() !== '' && rating > 0;
 
   const uploadImage = async (file: File): Promise<string | null> => {
-    setLoading(true)
     try {
       const formData = new FormData()
       formData.append('image', file)
 
-      const apiKey = process.env.NEXT_PUBLIC_IMGBB_API_KEY
-      const imgbbUrl = `https://api.imgbb.com/1/upload?key=${apiKey}`
-
-      const response = await axios.post(imgbbUrl, formData)
-      console.log('Uploaded image response:', response.data)
-      if (response.data.success) {
-        const uploadedImageUrl = response.data.data.url
-        return uploadedImageUrl
-      } else {
-        alert('Ошибка загрузки изображения')
-        return null
-      }
+      const response = await axios.post<{ url?: string }>('/api/reviews/upload', formData)
+      return response.data?.url || null
     } catch (error) {
       console.error('Ошибка загрузки изображения:', error)
-      // Возвращаем пустую строку, чтобы отзыв мог быть отправлен без изображения
       return ''
-    } finally {
-      setLoading(false)
     }
   }
 
@@ -54,9 +79,17 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
     setLoading(true)
     let uploadedImageUrl = ''
     if (image) {
-      uploadedImageUrl = (await uploadImage(image)) || ''
+      try {
+        const webpImage = await ensureWebpFile(image)
+        uploadedImageUrl = (await uploadImage(webpImage)) || ''
+      } catch (error) {
+        console.error('Ошибка конвертации изображения:', error)
+        alert('Не удалось обработать изображение')
+        setLoading(false)
+        return
+      }
     }
-    console.log('Uploaded image URL:', uploadedImageUrl)
+
     const reviewData = {
       name,
       reviewText,
@@ -111,7 +144,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ onClose }) => {
         <label className="relative w-full">
           <span>Изображение рядом с отзывом</span>
           <div className="relative flex items-center">
-            <input type="file" id="file-upload" onChange={handleFileChange} className="hidden" />
+            <input type="file" id="file-upload" onChange={handleFileChange} accept="image/*,.heic,.heif" className="hidden" />
             <label
               htmlFor="file-upload"
               className="flex items-center w-full text-white p-2 pl-2 mt-2 border border-gray-600 rounded-md cursor-pointer"

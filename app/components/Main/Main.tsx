@@ -21,6 +21,7 @@ const Main = () => {
       loop
       muted
       playsInline
+      suppressHydrationWarning
       className="w-full h-full object-cover"
     >
       <source src="/video/main.mp4" type="video/mp4" />

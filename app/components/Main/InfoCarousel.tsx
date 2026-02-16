@@ -2,106 +2,80 @@
 
 import React, { useCallback, useEffect, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
-import type { EmblaCarouselType } from 'embla-carousel';
-import Autoplay from 'embla-carousel-autoplay';
-import Image from 'next/image';
 import './InfoCarousel.css';
 
-const TWEEN_FACTOR_BASE = 0.2;
+type Props = { videos: string[] };
 
-type Props = { images: string[] };
+const InfoCarousel: React.FC<Props> = ({ videos }) => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: 'start' });
+  const videoRefs = useRef<Array<HTMLVideoElement | null>>([]);
 
-const InfoCarousel: React.FC<Props> = ({ images }) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true },
-    [Autoplay({ delay: 4000, stopOnInteraction: false })]
-  );
+  const videosToUse = videos.filter(Boolean);
 
-  const tweenFactor = useRef(0);
-  const tweenNodes = useRef<HTMLElement[]>([]);
+  const syncActiveVideo = useCallback(() => {
+    if (!emblaApi || videosToUse.length === 0) return;
 
-  const setTweenNodes = useCallback((emblaApi: EmblaCarouselType): void => {
-    tweenNodes.current = emblaApi.slideNodes().map((slideNode) => {
-      return slideNode.querySelector('.embla__parallax__layer') as HTMLElement;
-    });
-  }, []);
+    const activeIndex = emblaApi.selectedScrollSnap();
 
-  const setTweenFactor = useCallback((emblaApi: EmblaCarouselType) => {
-    tweenFactor.current = TWEEN_FACTOR_BASE * emblaApi.scrollSnapList().length;
-  }, []);
+    videoRefs.current.forEach((video, index) => {
+      if (!video) return;
 
-  const tweenParallax = useCallback((emblaApi: EmblaCarouselType) => {
-    const engine = emblaApi.internalEngine();
-    const scrollProgress = emblaApi.scrollProgress();
-    const slidesInView = emblaApi.slidesInView();
-
-    emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
-      let diffToTarget = scrollSnap - scrollProgress;
-      const slidesInSnap = engine.slideRegistry[snapIndex];
-
-      slidesInSnap.forEach((slideIndex) => {
-        if (!slidesInView.includes(slideIndex)) return;
-
-        if (engine.options.loop) {
-          engine.slideLooper.loopPoints.forEach((loopItem) => {
-            const target = loopItem.target();
-
-            if (slideIndex === loopItem.index && target !== 0) {
-              const sign = Math.sign(target);
-
-              if (sign === -1) {
-                diffToTarget = scrollSnap - (1 + scrollProgress);
-              }
-              if (sign === 1) {
-                diffToTarget = scrollSnap + (1 - scrollProgress);
-              }
-            }
-          });
+      if (index === activeIndex) {
+        video.currentTime = 0;
+        const playPromise = video.play();
+        if (playPromise) {
+          playPromise.catch(() => undefined);
         }
-
-        const translate = diffToTarget * (-1 * tweenFactor.current) * 100;
-        const tweenNode = tweenNodes.current[slideIndex];
-        if (tweenNode) {
-          tweenNode.style.transform = `translateX(${translate}%)`;
-        }
-      });
+      } else {
+        video.pause();
+        video.currentTime = 0;
+      }
     });
-  }, []);
+  }, [emblaApi, videosToUse.length]);
 
   useEffect(() => {
+    if (!emblaApi || videosToUse.length === 0) return;
+
+    syncActiveVideo();
+    emblaApi.on('select', syncActiveVideo);
+    emblaApi.on('reInit', syncActiveVideo);
+
+    return () => {
+      emblaApi.off('select', syncActiveVideo);
+      emblaApi.off('reInit', syncActiveVideo);
+    };
+  }, [emblaApi, syncActiveVideo, videosToUse.length]);
+
+  const handleVideoEnded = useCallback((index: number) => {
     if (!emblaApi) return;
+    if (emblaApi.selectedScrollSnap() !== index) return;
+    emblaApi.scrollNext();
+  }, [emblaApi]);
 
-    setTweenNodes(emblaApi);
-    setTweenFactor(emblaApi);
-    tweenParallax(emblaApi);
-
-    emblaApi
-      .on('reInit', setTweenNodes)
-      .on('reInit', setTweenFactor)
-      .on('reInit', tweenParallax)
-      .on('scroll', tweenParallax)
-      .on('slideFocus', tweenParallax);
-  }, [emblaApi, tweenParallax]);
-
-  const imagesToUse = images.length < 7 ? [...images] : images;
+  if (videosToUse.length === 0) return null;
 
   return (
-    <div className="embla">
-      <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container">
-          {imagesToUse.map((img, index) => (
-            <div className="embla__slide" key={index}>
-              <div className="embla__parallax">
-                <div className="embla__parallax__layer relative w-full h-full">
-                  <Image
-                    src={img}
-                    alt={`Slide ${index}`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 600px"
-                    style={{ objectFit: 'cover' }}
-                    unoptimized
-                  />
-                </div>
+    <div className="info-embla">
+      <div className="info-embla__viewport" ref={emblaRef}>
+        <div className="info-embla__container">
+          {videosToUse.map((src, index) => (
+            <div className="info-embla__slide" key={index}>
+              <div className="info-embla__video-wrap">
+                <video
+                  ref={(el) => {
+                    videoRefs.current[index] = el;
+                  }}
+                  muted
+                  playsInline
+                  preload="none"
+                  className="info-embla__video"
+                  onEnded={() => handleVideoEnded(index)}
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                >
+                  <source src={src} type="video/mp4" />
+                </video>
               </div>
             </div>
           ))}

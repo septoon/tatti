@@ -1,0 +1,274 @@
+[2025-12-11T21:25:08.061Z] setupWatcher called: debounceSeconds=30, workspace=/Users/tigrandarcinan/projects/github/tatti
+[2025-12-11T21:25:08.062Z] Watcher created for: /Users/tigrandarcinan/projects/github/tatti
+[2025-12-11T21:25:08.074Z] setupWatcher called: debounceSeconds=30, workspace=/Users/tigrandarcinan/projects/github/tatti
+[2025-12-11T21:25:08.075Z] Watcher created for: /Users/tigrandarcinan/projects/github/tatti
+[2025-12-11T21:25:08.107Z] setupWatcher called: debounceSeconds=30, workspace=/Users/tigrandarcinan/projects/github/tatti
+[2025-12-11T21:25:08.107Z] Watcher created for: /Users/tigrandarcinan/projects/github/tatti
+[2025-12-11T21:25:08.680Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/app/components/Menu/Menu.tsx.git
+[2025-12-11T21:25:08.680Z]   Relative path: /app/components/Menu/Menu.tsx.git
+[2025-12-11T21:25:08.680Z]   Path parts (4): ["app","components","Menu","Menu.tsx.git"]
+[2025-12-11T21:25:08.680Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/app
+[2025-12-11T21:25:08.680Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-11T21:25:08.680Z]   EXCLUDED: no settings file in instance folder
+[2025-12-11T21:25:08.735Z] setupWatcher called: debounceSeconds=30, workspace=/Users/tigrandarcinan/projects/github/tatti
+[2025-12-11T21:25:08.735Z] Watcher created for: /Users/tigrandarcinan/projects/github/tatti
+[2025-12-11T21:25:09.653Z] setupWatcher called: debounceSeconds=30, workspace=/Users/tigrandarcinan/projects/github/tatti
+[2025-12-11T21:25:09.653Z] Watcher created for: /Users/tigrandarcinan/projects/github/tatti
+[2025-12-11T21:29:29.686Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.git/FETCH_HEAD
+[2025-12-11T21:29:29.688Z]   Relative path: /.git/FETCH_HEAD
+[2025-12-11T21:29:29.688Z]   Path parts (2): [".git","FETCH_HEAD"]
+[2025-12-11T21:29:29.688Z]   EXCLUDED: not deep enough (2 < 3)
+[2025-12-11T21:29:30.793Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/app/components/Menu/Menu.tsx.git
+[2025-12-11T21:29:30.793Z]   Relative path: /app/components/Menu/Menu.tsx.git
+[2025-12-11T21:29:30.794Z]   Path parts (4): ["app","components","Menu","Menu.tsx.git"]
+[2025-12-11T21:29:30.794Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/app
+[2025-12-11T21:29:30.794Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-11T21:29:30.794Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:48:45.071Z] setupWatcher called: debounceSeconds=30, workspace=/Users/tigrandarcinan/projects/github/tatti
+[2025-12-13T11:48:45.071Z] Watcher created for: /Users/tigrandarcinan/projects/github/tatti
+[2025-12-13T11:48:45.501Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/next.config.ts.git
+[2025-12-13T11:48:45.501Z]   Relative path: /next.config.ts.git
+[2025-12-13T11:48:45.501Z]   Path parts (1): ["next.config.ts.git"]
+[2025-12-13T11:48:45.501Z]   EXCLUDED: not deep enough (1 < 3)
+[2025-12-13T11:48:45.501Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/app/components/Menu/Menu.tsx.git
+[2025-12-13T11:48:45.501Z]   Relative path: /app/components/Menu/Menu.tsx.git
+[2025-12-13T11:48:45.501Z]   Path parts (4): ["app","components","Menu","Menu.tsx.git"]
+[2025-12-13T11:48:45.501Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/app
+[2025-12-13T11:48:45.501Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:48:45.501Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:48:46.293Z] setupWatcher called: debounceSeconds=30, workspace=/Users/tigrandarcinan/projects/github/tatti
+[2025-12-13T11:48:46.294Z] Watcher created for: /Users/tigrandarcinan/projects/github/tatti
+[2025-12-13T11:48:57.922Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/logs/next-development.log
+[2025-12-13T11:48:57.923Z]   Relative path: /.next/dev/logs/next-development.log
+[2025-12-13T11:48:57.923Z]   Path parts (4): [".next","dev","logs","next-development.log"]
+[2025-12-13T11:48:57.923Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T11:48:57.923Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:48:57.923Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:48:58.078Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/package.json
+[2025-12-13T11:48:58.078Z]   Relative path: /.next/dev/package.json
+[2025-12-13T11:48:58.078Z]   Path parts (3): [".next","dev","package.json"]
+[2025-12-13T11:48:58.078Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T11:48:58.078Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:48:58.078Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:48:58.078Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/prerender-manifest.json
+[2025-12-13T11:48:58.078Z]   Relative path: /.next/dev/prerender-manifest.json
+[2025-12-13T11:48:58.078Z]   Path parts (3): [".next","dev","prerender-manifest.json"]
+[2025-12-13T11:48:58.078Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T11:48:58.078Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:48:58.078Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:48:58.078Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/routes-manifest.json
+[2025-12-13T11:48:58.078Z]   Relative path: /.next/dev/routes-manifest.json
+[2025-12-13T11:48:58.078Z]   Path parts (3): [".next","dev","routes-manifest.json"]
+[2025-12-13T11:48:58.078Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T11:48:58.078Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:48:58.078Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:48:58.078Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/types/cache-life.d.ts
+[2025-12-13T11:48:58.078Z]   Relative path: /.next/dev/types/cache-life.d.ts
+[2025-12-13T11:48:58.078Z]   Path parts (4): [".next","dev","types","cache-life.d.ts"]
+[2025-12-13T11:48:58.078Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T11:48:58.079Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:48:58.079Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:48:58.079Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/types/routes.d.ts
+[2025-12-13T11:48:58.079Z]   Relative path: /.next/dev/types/routes.d.ts
+[2025-12-13T11:48:58.079Z]   Path parts (4): [".next","dev","types","routes.d.ts"]
+[2025-12-13T11:48:58.079Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T11:48:58.079Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:48:58.079Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:48:58.079Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/types/validator.ts
+[2025-12-13T11:48:58.079Z]   Relative path: /.next/dev/types/validator.ts
+[2025-12-13T11:48:58.079Z]   Path parts (4): [".next","dev","types","validator.ts"]
+[2025-12-13T11:48:58.079Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T11:48:58.079Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:48:58.079Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:48:58.273Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/logs/next-development.log
+[2025-12-13T11:48:58.273Z]   Relative path: /.next/dev/logs/next-development.log
+[2025-12-13T11:48:58.273Z]   Path parts (4): [".next","dev","logs","next-development.log"]
+[2025-12-13T11:48:58.274Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T11:48:58.274Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:48:58.274Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:49:25.682Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/logs/next-development.log
+[2025-12-13T11:49:25.684Z]   Relative path: /.next/dev/logs/next-development.log
+[2025-12-13T11:49:25.684Z]   Path parts (4): [".next","dev","logs","next-development.log"]
+[2025-12-13T11:49:25.684Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T11:49:25.684Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:49:25.684Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:49:27.202Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/logs/next-development.log
+[2025-12-13T11:49:27.202Z]   Relative path: /.next/dev/logs/next-development.log
+[2025-12-13T11:49:27.202Z]   Path parts (4): [".next","dev","logs","next-development.log"]
+[2025-12-13T11:49:27.203Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T11:49:27.203Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:49:27.203Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:49:36.936Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/logs/next-development.log
+[2025-12-13T11:49:36.937Z]   Relative path: /.next/dev/logs/next-development.log
+[2025-12-13T11:49:36.938Z]   Path parts (4): [".next","dev","logs","next-development.log"]
+[2025-12-13T11:49:36.938Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T11:49:36.938Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:49:36.938Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:49:49.646Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/server/chunks/ssr/_c6dd1134._.js
+[2025-12-13T11:49:49.647Z]   EXCLUDED: system/hidden file (_c6dd1134._.js)
+[2025-12-13T11:49:49.647Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/server/chunks/ssr/_c6dd1134._.js.map
+[2025-12-13T11:49:49.647Z]   EXCLUDED: system/hidden file (_c6dd1134._.js.map)
+[2025-12-13T11:49:49.647Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/static/chunks/_afc09474._.js
+[2025-12-13T11:49:49.647Z]   EXCLUDED: system/hidden file (_afc09474._.js)
+[2025-12-13T11:49:49.647Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/static/chunks/_afc09474._.js.map
+[2025-12-13T11:49:49.647Z]   EXCLUDED: system/hidden file (_afc09474._.js.map)
+[2025-12-13T11:49:50.886Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/logs/next-development.log
+[2025-12-13T11:49:50.886Z]   Relative path: /.next/dev/logs/next-development.log
+[2025-12-13T11:49:50.886Z]   Path parts (4): [".next","dev","logs","next-development.log"]
+[2025-12-13T11:49:50.886Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T11:49:50.886Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:49:50.886Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:49:51.043Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/logs/next-development.log
+[2025-12-13T11:49:51.043Z]   Relative path: /.next/dev/logs/next-development.log
+[2025-12-13T11:49:51.043Z]   Path parts (4): [".next","dev","logs","next-development.log"]
+[2025-12-13T11:49:51.043Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T11:49:51.043Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:49:51.043Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:50:15.107Z] setupWatcher called: debounceSeconds=30, workspace=/Users/tigrandarcinan/projects/github/tatti
+[2025-12-13T11:50:15.107Z] Watcher created for: /Users/tigrandarcinan/projects/github/tatti
+[2025-12-13T11:50:16.463Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/logs/next-development.log
+[2025-12-13T11:50:16.463Z]   Relative path: /.next/dev/logs/next-development.log
+[2025-12-13T11:50:16.463Z]   Path parts (4): [".next","dev","logs","next-development.log"]
+[2025-12-13T11:50:16.464Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T11:50:16.464Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:50:16.464Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:50:18.922Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/logs/next-development.log
+[2025-12-13T11:50:18.922Z]   Relative path: /.next/dev/logs/next-development.log
+[2025-12-13T11:50:18.922Z]   Path parts (4): [".next","dev","logs","next-development.log"]
+[2025-12-13T11:50:18.923Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T11:50:18.923Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:50:18.923Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:51:46.610Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.git/FETCH_HEAD
+[2025-12-13T11:51:46.611Z]   Relative path: /.git/FETCH_HEAD
+[2025-12-13T11:51:46.611Z]   Path parts (2): [".git","FETCH_HEAD"]
+[2025-12-13T11:51:46.611Z]   EXCLUDED: not deep enough (2 < 3)
+[2025-12-13T11:51:47.717Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/next.config.ts.git
+[2025-12-13T11:51:47.718Z]   Relative path: /next.config.ts.git
+[2025-12-13T11:51:47.718Z]   Path parts (1): ["next.config.ts.git"]
+[2025-12-13T11:51:47.718Z]   EXCLUDED: not deep enough (1 < 3)
+[2025-12-13T11:51:47.718Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/app/components/Menu/Menu.tsx.git
+[2025-12-13T11:51:47.719Z]   Relative path: /app/components/Menu/Menu.tsx.git
+[2025-12-13T11:51:47.719Z]   Path parts (4): ["app","components","Menu","Menu.tsx.git"]
+[2025-12-13T11:51:47.719Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/app
+[2025-12-13T11:51:47.719Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:51:47.719Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:53:40.234Z] setupWatcher called: debounceSeconds=30, workspace=/Users/tigrandarcinan/projects/github/tatti
+[2025-12-13T11:53:40.235Z] Watcher created for: /Users/tigrandarcinan/projects/github/tatti
+[2025-12-13T11:54:57.675Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.git/FETCH_HEAD
+[2025-12-13T11:54:57.676Z]   Relative path: /.git/FETCH_HEAD
+[2025-12-13T11:54:57.676Z]   Path parts (2): [".git","FETCH_HEAD"]
+[2025-12-13T11:54:57.676Z]   EXCLUDED: not deep enough (2 < 3)
+[2025-12-13T11:54:58.781Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/app/components/Menu/Menu.tsx.git
+[2025-12-13T11:54:58.781Z]   Relative path: /app/components/Menu/Menu.tsx.git
+[2025-12-13T11:54:58.781Z]   Path parts (4): ["app","components","Menu","Menu.tsx.git"]
+[2025-12-13T11:54:58.781Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/app
+[2025-12-13T11:54:58.782Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:54:58.782Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:56:34.336Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.DS_Store
+[2025-12-13T11:56:34.336Z]   EXCLUDED: system/hidden file (.DS_Store)
+[2025-12-13T11:56:42.578Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/public/.DS_Store
+[2025-12-13T11:56:42.579Z]   EXCLUDED: system/hidden file (.DS_Store)
+[2025-12-13T11:56:43.116Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/public/ТОРТЫ И ДЕСЕРТЫ
+[2025-12-13T11:56:43.116Z]   Relative path: /public/ТОРТЫ И ДЕСЕРТЫ
+[2025-12-13T11:56:43.116Z]   Path parts (2): ["public","ТОРТЫ И ДЕСЕРТЫ"]
+[2025-12-13T11:56:43.116Z]   EXCLUDED: not deep enough (2 < 3)
+[2025-12-13T11:56:48.132Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/public/.DS_Store
+[2025-12-13T11:56:48.133Z]   EXCLUDED: system/hidden file (.DS_Store)
+[2025-12-13T11:57:59.229Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.git/FETCH_HEAD
+[2025-12-13T11:57:59.229Z]   Relative path: /.git/FETCH_HEAD
+[2025-12-13T11:57:59.229Z]   Path parts (2): [".git","FETCH_HEAD"]
+[2025-12-13T11:57:59.230Z]   EXCLUDED: not deep enough (2 < 3)
+[2025-12-13T11:58:00.336Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/app/components/Menu/Menu.tsx.git
+[2025-12-13T11:58:00.337Z]   Relative path: /app/components/Menu/Menu.tsx.git
+[2025-12-13T11:58:00.337Z]   Path parts (4): ["app","components","Menu","Menu.tsx.git"]
+[2025-12-13T11:58:00.337Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/app
+[2025-12-13T11:58:00.337Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:58:00.337Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T11:58:00.337Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/app/components/NewYear/NewYear.tsx.git
+[2025-12-13T11:58:00.337Z]   Relative path: /app/components/NewYear/NewYear.tsx.git
+[2025-12-13T11:58:00.337Z]   Path parts (4): ["app","components","NewYear","NewYear.tsx.git"]
+[2025-12-13T11:58:00.337Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/app
+[2025-12-13T11:58:00.337Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T11:58:00.337Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T12:01:00.778Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.git/FETCH_HEAD
+[2025-12-13T12:01:00.779Z]   Relative path: /.git/FETCH_HEAD
+[2025-12-13T12:01:00.779Z]   Path parts (2): [".git","FETCH_HEAD"]
+[2025-12-13T12:01:00.779Z]   EXCLUDED: not deep enough (2 < 3)
+[2025-12-13T12:01:01.882Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/app/components/Menu/Menu.tsx.git
+[2025-12-13T12:01:01.882Z]   Relative path: /app/components/Menu/Menu.tsx.git
+[2025-12-13T12:01:01.882Z]   Path parts (4): ["app","components","Menu","Menu.tsx.git"]
+[2025-12-13T12:01:01.883Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/app
+[2025-12-13T12:01:01.883Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T12:01:01.883Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T12:01:01.883Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/app/components/NewYear/NewYear.tsx.git
+[2025-12-13T12:01:01.883Z]   Relative path: /app/components/NewYear/NewYear.tsx.git
+[2025-12-13T12:01:01.883Z]   Path parts (4): ["app","components","NewYear","NewYear.tsx.git"]
+[2025-12-13T12:01:01.884Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/app
+[2025-12-13T12:01:01.884Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T12:01:01.884Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T12:01:41.537Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/app/components/Menu/Menu.tsx
+[2025-12-13T12:01:41.537Z]   Relative path: /app/components/Menu/Menu.tsx
+[2025-12-13T12:01:41.537Z]   Path parts (4): ["app","components","Menu","Menu.tsx"]
+[2025-12-13T12:01:41.538Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/app
+[2025-12-13T12:01:41.538Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T12:01:41.538Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T12:01:41.678Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/types/cache-life.d.ts
+[2025-12-13T12:01:41.678Z]   Relative path: /.next/dev/types/cache-life.d.ts
+[2025-12-13T12:01:41.678Z]   Path parts (4): [".next","dev","types","cache-life.d.ts"]
+[2025-12-13T12:01:41.678Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T12:01:41.678Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T12:01:41.678Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T12:01:41.678Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/types/routes.d.ts
+[2025-12-13T12:01:41.678Z]   Relative path: /.next/dev/types/routes.d.ts
+[2025-12-13T12:01:41.678Z]   Path parts (4): [".next","dev","types","routes.d.ts"]
+[2025-12-13T12:01:41.678Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T12:01:41.678Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T12:01:41.678Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T12:01:41.678Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/types/validator.ts
+[2025-12-13T12:01:41.678Z]   Relative path: /.next/dev/types/validator.ts
+[2025-12-13T12:01:41.678Z]   Path parts (4): [".next","dev","types","validator.ts"]
+[2025-12-13T12:01:41.678Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T12:01:41.678Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T12:01:41.678Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T12:01:41.823Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/static/chunks/_b23fcccf._.css
+[2025-12-13T12:01:41.824Z]   EXCLUDED: system/hidden file (_b23fcccf._.css)
+[2025-12-13T12:01:41.824Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/static/chunks/_b23fcccf._.css.map
+[2025-12-13T12:01:41.824Z]   EXCLUDED: system/hidden file (_b23fcccf._.css.map)
+[2025-12-13T12:01:41.824Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/static/chunks/app_globals_css_bad6b30c._.single.css
+[2025-12-13T12:01:41.824Z]   Relative path: /.next/dev/static/chunks/app_globals_css_bad6b30c._.single.css
+[2025-12-13T12:01:41.824Z]   Path parts (5): [".next","dev","static","chunks","app_globals_css_bad6b30c._.single.css"]
+[2025-12-13T12:01:41.824Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T12:01:41.824Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T12:01:41.824Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T12:01:41.824Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/static/chunks/app_globals_css_bad6b30c._.single.css.map
+[2025-12-13T12:01:41.824Z]   Relative path: /.next/dev/static/chunks/app_globals_css_bad6b30c._.single.css.map
+[2025-12-13T12:01:41.824Z]   Path parts (5): [".next","dev","static","chunks","app_globals_css_bad6b30c._.single.css.map"]
+[2025-12-13T12:01:41.824Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T12:01:41.824Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T12:01:41.824Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T12:01:41.968Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.next/dev/logs/next-development.log
+[2025-12-13T12:01:41.968Z]   Relative path: /.next/dev/logs/next-development.log
+[2025-12-13T12:01:41.968Z]   Path parts (4): [".next","dev","logs","next-development.log"]
+[2025-12-13T12:01:41.968Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/.next
+[2025-12-13T12:01:41.968Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T12:01:41.968Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T12:04:02.643Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.git/FETCH_HEAD
+[2025-12-13T12:04:02.644Z]   Relative path: /.git/FETCH_HEAD
+[2025-12-13T12:04:02.644Z]   Path parts (2): [".git","FETCH_HEAD"]
+[2025-12-13T12:04:02.644Z]   EXCLUDED: not deep enough (2 < 3)
+[2025-12-13T12:04:03.749Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/app/components/Menu/Menu.tsx.git
+[2025-12-13T12:04:03.750Z]   Relative path: /app/components/Menu/Menu.tsx.git
+[2025-12-13T12:04:03.750Z]   Path parts (4): ["app","components","Menu","Menu.tsx.git"]
+[2025-12-13T12:04:03.750Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/app
+[2025-12-13T12:04:03.751Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T12:04:03.751Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T12:04:03.751Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/app/components/NewYear/NewYear.tsx.git
+[2025-12-13T12:04:03.751Z]   Relative path: /app/components/NewYear/NewYear.tsx.git
+[2025-12-13T12:04:03.751Z]   Path parts (4): ["app","components","NewYear","NewYear.tsx.git"]
+[2025-12-13T12:04:03.751Z]   Instance folder: /Users/tigrandarcinan/projects/github/tatti/app
+[2025-12-13T12:04:03.751Z]   Settings check: _settings.json=false, settings.json=false
+[2025-12-13T12:04:03.751Z]   EXCLUDED: no settings file in instance folder
+[2025-12-13T12:05:09.835Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/.DS_Store
+[2025-12-13T12:05:09.836Z]   EXCLUDED: system/hidden file (.DS_Store)
+[2025-12-13T12:05:09.837Z] File change detected: /Users/tigrandarcinan/projects/github/tatti/public/.DS_Store
+[2025-12-13T12:05:09.837Z]   EXCLUDED: system/hidden file (.DS_Store)

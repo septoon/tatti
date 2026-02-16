@@ -30,12 +30,14 @@ const Footer = () => {
         </div>
 
          {/* Логотип и бренд */}
-         <div className='flex flex-col justify-center items-center '>
+         <div className='flex flex-col justify-center items-center'>
           <div className="flex flex-col justify-center items-center md:flex-row">
             <Image src="/logo.png" alt="Tatti_shef Logo" width={80} height={80} className="mb-2 md:mb-0 md:mr-1 md:w-10" />
             <h4 className="text-2xl font-light italic md:ml-1">Tatti_shef</h4>
           </div>
-          <p className="text-sm text-gray-400 mt-2">© {new Date().getFullYear()} Все права защищены</p>
+          <p className="text-sm text-gray-400 mt-2" suppressHydrationWarning>
+            © {new Date().getFullYear()} Все права защищены
+          </p>
           <div className='flex items-center'>
             <p className='text-sm mr-2'>Разработано студией </p> 
             <a href="https://lumastack.ru" target="_blank" rel="noopener noreferrer" className='text-sm underline'>LumaStack</a>

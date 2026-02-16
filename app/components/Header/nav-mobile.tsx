@@ -1,8 +1,9 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Logo from '@/public/logo.png';
 import Image from 'next/image';
+import Link from 'next/link';
 import Hamburger from 'hamburger-react';
 import CartIcon from '../Cart/CartIcon';
 import { Badge } from 'primereact/badge';
@@ -15,22 +16,15 @@ interface NavMobileProps {
 }
 
 const NavMobile: React.FC<NavMobileProps> = ({ isOpen, setIsOpen, pathname }) => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
   return (
     <div className='fixed bg-[#1f1d1d] z-999 w-full flex justify-between items-center px-4 py-2 text-white'>
       <div className='z-50'>
         <Hamburger toggled={isOpen} toggle={() => setIsOpen(!isOpen)} rounded size={36} />
       </div>
-      <a href="/" className='flex items-center'>
+      <Link href="/" className='flex items-center'>
         <Image src={Logo} alt="Logo" width={60} style={{marginRight: 10}} />
         <h4 className='font-imFellDoublePica font-light italic text-[2rem]'>Tatti_shef</h4>
-      </a>
+      </Link>
 
       <CartIcon />
       

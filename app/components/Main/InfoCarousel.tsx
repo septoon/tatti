@@ -6,6 +6,12 @@ import './InfoCarousel.css';
 
 type Props = { videos: string[] };
 
+const getPosterPath = (src: string): string => {
+  const fileName = src.split('/').pop()?.split('?')[0]?.split('#')[0];
+  if (!fileName) return '/images/not_found.svg';
+  return `/video/posters/${fileName}.webp`;
+};
+
 const InfoCarousel: React.FC<Props> = ({ videos }) => {
   const [emblaRef] = useEmblaCarousel({ loop: true, align: 'start' });
   const videosToUse = videos.filter(Boolean);
@@ -23,6 +29,7 @@ const InfoCarousel: React.FC<Props> = ({ videos }) => {
                   controls
                   playsInline
                   preload="metadata"
+                  poster={getPosterPath(src)}
                   className="info-embla__video"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';

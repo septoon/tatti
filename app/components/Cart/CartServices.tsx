@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { AppDispatch, RootState } from '@/app/GlobalRedux/store';
 import { Accordion, AccordionTab } from 'primereact/accordion';
 import { Tooltip } from 'primereact/tooltip';
@@ -8,50 +8,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeOne } from '@/app/GlobalRedux/Features/cartSlice';
 import { fetchServicePackages } from '@/app/GlobalRedux/Features/serviceSlice';
 
-type ServicePackage = {
-  id: number;
-  name: string;
-  price: number;
-  cost: string;
-  includes: string[];
-  image: string;
-};
-
-type ExtraService = {
-  id: number;
-  name: string;
-  price: number;
-  cost: string;
-  note: string;
-  image: string;
-};
-
-type ServicePackages = {
-  packages: ServicePackage[];
-  extras: ExtraService[];
-};
-
 const CartServices = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { data, loading } = useSelector((state: RootState) => state.services);
+  const { data } = useSelector((state: RootState) => state.services);
   const cartItems = useSelector((state: RootState) => state.cart.items);
-  const [selected, setSelected] = useState<string[]>([]);
 
   useEffect(() => {
     if (!data) {
       dispatch(fetchServicePackages());
     }
   }, [dispatch, data]);
-
-  const handleSelect = (itemName: string) => {
-    setSelected((prevSelected) => {
-      if (prevSelected.includes(itemName)) {
-        return prevSelected.filter((name) => name !== itemName);
-      } else {
-        return [...prevSelected, itemName];
-      }
-    });
-  };
 
   const packages = data?.packages || [];
   const extras = data?.extras || [];
@@ -68,7 +34,6 @@ const CartServices = () => {
                 return (
                   <div key={pkg.id} className={`${cartItem ? 'border-gray-400 bg-[#393939] text-white' : 'text-gray-300  border-transparent'} transition-all duration-200 border-2 bg-[#1e1e1e] p-4 rounded-lg cursor-pointer`}
                     onClick={() => {
-                      handleSelect(pkg.name);
                       if (cartItem) {
                         dispatch(removeOne(pkg.id));
                       } else {
@@ -105,7 +70,6 @@ const CartServices = () => {
                 return (
                   <div key={extra.id} className={`${cartItem ? 'border-gray-400 bg-[#393939] text-white' : 'text-gray-300 border-transparent'} transition-all duration-200 border-2 bg-[#1e1e1e] p-4 rounded-lg cursor-pointer`} 
                   onClick={() => {
-                    handleSelect(extra.name);
                     if (cartItem) {
                       dispatch(removeOne(extra.id));
                     } else {

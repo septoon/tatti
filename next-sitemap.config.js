@@ -3,7 +3,7 @@ module.exports = {
   siteUrl: 'https://tatti-shef.ru',
   generateRobotsTxt: true,
   outDir: './public',
-  additionalPaths: async (config) => {
+  additionalPaths: async () => {
     const now = new Date().toISOString();
     return [
       { loc: '/', lastmod: now },

@@ -94,7 +94,7 @@ const ParallaxCarouselReviews: React.FC<Props> = ({ reviews }) => {
       .on('reInit', tweenParallax)
       .on('scroll', tweenParallax)
       .on('slideFocus', tweenParallax);
-  }, [emblaApi, tweenParallax]);
+  }, [emblaApi, setTweenFactor, setTweenNodes, tweenParallax]);
 
   const renderStars = (rating: number | null) => {
     if (!rating) return null;

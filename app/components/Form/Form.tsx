@@ -1,7 +1,6 @@
 'use client'
 import sendOrder from '@/app/common/sendOrder';
 import React, { useState } from 'react'
-import { IoIosCloseCircle } from 'react-icons/io';
 import { useMask } from '@react-input/mask';
 import { Calendar } from 'primereact/calendar';
 import { setupPrimeReactLocale, formatSelectedDate } from '@/app/common/primereact-locale';

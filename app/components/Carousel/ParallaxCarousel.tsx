@@ -82,7 +82,7 @@ const ParallaxCarousel: React.FC<Props> = ({ images }) => {
       .on('reInit', tweenParallax)
       .on('scroll', tweenParallax)
       .on('slideFocus', tweenParallax);
-  }, [emblaApi, tweenParallax]);
+  }, [emblaApi, setTweenFactor, setTweenNodes, tweenParallax]);
 
   const imagesToUse = safeImages.length < 7 ? [...safeImages] : safeImages;
 

@@ -21,14 +21,6 @@ type EasterItem = {
   }[];
 };
 
-type CartItem = {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  quantity: number;
-};
-
 type SelectedWeightMap = { [productId: number]: number };
 const Easter: NextPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -103,7 +95,6 @@ const Easter: NextPage = () => {
                 ]
               : item.weights || [];
 
-          const defaultWeight = availableWeights.length > 0 ? availableWeights[0].weight : item.weight ?? 0;
           const selectedPrice =
             selectedWeight[item.id] !== undefined
               ? availableWeights.find(w => w.weight === selectedWeight[item.id])?.price ?? item.price ?? 0

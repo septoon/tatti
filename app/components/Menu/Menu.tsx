@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState, AppDispatch } from '@/app/GlobalRedux/store';
@@ -107,13 +107,17 @@ const Menu: React.FC = () => {
     }
   }, [categories]);
 
-  const filteredMenu = searchTerm
-    ? Object.values(menu)
+  const filteredMenu = useMemo(() => {
+    if (searchTerm) {
+      return Object.values(menu)
         .flat()
         .filter((item: MenuItem) =>
           item.name.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-    : menu[category] || [];
+        );
+    }
+
+    return menu[category] || [];
+  }, [category, menu, searchTerm]);
 
   useEffect(() => {
     setNoMatches(searchTerm !== '' && filteredMenu.length === 0);

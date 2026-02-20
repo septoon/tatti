@@ -11,7 +11,7 @@ import EmptyCart from './EmptyCart';
 import CartItems from './CartItems';
 import DeliveryMethod from './DeliveryMethod';
 import { clearCart } from '@/app/GlobalRedux/Features/cartSlice';
-import { formatSelectedDate, shortDates } from '@/app/common/shortDates';
+import { formatSelectedDate } from '@/app/common/shortDates';
 import {setupPrimeReactLocale} from '@/app/common/primereact-locale';
 
 setupPrimeReactLocale();

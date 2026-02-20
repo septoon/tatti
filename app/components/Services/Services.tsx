@@ -6,29 +6,6 @@ import { fetchServicePackages } from '@/app/GlobalRedux/Features/serviceSlice';
 import { AppDispatch, RootState } from '@/app/GlobalRedux/store';
 import Loader from '../Loader/Loader';
 
-type ServicePackage = {
-  id: number;
-  name: string;
-  price: number;
-  cost: string;
-  includes: string[];
-  image: string;
-};
-
-type ExtraService = {
-  id: number;
-  name: string;
-  price: number;
-  cost: string;
-  note: string;
-  image: string;
-};
-
-type ServicePackages = {
-  packages: ServicePackage[];
-  extras: ExtraService[];
-};
-
 const Services = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { data, loading, error } = useSelector((state: RootState) => state.services);

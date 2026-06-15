@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import ServiceCartButton from '@/app/components/Services/ServiceCartButton';
 
 type RelatedService = {
   id: number;
@@ -78,7 +79,7 @@ export default async function RelatedServicesPage() {
 
       <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-5xl flex-col justify-center px-4 py-16">
         <div className="grid gap-5 md:grid-cols-2">
-          {relatedServices.map((service) => (
+          {relatedServices.map((service, index) => (
             <article
               key={service.id}
               className="overflow-hidden rounded-lg border border-white/15 bg-[#151515]/85 shadow-[0_16px_40px_rgba(0,0,0,0.35)] backdrop-blur-sm"
@@ -113,6 +114,15 @@ export default async function RelatedServicesPage() {
                     ))}
                   </ul>
                 </div>
+
+                <ServiceCartButton
+                  id={service.id}
+                  name={service.name}
+                  price={Number(service.price)}
+                  image={service.image}
+                  list="related-services:extras"
+                  position={index + 1}
+                />
               </div>
             </article>
           ))}

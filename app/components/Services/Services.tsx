@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchServicePackages } from '@/app/GlobalRedux/Features/serviceSlice';
 import { AppDispatch, RootState } from '@/app/GlobalRedux/store';
 import Loader from '../Loader/Loader';
+import ServiceCartButton from './ServiceCartButton';
 
 const Services = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -26,7 +27,7 @@ const Services = () => {
 
       {data ? (
         <div className="grid gap-6 md:grid-cols-2">
-          {data.packages.map((pkg) => (
+          {data.packages.map((pkg, index) => (
             <div key={pkg.id} className="bg-[#1e1e1e] p-4 rounded-lg">
               <h2 className="text-2xl font-semibold mb-2">{pkg.name}</h2>
               <p className="text-sm text-gray-300 mb-2">{pkg.cost}</p>
@@ -35,13 +36,21 @@ const Services = () => {
                   <li key={index}>{item}</li>
                 ))}
               </ul>
+              <ServiceCartButton
+                id={pkg.id}
+                name={pkg.name}
+                price={Number(pkg.price)}
+                image={pkg.image}
+                list="services:packages"
+                position={index + 1}
+              />
             </div>
           ))}
 
           <div>
             <h2 className="text-2xl font-semibold mt-10 mb-4">Дополнительно</h2>
             <div className="grid gap-4 md:grid-cols-2">
-              {data.extras.map((extra) => (
+              {data.extras.map((extra, index) => (
                 <div key={extra.id} className="bg-[#1e1e1e] p-4 rounded-lg">
                   <h3 className="text-xl font-medium">{extra.name}</h3>
                   <p className="text-sm text-gray-300">{extra.cost}</p>
@@ -54,6 +63,14 @@ const Services = () => {
                   ) : (
                     <p className="text-sm text-gray-500">{extra.note}</p>
                   )}
+                  <ServiceCartButton
+                    id={extra.id}
+                    name={extra.name}
+                    price={Number(extra.price)}
+                    image={extra.image}
+                    list="services:extras"
+                    position={index + 1}
+                  />
                 </div>
               ))}
             </div>

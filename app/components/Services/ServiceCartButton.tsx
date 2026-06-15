@@ -10,11 +10,9 @@ type ServiceCartButtonProps = {
   name: string;
   price: number;
   image?: string;
-  list: string;
-  position: number;
 };
 
-const ServiceCartButton = ({ id, name, price, image = '', list, position }: ServiceCartButtonProps) => {
+const ServiceCartButton = ({ id, name, price, image = '' }: ServiceCartButtonProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const isInCart = useSelector((state: RootState) => state.cart.items.some((item) => item.id === id));
 
@@ -27,9 +25,6 @@ const ServiceCartButton = ({ id, name, price, image = '', list, position }: Serv
         name,
         price: Number(price),
         image,
-        category: 'Услуги',
-        list,
-        position,
       })
     );
   };

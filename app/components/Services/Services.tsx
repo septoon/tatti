@@ -45,7 +45,15 @@ const Services = () => {
                 <div key={extra.id} className="bg-[#1e1e1e] p-4 rounded-lg">
                   <h3 className="text-xl font-medium">{extra.name}</h3>
                   <p className="text-sm text-gray-300">{extra.cost}</p>
-                  <p className="text-sm text-gray-500">{extra.note}</p>
+                  {Array.isArray(extra.includes) && extra.includes.length > 0 ? (
+                    <ul className="list-disc list-inside text-sm text-gray-500">
+                      {extra.includes.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-sm text-gray-500">{extra.note}</p>
+                  )}
                 </div>
               ))}
             </div>

@@ -24,6 +24,10 @@ export const navLinks = [
     link: '/services'
   },
   {
+    title: 'Сопутствующие услуги',
+    link: '/related-services'
+  },
+  {
     title: 'Доставка',
     link: '/delivery'
   },

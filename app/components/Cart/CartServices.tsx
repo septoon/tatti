@@ -67,6 +67,11 @@ const CartServices = () => {
             <div className="grid gap-4 md:grid-cols-2">
               {extras.map((extra, index) => {
                 const cartItem = cartItems.find((item) => item.id === extra.id);
+                const includes = Array.isArray(extra.includes) && extra.includes.length > 0
+                  ? extra.includes
+                  : extra.note
+                    ? [extra.note]
+                    : [];
                 return (
                   <div key={extra.id} className={`${cartItem ? 'border-gray-400 bg-[#393939] text-white' : 'text-gray-300 border-transparent'} transition-all duration-200 border-2 bg-[#1e1e1e] p-4 rounded-lg cursor-pointer`} 
                   onClick={() => {
@@ -88,7 +93,11 @@ const CartServices = () => {
                       <p className="text-sm text-gray-300">{extra.price}</p>
                       <div className="card flex justify-center">
                         <Tooltip target={`#tooltip-extra-${index}`} className="custom-tooltip w-1/2 min-h30">
-                          <p className="text-sm ">{extra.note}</p>
+                          <ul className="text-sm list-disc list-inside">
+                            {includes.map((item, idx) => (
+                              <li key={idx}>{item}</li>
+                            ))}
+                          </ul>
                         </Tooltip>
                         <TiInfoLarge size={20} color='green' id={`tooltip-extra-${index}`} type="button" data-pr-position="top" data-pr-at="right+120 top" data-pr-my="top center-120" />
                       </div>

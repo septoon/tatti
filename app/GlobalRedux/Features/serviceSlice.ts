@@ -16,6 +16,7 @@ type ExtraService = {
   price: number;
   cost: string;
   note: string;
+  includes?: string[];
   image: string;
 };
 

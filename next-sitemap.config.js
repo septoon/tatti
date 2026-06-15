@@ -13,6 +13,7 @@ module.exports = {
       { loc: '/contacts', lastmod: now },
       { loc: '/delivery', lastmod: now },
       { loc: '/services', lastmod: now },
+      { loc: '/related-services', lastmod: now },
     ];
   },
   robotsTxtOptions: {

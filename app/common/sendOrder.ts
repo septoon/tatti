@@ -18,6 +18,11 @@ interface OrderDetails {
   totalPrice?: number;
 }
 
+export interface SendOrderResult {
+  success: boolean;
+  orderId?: string;
+}
+
 const sendOrder = async ({
   name,
   phone,
@@ -27,47 +32,48 @@ const sendOrder = async ({
   address,
   cartItems,
   totalPrice
-}: OrderDetails) => {
-  const botToken = process.env.NEXT_PUBLIC_BOT_TOKEN;
-  const chatId = process.env.NEXT_PUBLIC_CHANNEL_ID; 
+}: OrderDetails): Promise<SendOrderResult> => {
+  const apiBaseUrl = (process.env.NEXT_PUBLIC_API_URL || '').replace(/\/$/, '');
 
-  const orderDetails = cartItems?.map((item) => 
-    `${item.name} — ${item.quantity} шт. (${item.price * item.quantity} р.)`
-  ).join('\n') || 'Нет товаров в заказе';
+  if (!apiBaseUrl) {
+    console.error('NEXT_PUBLIC_API_URL is not configured');
+    alert('Сервис заказа временно недоступен. Пожалуйста, попробуйте позже.');
+    return {
+      success: false,
+    };
+  }
 
-  const deliveryInfo = deliveryMethod === 'courier'
-    ? `Доставка: Курьер\nАдрес: ${address || 'Не указан'}\n`
-    : deliveryMethod === 'pickup'
-    ? `Доставка: Самовывоз`
-    : '';
-
-  const message = `
-🚨 *Новый заказ!*
-
-👤 Имя: ${name || 'Не указано'}
-📞 Телефон: +7${phone || 'Не указан'}
-📅 Дата: ${date ? date.toLocaleDateString() : 'Не указана'}
-📦 Пожелания: ${wishes || 'Нет'}
-
-${deliveryInfo}
-
-🛒 *Состав заказа:*
-${orderDetails}
-
-${totalPrice ? `💰 Итоговая сумма: ${totalPrice} р.` : ''}
-  `;
+  const payload = {
+    name,
+    phone,
+    date: date ? date.toISOString() : null,
+    wishes,
+    deliveryMethod,
+    address,
+    cartItems,
+    totalPrice,
+  };
 
   try {
-    await axios.post(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-      chat_id: chatId,
-      text: message,
-      parse_mode: 'HTML',
+    const response = await axios.post(`${apiBaseUrl}/api/orders`, payload, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
-    return true;
+
+    const orderId = response?.data?.orderId;
+
     alert('Ваш заказ успешно отправлен!');
+    return {
+      success: true,
+      orderId,
+    };
   } catch (error) {
     console.error('Ошибка отправки заказа:', error);
     alert('Произошла ошибка при отправке заказа. Пожалуйста, попробуйте снова.');
+    return {
+      success: false,
+    };
   }
 };
 
